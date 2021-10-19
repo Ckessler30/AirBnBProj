@@ -11,15 +11,18 @@ import { authenticate } from './store/session';
 import { fetchAllSpots } from './store/allSpots'
 import { fetchSpot, updateSpot } from './store/currentSpot'
 import { fetchProfile, updateProfile } from './store/currProfile'
-import {fetchBookings} from './store/bookings'
+import {fetchBookings, deleteBooking, addBooking} from './store/bookings'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
-  const updatedProfile = {
-    id: 3,
-    bio: "I love this thunk"
+  const newBooking = {
+    spotId: 3,
+    userId: 3,
+    startDate: "2022-01-10",
+    endDate: "2022-01-15",
+    numGuests: 6
   }
 
   useEffect(() => {
@@ -32,6 +35,7 @@ function App() {
       setLoaded(true);
     })();
   }, [dispatch]);
+
 
   if (!loaded) {
     return null;
