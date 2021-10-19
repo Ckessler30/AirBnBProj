@@ -4,12 +4,14 @@ import session from './session'
 import allSpotsReducer from './allSpots'
 import currSpotReducer from './currentSpot';
 import currProfileReducer from './currProfile';
+import bookingsReducer from './bookings';
 
 const rootReducer = combineReducers({
   session,
   allSpots: allSpotsReducer,
   currSpot: currSpotReducer,
-  currProfile: currProfileReducer
+  currProfile: currProfileReducer,
+  bookings: bookingsReducer
 });
 
 
