@@ -30,4 +30,4 @@ def make_booking():
         return new_booking.to_dict()
     if request.method == "GET":
         bookings = Booking.query.all()
-        return {booking.to_dict()["id"]: booking.to_dict() for booking in bookings}
+        return {"allBookings": [booking.to_dict() for booking in bookings]}
