@@ -12,7 +12,7 @@ class Spot(db.Model):
     num_bedrooms = db.Column(db.Integer, nullable=False)
     num_baths = db.Column(db.Integer, nullable=False)
     num_beds = db.Column(db.Integer, nullable=False)
-    total_guests = db.Column(db.Intger, nullable=False)
+    total_guests = db.Column(db.Integer, nullable=False)
     city = db.Column(db.String(100), nullable=False)
     st_address = db.Column(db.String(255), nullable=False)
     longitude = db.Column(db.Float, nullable=False)
