@@ -29,5 +29,5 @@ class Review(db.Model):
             'checkInRating': self.check_in_rating,
             'valueRating': self.value_rating,
             'reviewText': self.review_text,
-            'user': {"name": self.user.to_dict()['name']}
+            'user': {"name": self.user.to_dict()['name'], "profilePic": self.user.to_dict()["profile_pic"]}
         }
