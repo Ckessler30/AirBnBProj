@@ -2,43 +2,47 @@
 /* -----------------------------Actions----------------------------------- */
 /* ----------------------------------------------------------------------- */
 
-const GET_SPOTS = "spots/GET_SPOTS";
+const GET_SPOT = "currentSpots/GET_SPOT";
 
 /* ----------------------------------------------------------------------- */
 /* ----------------------------Action Creators---------------------------- */
 /* ----------------------------------------------------------------------- */
 
-const getSpotsAction = (allSpots) => ({
-  type: GET_SPOTS,
-  payload: allSpots,
+const getCurrSpotAction = (spot) => ({
+  type: GET_SPOT,
+  payload: spot,
 });
 
 /* ----------------------------------------------------------------------- */
 /* --------------------------------Thunks--------------------------------- */
 /* ----------------------------------------------------------------------- */
 
-export const fetchAllSpots = () => async (dispatch) => {
-  const allSpots = await fetch("/api/spots/");
-  const spots = await allSpots.json();
-//   console.log(spots.allSpots)
-  dispatch(getSpotsAction(spots.allSpots));
+export const fetchSpot = (id) => async (dispatch) => {
+  const currSpot = await fetch(`/api/spots/${id}`);
+  const spot = await currSpot.json();
+    console.log(spot)
+  dispatch(getCurrSpotAction(spot));
 };
+
+export const updateSpot = (updatedSpot) => async(dispatch)=> {
+    
+}
 
 /* ----------------------------------------------------------------------- */
 /* -----------------------Initial State & Reducer------------------------- */
 /* ----------------------------------------------------------------------- */
 
-const initialState = [];
+const initialState = {};
 
-const allSpotsReducer = (state = initialState, action) => {
+const currSpotReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case GET_SPOTS:
-      newState = [...action.payload];
+    case GET_SPOT:
+      newState = {...action.payload};
       return newState;
     default:
       return state;
   }
 };
 
-export default allSpotsReducer;
+export default currSpotReducer;

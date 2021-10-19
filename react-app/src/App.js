@@ -8,7 +8,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import { fetchAllSpots } from './store/spots'
+import { fetchAllSpots } from './store/allSpots'
+import { fetchSpot } from './store/currentSpot'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -18,6 +19,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(fetchAllSpots())
+      await dispatch(fetchSpot(3))
       setLoaded(true);
     })();
   }, [dispatch]);
