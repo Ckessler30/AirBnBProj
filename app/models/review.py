@@ -1,0 +1,33 @@
+from .db import db
+
+class Review(db.Model):
+    __tablename__ = 'reviews'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    spot_id = db.Column(db.Integer, db.ForeignKey('spots.id'), nullable=False)
+    clean_rating = db.Column(db.Intger, nullable=False)
+    accur_rating = db.Columnn(db.Integer, nullable=False)
+    comm_rating = db.Column(db.Intger, nullable=False)
+    location_rating = db.Column(db.Integer, nullable=False)
+    check_in_rating = db.Column(db.Intger, nullable=False)
+    value_rating = db.Column(db.Intger, nullable=False)
+    review_text = db.Column(db.Text, nullabe=False)
+
+    user = db.relationship('User', back_populates='reviews')
+    spot = db.relationship('Spot', back_populates='reviews')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'userId': self.user_id,
+            'spotId': self.spot_id,
+            'cleanRating': self.clean_rating,
+            'accurRating': self.accur_rating,
+            'commRating': self.comm_rating,
+            'locationRating': self.location_rating,
+            'checkInRating': self.check_in_rating,
+            'valueRating': self.value_rating,
+            'reviewText': self.review_text,
+            'user': {"name": self.user.to_dict()['name']}
+        }

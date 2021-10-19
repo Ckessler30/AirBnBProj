@@ -7,9 +7,16 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
+    name = db.Column(db.String(100), nullable=False)
+    bio = db.Column(db.Text, nullable=True)
+    profile_pic = db.Column(db.String(255), nullable=True)
+    is_superhost = db.Column(db.Boolean, default=False)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    spots = db.relationship('Spot', back_populates="user")
+    bookings = db.relationship('Booking', back_populates="user")
+    reviews = db.relationship('Review', back_populates="user")
 
     @property
     def password(self):
@@ -25,6 +32,9 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
-            'username': self.username,
-            'email': self.email
+            'name': self.name,
+            'email': self.email,
+            'bio': self.bio,
+            'profile_pic': self.profile_pic,
+            'is_superhost': self.is_superhost
         }
