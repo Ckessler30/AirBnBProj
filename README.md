@@ -6,4 +6,11 @@ BearBNB is a full stack AirBNB clone that specifically focuses on adventure/outd
 ## BearBNB Architecture 
 BearBNB is build with a React/Redux frontend and a Python/Flask backend that is working PostgreSQL as a database.  The querying is done on the backend using SQLAlchemy.
 
-## Frontend
+## Frontend Technologies
+### React
+BearBNB is a React application that utilizes a good bit of front end logic to display dynamic features.
+
+### Redux
+BearBNB is quite dependent on Redux state so that the correct information can be utilized at the correct moments.  Redux thunks are constantly making calls to the backend API to retrieve data.
+
+## Backend Technologies
