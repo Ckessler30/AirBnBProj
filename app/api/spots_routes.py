@@ -1,5 +1,7 @@
 from flask import Blueprint, request
+from flask_login import login_required
 from app.models import Spot, db
+
 
 spots_routes = Blueprint('spots', __name__)
 
@@ -7,9 +9,10 @@ spots_routes = Blueprint('spots', __name__)
 def spots():
     spots = Spot.query.all()
     print('HERE', spots)
-    return {spot.to_dict()['id']: spot.to_dict() for spot in spots}
+    return {"allSpots": [spot.to_dict() for spot in spots]}
 
 @spots_routes.route('/', methods=['POST'])
+@login_required
 def create_spot():
     body = request.json
     new_spot = Spot(
