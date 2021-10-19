@@ -78,6 +78,7 @@ const bookingsReducer = (state = initialState, action) => {
                 newState.splice(newState.indexOf(booking), 1)
             }
         })
+        // console.log('NEWSTATE HERE', newState)
         return newState
     default:
       return state;
