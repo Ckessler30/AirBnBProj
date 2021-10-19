@@ -1,9 +1,17 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
+import allSpotsReducer from './allSpots'
+import currSpotReducer from './currentSpot';
+import currProfileReducer from './currProfile';
+import bookingsReducer from './bookings';
 
 const rootReducer = combineReducers({
   session,
+  allSpots: allSpotsReducer,
+  currSpot: currSpotReducer,
+  currProfile: currProfileReducer,
+  bookings: bookingsReducer
 });
 
 
