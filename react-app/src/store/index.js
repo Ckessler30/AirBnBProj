@@ -1,13 +1,15 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
-import AllSpotsReducer from './allSpots'
+import allSpotsReducer from './allSpots'
 import currSpotReducer from './currentSpot';
+import currProfileReducer from './currProfile';
 
 const rootReducer = combineReducers({
   session,
-  allSpots: AllSpotsReducer,
-  currSpot: currSpotReducer
+  allSpots: allSpotsReducer,
+  currSpot: currSpotReducer,
+  currProfile: currProfileReducer
 });
 
 

@@ -9,17 +9,25 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
 import { fetchAllSpots } from './store/allSpots'
-import { fetchSpot } from './store/currentSpot'
+import { fetchSpot, updateSpot } from './store/currentSpot'
+import { fetchProfile, updateProfile } from './store/currProfile'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  const updatedProfile = {
+    id: 3,
+    bio: "I love this thunk"
+  }
 
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
       await dispatch(fetchAllSpots())
       await dispatch(fetchSpot(3))
+      await dispatch(fetchProfile(3))
+      await dispatch(updateProfile(updatedProfile))
       setLoaded(true);
     })();
   }, [dispatch]);
