@@ -12,6 +12,7 @@ import { fetchAllSpots } from './store/allSpots'
 import { fetchSpot, updateSpot } from './store/currentSpot'
 import { fetchProfile, updateProfile } from './store/currProfile'
 import {fetchBookings, deleteBooking, addBooking} from './store/bookings'
+import {fetchAllLocations} from './store/locations'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,6 +33,7 @@ function App() {
       await dispatch(fetchSpot(3))
       await dispatch(fetchProfile(3))
       await dispatch(fetchBookings())
+      await dispatch(fetchAllLocations())
       setLoaded(true);
     })();
   }, [dispatch]);

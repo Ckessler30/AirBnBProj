@@ -5,13 +5,15 @@ import allSpotsReducer from './allSpots'
 import currSpotReducer from './currentSpot';
 import currProfileReducer from './currProfile';
 import bookingsReducer from './bookings';
+import allLocationsReducer from './locations';
 
 const rootReducer = combineReducers({
   session,
   allSpots: allSpotsReducer,
   currSpot: currSpotReducer,
   currProfile: currProfileReducer,
-  bookings: bookingsReducer
+  bookings: bookingsReducer,
+  locations: allLocationsReducer
 });
 
 
