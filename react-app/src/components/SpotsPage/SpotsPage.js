@@ -7,13 +7,13 @@ import './SpotsPage.css'
 
 
 function SpotsPage() {
-    const location = useParams()
+    const {location} = useParams()
     const spots = useSelector(state => state.allSpots)
-    const filterdSpots = spots.filter(spot => spot.city === location.location)
+    const filterdSpots = spots.filter(spot => spot.city === location)
     return (
         <div className="spot-page-wrapper">
             <p>{filterdSpots.length}+ stays</p>
-            <h4>{location.location} getaways</h4>
+            <h4>{location} getaways</h4>
             {filterdSpots && filterdSpots.map(spot => (
                 <a href={`/rooms/${spot.id}`}>
                     <div className="main-spot-pic" style={{"backgroundImage": `url('${spot.spotPics[0]}')`}}></div>
