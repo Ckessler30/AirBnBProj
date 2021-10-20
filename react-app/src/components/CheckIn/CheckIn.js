@@ -37,8 +37,7 @@ function CheckIn({ spot }) {
         setStartDate(new Date())
         setEndDate(new Date())
     }
-    console.log(currBookedDates)
-    console.log(startDate)
+
     const handleReserve = () => {
         let booked = false
         for(let i = 0; i < currBookedDates.length; i++){
@@ -71,13 +70,17 @@ function CheckIn({ spot }) {
           dispatch(addBooking(newBooking));
           setStartDate(new Date());
           setEndDate(new Date());
-          console.log("Done")
+        //   console.log("Done")
         }
     }
     
-    const split = userBooks[0].startDate.split(" ");
-    const formatResDate = `${split[2]} ${split[1]}, ${split[3]}`
-    
+    let split;
+    let formatResDate;
+    if(userBooks.length > 0){
+        split = userBooks[0].startDate.split(" ");
+        formatResDate = `${split[2]} ${split[1]}, ${split[3]}`
+    }
+
   return (
     <div className="check-in-container">
       <div>
@@ -88,14 +91,14 @@ function CheckIn({ spot }) {
         <div>
           <div>
             <div onClick={() => setOpenCalendar(!openCalendar)}>
-                <div>
+              <div>
                 <p>Check-in</p>
                 <p>Add date</p>
-                </div>
-                <div>
+              </div>
+              <div>
                 <p>Checkout</p>
                 <p>Add date</p>
-                </div>
+              </div>
             </div>
             <div>
               <div onClick={() => setOpenGuests(!openGuests)}>
@@ -139,20 +142,26 @@ function CheckIn({ spot }) {
         </div>
       )}
       <div>
-          <button onClick={handleReserve} disabled={startDate === endDate}>Reserve</button>
-          {errors.length ? 
-            <p>{errors}</p>
-            :
-            null
-          }
+        <button
+          onClick={handleReserve}
+          disabled={startDate.toString() === endDate.toString()}
+        >
+          Reserve
+        </button>
+        {errors.length ? <p>{errors}</p> : null}
       </div>
-      {userBooks.length ?
-        <div>
-            <p>You are all set for your reservation on {formatResDate}</p>
-        </div>
-        :
-        null
+      {startDate.toString() === endDate.toString() &&
+      <div>
+          <div>
+            <p>${spot.price}</p>
+          </div>
+      </div>
       }
+      {userBooks.length ? (
+        <div>
+          <p>You are all set for your reservation on {formatResDate}</p>
+        </div>
+      ) : null}
     </div>
   );
 }
