@@ -15,6 +15,7 @@ import {fetchBookings, deleteBooking, addBooking} from './store/bookings'
 import {fetchAllLocations} from './store/locations'
 import SplashPage from './components/SplashPage/SplashPage';
 import SpotsPage from './components/SpotsPage/SpotsPage';
+import SingleSpot from './components/SingleSpotPage/SingleSpot';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,7 +33,7 @@ function App() {
     (async() => {
       await dispatch(authenticate());
       await dispatch(fetchAllSpots())
-      await dispatch(fetchSpot(3))
+      // await dispatch(fetchSpot(3))
       await dispatch(fetchProfile(3))
       await dispatch(fetchBookings())
       await dispatch(fetchAllLocations())
@@ -49,24 +50,27 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
-        <Route path='/login' exact={true}>
+        <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/sign-up' exact={true}>
+        <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+        <ProtectedRoute path="/users" exact={true}>
+          <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+        <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
+        <ProtectedRoute path="/" exact={true}>
           <SplashPage />
         </ProtectedRoute>
-        <ProtectedRoute path='/spots/:location' exact={true}>
+        <Route path="/spots/:location" exact={true}>
           <SpotsPage />
-        </ProtectedRoute>
+        </Route>
+        <Route path="/rooms/:spotId" exact={true}>
+          <SingleSpot />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
