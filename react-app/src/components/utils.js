@@ -23,18 +23,24 @@ export const specRevAvg = (reviews, revSec) => {
 }
 
 Date.prototype.addDays = function (days) {
-  var date = new Date(this.valueOf());
+  const date = new Date(this.valueOf());
   date.setDate(date.getDate() + days);
   return date;
 };
 
-export const getDates = (startDate, stopDate) => {
-    var dateArray = new Array();
-    var currentDate = startDate;
-    while (currentDate <= stopDate) {
-        dateArray.push(new Date (currentDate));
-        currentDate = currentDate.addDays(1);
-    }
-    console.log(dateArray)
+export const bookedDates = (bookings) => {
+    const dateArray = [];
+    bookings.forEach(booking => {
+        const startDate = new Date(booking.startDate.split(',').join(''))
+        const endDate = new Date(booking.endDate.split(',').join(''))
+        let currentDate = startDate;
+        while (currentDate <= endDate) {
+            dateArray.push(new Date (currentDate));
+            // console.log(dateArray)
+            currentDate = currentDate.addDays(1);
+            // console.log(currentDate)
+        }
+        // console.log(dateArray)
+    })
     return dateArray;
 }
