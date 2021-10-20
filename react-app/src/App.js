@@ -19,6 +19,7 @@ import SpotsPage from './components/SpotsPage/SpotsPage';
 import SingleSpot from './components/SingleSpotPage/SingleSpot';
 import CreateSpot from './components/CreateSpot/CreateSpot';
 import ProfilePage from './components/ProfilePage/ProfilePage';
+import Bookings from './components/Bookings/Bookings';
 
 
 function App() {
@@ -55,9 +56,12 @@ function App() {
         {/* <ProtectedRoute path="/become-a-host" exact={true}>
           <CreateSpot />
         </ProtectedRoute> */}
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <ProfilePage />
+        <ProtectedRoute path="/users/:userId/bookings" exact={true}>
+            <Bookings />
         </ProtectedRoute>
+        <Route path="/users/:userId" exact={true}>
+          <ProfilePage />
+        </Route>
         <Route path="/" exact={true}>
           <SplashPage />
         </Route>
