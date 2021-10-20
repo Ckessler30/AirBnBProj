@@ -9,6 +9,7 @@ import './NavBar.css'
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user)
   const [openDropDown, setOpenDropDown] = useState(false)
+  // console.log(sessionUser)
   return (
     <nav>
         <ul className="nav-links">
@@ -17,11 +18,11 @@ const NavBar = () => {
               Home
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/become-a-host" exact={true} activeClassName="active">
               Become a host
             </NavLink>
-          </li>
+          </li> */}
           <li className="nav-login-signup">
             <div onClick={()=>setOpenDropDown(!openDropDown)}>
               <p>Profile</p>
@@ -29,17 +30,21 @@ const NavBar = () => {
             {openDropDown &&
             <div className="profile-drop-down">
                { !sessionUser ? (
+                 <div>
                   <NavLink to="/login" exact={true} activeClassName="active">
                     Login
                   </NavLink>
-                ) : (
-                    <LogoutButton />
-                )}
-                {!sessionUser &&
                     <NavLink to="/sign-up" exact={true} activeClassName="active">
                       Sign Up
                     </NavLink> 
-                }
+                 </div>
+                ) : (
+                    <div>
+                      <a href={`/users/${sessionUser.id}`}>My Profile</a>
+                      <a href="">Trips</a>
+                      <LogoutButton />
+                    </div>
+                )}
             </div>
             }
           </li>

@@ -1,0 +1,18 @@
+.profile-pic{
+    background-position: center;
+    background-size: cover;
+    height: 100px;
+    width: 100px;
+}
+.profile-listing-pics{
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+    width: 300px;
+}
+.rev-spot-pics{
+    background-position: center;
+    background-size: cover;
+    height: 100px;
+    width: 100px;
+}

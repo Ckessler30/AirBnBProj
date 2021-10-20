@@ -6,6 +6,7 @@ import currSpotReducer from './currentSpot';
 import currProfileReducer from './currProfile';
 import bookingsReducer from './bookings';
 import allLocationsReducer from './locations';
+import allReviewsReducer from './reviews';
 
 const rootReducer = combineReducers({
   session,
@@ -13,7 +14,8 @@ const rootReducer = combineReducers({
   currSpot: currSpotReducer,
   currProfile: currProfileReducer,
   bookings: bookingsReducer,
-  locations: allLocationsReducer
+  locations: allLocationsReducer,
+  reviews: allReviewsReducer
 });
 
 
