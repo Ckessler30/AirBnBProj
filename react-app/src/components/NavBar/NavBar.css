@@ -1,10 +1,20 @@
 nav{
-    width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+  padding: 0px 10px;
+  height: 40px;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  margin: auto;
+  width: 100%;
 }
-.nav-container{
-    display: flex;
-    width: 100%;
-}
+
 
 .nav-links{
     display: flex;
