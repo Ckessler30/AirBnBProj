@@ -42,7 +42,7 @@ class Spot(db.Model):
             'longitude': self.longitude,
             'latitude': self.latitude,
             'user': self.user.to_dict(),
-            'bookings': {booking.to_dict()['id']: booking.to_dict() for booking in self.bookings},
-            'reviews': {review.to_dict()['id']: review.to_dict() for review in self.reviews},
+            'bookings': [ booking.to_dict() for booking in self.bookings],
+            'reviews': [review.to_dict() for review in self.reviews],
             'spotPics': [spotPic.to_dict()['imgUrl'] for spotPic in self.spot_pics]
         }

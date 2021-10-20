@@ -29,5 +29,6 @@ class Review(db.Model):
             'checkInRating': self.check_in_rating,
             'valueRating': self.value_rating,
             'reviewText': self.review_text,
+            'avgRating': float("{:.2f}".format((self.clean_rating + self.accur_rating + self.comm_rating + self.location_rating + self.check_in_rating + self.value_rating) / 6)),
             'user': {"name": self.user.to_dict()['name'], "profilePic": self.user.to_dict()["profile_pic"]}
         }
