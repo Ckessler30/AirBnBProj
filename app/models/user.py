@@ -36,5 +36,6 @@ class User(db.Model, UserMixin):
             'email': self.email,
             'bio': self.bio,
             'profile_pic': self.profile_pic,
-            'is_superhost': self.is_superhost
+            'is_superhost': self.is_superhost,
+            # 'reviews': {review.to_dict()['id']: review.to_dict() for review in self.reviews}
         }
