@@ -13,6 +13,8 @@ import { fetchSpot, updateSpot } from './store/currentSpot'
 import { fetchProfile, updateProfile } from './store/currProfile'
 import {fetchBookings, deleteBooking, addBooking} from './store/bookings'
 import {fetchAllLocations} from './store/locations'
+import SplashPage from './components/SplashPage/SplashPage';
+import SpotsPage from './components/SpotsPage/SpotsPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -60,7 +62,10 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <SplashPage />
+        </ProtectedRoute>
+        <ProtectedRoute path='/spots/:location' exact={true}>
+          <SpotsPage />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
