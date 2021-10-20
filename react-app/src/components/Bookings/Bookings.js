@@ -1,12 +1,18 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { deleteBooking } from "../../store/bookings"
 import './Bookings.css'
 
 function Bookings() {
+    const dispatch = useDispatch()
     const bookings = useSelector(state => state.bookings)
     const {user} = useSelector(state => state.session)
     const spots = useSelector(state => state.allSpots)
     const userBookings = bookings.filter(booking => booking.userId === user.id )
-    console.log(userBookings)
+    // console.log(userBookings)
+
+    const handleCancel = (id) => {
+        dispatch(deleteBooking(id))
+    }
     return (
         <div>
             <h1>Your Trips</h1>
@@ -18,14 +24,17 @@ function Bookings() {
                 const endDateFormat = `${endDate[2]} ${endDate[1]}, ${endDate[3]}`;
                 return (
                   <div>
-                    <div
-                    className="booking-spot-pic"
-                      style={{ backgroundImage: `url('${spot.spotPics[0]}')` }}
-                    ></div>
-                    <p>{spot.name}</p>
-                    <p>Reserved from: {startDateFormat} -> {endDateFormat}</p>
-                    <p>Guests: {booking.numGuest}</p>
-                  </div>
+                      <a href={`/rooms/${spot.id}`}>
+                        <div
+                        className="booking-spot-pic"
+                        style={{ backgroundImage: `url('${spot.spotPics[0]}')` }}
+                        ></div>
+                        <p>{spot.name}</p>
+                        <p>Reserved from: {startDateFormat} -> {endDateFormat}</p>
+                        <p>Guests: {booking.numGuest}</p>
+                      </a>
+                      <button onClick={() => handleCancel(booking.id)}>Cancel Trip</button>
+                    </div>
                 );
             })}
         </div>
