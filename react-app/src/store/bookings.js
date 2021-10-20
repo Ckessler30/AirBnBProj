@@ -44,7 +44,7 @@ export const addBooking = (newBooking) => async(dispatch) => {
         body: JSON.stringify(newBooking)
     })
     const booking = await res.json()
-    console.log(booking)
+    dispatch(addBookingAction(booking))
 }
 
 export const deleteBooking = (id) => async (dispatch) => {

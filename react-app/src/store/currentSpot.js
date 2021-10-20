@@ -5,6 +5,7 @@
 const GET_SPOT = "currentSpots/GET_SPOT";
 const UPDATE_SPOT = "currentSpots/UPDATE_SPOT"
 
+
 /* ----------------------------------------------------------------------- */
 /* ----------------------------Action Creators---------------------------- */
 /* ----------------------------------------------------------------------- */
@@ -18,6 +19,7 @@ const updateSpotAction = (spot) => ({
     type: UPDATE_SPOT,
     spot
 })
+
 
 /* ----------------------------------------------------------------------- */
 /* --------------------------------Thunks--------------------------------- */
@@ -44,6 +46,8 @@ export const updateSpot = (updatedSpot) => async(dispatch)=> {
     dispatch(updateSpotAction(spot))
 }
 
+
+
 /* ----------------------------------------------------------------------- */
 /* -----------------------Initial State & Reducer------------------------- */
 /* ----------------------------------------------------------------------- */
@@ -58,7 +62,7 @@ const currSpotReducer = (state = initialState, action) => {
       return newState;
     case UPDATE_SPOT:
         newState = {...action.spot}
-        console.log('HERE', newState)
+        // console.log('HERE', newState)
         return newState
     default:
       return state;
