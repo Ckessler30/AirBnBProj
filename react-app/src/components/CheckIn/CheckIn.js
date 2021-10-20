@@ -11,7 +11,7 @@ function CheckIn({ spot }) {
     const dispatch = useDispatch()
     const {user} = useSelector(state => state.session)
     const bookings = useSelector(state => state.bookings)
-    const userBooks = bookings.filter(booking => booking.userId === user.id && booking.spotId === spot.id)
+    const userBooks = bookings.filter(booking => booking.userId === user?.id && booking.spotId === spot.id)
     const spotBookings = bookings.filter(booking => booking.spotId === spot.id)
 
     const [startDate, setStartDate] = useState(new Date())

@@ -16,6 +16,7 @@ import {fetchAllLocations} from './store/locations'
 import SplashPage from './components/SplashPage/SplashPage';
 import SpotsPage from './components/SpotsPage/SpotsPage';
 import SingleSpot from './components/SingleSpotPage/SingleSpot';
+import CreateSpot from './components/CreateSpot/CreateSpot';
 
 
 function App() {
@@ -57,15 +58,15 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
+        <ProtectedRoute path="/become-a-host" exact={true}>
+          <CreateSpot />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
+        <Route path="/" exact={true}>
           <SplashPage />
-        </ProtectedRoute>
+        </Route>
         <Route path="/spots/:location" exact={true}>
           <SpotsPage />
         </Route>
