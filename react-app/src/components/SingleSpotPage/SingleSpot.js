@@ -6,6 +6,7 @@ import {avgReview, getCity} from '../utils'
 import SSReviewSection from "../SSReviewSection/SSReviewSection"
 import SingleReview from "../SingleReview/SingleReview"
 import CheckIn from "../CheckIn/CheckIn"
+import CreateReview from "../CreateReview/CreateReview"
 
 import './SingleSpot.css'
 
@@ -110,6 +111,10 @@ function SingleSpot() {
                         {spot.reviews && spot.reviews.map(review => (
                             <SingleReview review={review}/>
                         ))}
+                    </div>
+                    <div>
+                      <h3>Create a Review</h3>
+                        <CreateReview />
                     </div>
                 </div>
 
