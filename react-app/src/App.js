@@ -17,6 +17,7 @@ import SplashPage from './components/SplashPage/SplashPage';
 import SpotsPage from './components/SpotsPage/SpotsPage';
 import SingleSpot from './components/SingleSpotPage/SingleSpot';
 
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
