@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import { NavLink } from "react-router-dom";
 
 
 function SplashPage() {
@@ -13,9 +14,9 @@ function SplashPage() {
                 <h3>Explore nearby</h3>
                 {locations && locations.map(location => (
                     <div>
-                        <a href={`/spots/${location}`}>
+                        <NavLink to={`/spots/${location}`}>
                             <p>{location}</p>
-                        </a>
+                        </NavLink>
                     </div>
                 ))}
             </div>

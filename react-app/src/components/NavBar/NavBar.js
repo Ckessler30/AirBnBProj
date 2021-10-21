@@ -46,8 +46,8 @@ const NavBar = () => {
                  </div>
                 ) : (
                     <div>
-                      <a href={`/users/${sessionUser.id}`}>My Profile</a>
-                      <a href={`/users/${sessionUser.id}/bookings`}>Trips</a>
+                      <NavLink to={`/users/${sessionUser.id}`}>My Profile</NavLink>
+                      <NavLink to={`/users/${sessionUser.id}/bookings`}>Trips</NavLink>
                       <LogoutButton />
                     </div>
                 )}
