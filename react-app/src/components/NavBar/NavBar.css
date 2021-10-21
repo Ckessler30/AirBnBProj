@@ -1,30 +1,145 @@
 nav{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
-  margin: 5px;
-  padding: 0px 10px;
-  height: 40px;
-  height: 64px;
+  /* padding: 0px 10px; */
+  height: 80px;
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 100;
-  margin: auto;
+  z-index: 99;
+  margin: 0;
+  width: 100vw;
+  
+  background-color: white;
+}
+
+.profile-drop-down{
+      /* border: 5px solid red; */
+    list-style: none;
+     position: fixed;
+    /* top: 0;
+    left: 0; */
+    margin-top: 2.7rem;
+    margin-left: -5.5rem;
+    width: 10rem;
+    /* padding: 2rem; */
+    height: 11rem;
+    background-color: white;
+    /* background-color: rgba(255, 255, 255, 0.89); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10%;
+    gap: .25rem;
+    font-size: 15px;
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 18%);
+    z-index: 9999;
+}
+.dropdown-inside{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 15px;
+  height: 100%;
   width: 100%;
 }
+.dropdown-inside-loggedout{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdown-content{
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 1.1em;
+  cursor: pointer;
+}
+
 
 
 .nav-links{
     display: flex;
     list-style-type: none;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+    margin-bottom: 5px;
+    padding: 0px 35px;
 
+}
+
+.nav-bar-right{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bearbnb-logo{
+  background-position: center;
+  background-size: cover;
+  height: 40px;
+  width: 40px;
+}
+
+.page-name{
+  font-family: airbnbMed;
+  font-size: 2.5em;
+  margin-top: 8px;
 }
 
 .nav-login-signup{
     display: flex;
     gap: 10px;
+    margin-top: 5px;
+}
+
+.nav-profile-pic{
+  background-position: center;
+  background-size: cover;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+
+.nav-profile-click{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  height: 43px;
+  width: 75px;
+  background-color: white;
+  border-radius: 40px;
+  padding: 5px;
+  cursor: pointer;
+  border: 1px solid #DDDDDD;
+  
+}
+.closed:hover{
+  box-shadow: 0px 2px 4px rgb(0 0 0 / 18%);
+}
+.open{
+  box-shadow: 0px 2px 4px rgb(0 0 0 / 18%);
+}
+
+.nav-pp-logo{
+  font-size: 1.4em;
+}
+
+.logout-btn{
+  border-top: 1px solid #DDDDDD;
+  padding-top: 5px;
+  cursor: pointer;
+}
+.logout-btn:hover{
+  color: #FE385C;
 }
