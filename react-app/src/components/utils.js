@@ -7,6 +7,7 @@ export const avgReview = (reviews) => {
 }
 
 export const getCity = (address) => {
+    // console.log(address)
     const split = address.split(",")
     return split[1]
 }
