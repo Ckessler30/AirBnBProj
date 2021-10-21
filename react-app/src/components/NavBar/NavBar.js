@@ -39,7 +39,6 @@ const NavBar = () => {
           <h1 className="page-name">Bearbnb</h1>
         </div>
         <div className="nav-bar-right">
-
           {sessionUser && (
             <li>
               <NavLink
@@ -55,13 +54,21 @@ const NavBar = () => {
           <li className="nav-login-signup">
             <div
               onClick={() => setOpenDropDown(!openDropDown)}
-              className={openDropDown ? "nav-profile-click open" : "nav-profile-click closed"}
+              className={
+                openDropDown
+                  ? "nav-profile-click open"
+                  : "nav-profile-click closed"
+              }
             >
               <MdStorage className="nav-pp-logo" />
               <div
                 className="nav-profile-pic"
                 style={{
-                  backgroundImage: `url("https://a0.muscache.com/defaults/user_pic-50x50.png?v=3")`,
+                  backgroundImage: `url(${
+                    sessionUser
+                      ? sessionUser.profile_pic
+                      : "https://a0.muscache.com/defaults/user_pic-50x50.png?v=3"
+                  } )`,
                 }}
               ></div>
             </div>
@@ -90,7 +97,10 @@ const NavBar = () => {
                 ) : (
                   <div className="dropdown-inside">
                     <div className="dropdown-content">
-                      <NavLink className="inactive" to={`/users/${sessionUser.id}`}>
+                      <NavLink
+                        className="inactive"
+                        to={`/users/${sessionUser.id}`}
+                      >
                         My Profile
                       </NavLink>
                       <NavLink
@@ -101,7 +111,6 @@ const NavBar = () => {
                       </NavLink>
                     </div>
                     <div className="logout-btn">
-
                       <LogoutButton />
                     </div>
                   </div>
