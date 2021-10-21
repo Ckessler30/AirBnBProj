@@ -134,3 +134,12 @@ nav{
 .nav-pp-logo{
   font-size: 1.4em;
 }
+
+.logout-btn{
+  border-top: 1px solid #DDDDDD;
+  padding-top: 5px;
+  cursor: pointer;
+}
+.logout-btn:hover{
+  color: #FE385C;
+}
