@@ -5,12 +5,13 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from '../../store/bookings'
+import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
 
 function CheckIn({ spot }) {
     const dispatch = useDispatch()
     const {user} = useSelector(state => state.session)
     const bookings = useSelector(state => state.bookings)
-    const userBooks = bookings.filter(booking => booking.userId === user.id && booking.spotId === spot.id)
+    const userBooks = bookings.filter(booking => booking.userId === user?.id && booking.spotId === spot.id)
     const spotBookings = bookings.filter(booking => booking.spotId === spot.id)
 
     const [startDate, setStartDate] = useState(new Date())
@@ -20,7 +21,7 @@ function CheckIn({ spot }) {
     const [openGuests, setOpenGuests] = useState(false)
     const [isBooked, setIsBooked] = useState(userBooks.length ? true : false)
     const [errors, setErrors] = useState([])
-
+    const nights = differenceInCalendarDays(startDate, endDate)
     const currBookedDates = bookedDates(spotBookings)
     const selectionRange = {
         startDate: startDate,
@@ -150,10 +151,23 @@ function CheckIn({ spot }) {
         </button>
         {errors.length ? <p>{errors}</p> : null}
       </div>
-      {startDate.toString() === endDate.toString() &&
+      {!(startDate.toString() === endDate.toString()) &&
       <div>
           <div>
-            <p>${spot.price}</p>
+            <p>${spot.price} x {Math.abs(nights)} nights </p>
+            <p>${spot.price*Math.abs(nights)}</p>
+          </div>
+          <div>
+              <p>Cleaning Fee</p>
+              <p>$50</p>
+          </div>
+          <div>
+              <p>Service Fee</p>
+              <p>$28</p>
+          </div>
+          <div>
+              <p>Total</p>
+              <p>${spot.price*Math.abs(nights)+70}</p>
           </div>
       </div>
       }

@@ -2,65 +2,67 @@
 /* -----------------------------Actions----------------------------------- */
 /* ----------------------------------------------------------------------- */
 
-const GET_SPOTS = "allSpots/GET_SPOTS";
-const ADD_SPOT = "allSpots/ADD_SPOT"
+const GET_REVIEWS = "reviews/GET_REVIEWS";
+const ADD_REVIEW = "reviews/ADD_REVIEW"
 
 /* ----------------------------------------------------------------------- */
 /* ----------------------------Action Creators---------------------------- */
 /* ----------------------------------------------------------------------- */
 
-const getSpotsAction = (allSpots) => ({
-  type: GET_SPOTS,
-  payload: allSpots,
+const getReviews = (allReviews) => ({
+  type: GET_REVIEWS,
+  allReviews,
 });
 
-const addSpotAction = (spot) => ({
-  type: ADD_SPOT,
-  spot
+const addReview = (review) => ({
+  type: ADD_REVIEW,
+  review
 })
 
 /* ----------------------------------------------------------------------- */
 /* --------------------------------Thunks--------------------------------- */
 /* ----------------------------------------------------------------------- */
 
-export const fetchAllSpots = () => async (dispatch) => {
-  const allSpots = await fetch("/api/spots/");
-  const spots = await allSpots.json();
-//   console.log(spots.allSpots)
-  dispatch(getSpotsAction(spots.allSpots));
+export const fetchAllReviews = () => async (dispatch) => {
+  const res = await fetch("/api/reviews/");
+  const reviews = await res.json();
+    // console.log("all reviews",reviews)
+ 
+  dispatch(getReviews(reviews.allReviews));
 };
 
-
-export const addSpot = (spot) => async(dispatch) => {
-  const res = await fetch("/api/spots", {
+export const addNewReview = (review) => async (dispatch) => {
+  const res = await fetch("/api/reviews/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(spot),
+    body: JSON.stringify(review),
   });
-  const newSpot = await res.json()
-  console.log(newSpot)
+  const newReview = await res.json()
+  // console.log(newReview)
+  dispatch(addReview(newReview))
 }
+
 /* ----------------------------------------------------------------------- */
 /* -----------------------Initial State & Reducer------------------------- */
 /* ----------------------------------------------------------------------- */
 
 const initialState = [];
 
-const allSpotsReducer = (state = initialState, action) => {
+const allReviewsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case GET_SPOTS:
-      newState = [...action.payload];
+    case GET_REVIEWS:
+      newState = [...action.allReviews];
       return newState;
-    case ADD_SPOT:
-      newState=[...state]
-      newState.push(action.spot)
+    case ADD_REVIEW:
+      newState = [...state]
+      newState.push(action.review)
       return newState
     default:
       return state;
   }
 };
 
-export default allSpotsReducer;
+export default allReviewsReducer;

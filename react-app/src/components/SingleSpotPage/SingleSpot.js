@@ -6,6 +6,7 @@ import {avgReview, getCity} from '../utils'
 import SSReviewSection from "../SSReviewSection/SSReviewSection"
 import SingleReview from "../SingleReview/SingleReview"
 import CheckIn from "../CheckIn/CheckIn"
+import CreateReview from "../CreateReview/CreateReview"
 
 import './SingleSpot.css'
 
@@ -14,6 +15,9 @@ function SingleSpot() {
     const dispatch = useDispatch()
     // console.log(spotId)
     const spot = useSelector(state => state.currSpot)
+    const reviews = useSelector(state => state.reviews)
+    const spotReviews = reviews.filter(review => review.spotId === spot.id)
+    // console.log("HERE",spotReviews)
 
     useEffect(() => {
        (async () => {
@@ -26,12 +30,12 @@ function SingleSpot() {
 
     return (
       <>
-        {spot.reviews && (
+        {spotReviews && (
           <div>
             <div className="ss-header">
               <h3>{spot.name}</h3>
               <p>
-                {avgReview(spot.reviews)}({spot.reviews.length} reviews)
+                {avgReview(spotReviews)}({spotReviews.length} reviews)
               </p>
               <p>
                 {getCity(spot.stAddress)}, {spot.city}, United States
@@ -107,9 +111,13 @@ function SingleSpot() {
                         <SSReviewSection spot={spot} revSec={'valueRating'}/>
                     </div>
                     <div className="ss-all-reviews">
-                        {spot.reviews && spot.reviews.map(review => (
+                        {spotReviews&& spotReviews.map(review => (
                             <SingleReview review={review}/>
                         ))}
+                    </div>
+                    <div>
+                      <h3>Create a Review</h3>
+                        <CreateReview spot={spot}/>
                     </div>
                 </div>
 

@@ -13,31 +13,27 @@ import { fetchSpot, updateSpot } from './store/currentSpot'
 import { fetchProfile, updateProfile } from './store/currProfile'
 import {fetchBookings, deleteBooking, addBooking} from './store/bookings'
 import {fetchAllLocations} from './store/locations'
+import { fetchAllReviews } from './store/reviews';
 import SplashPage from './components/SplashPage/SplashPage';
 import SpotsPage from './components/SpotsPage/SpotsPage';
 import SingleSpot from './components/SingleSpotPage/SingleSpot';
+import CreateSpot from './components/CreateSpot/CreateSpot';
+import ProfilePage from './components/ProfilePage/ProfilePage';
+import Bookings from './components/Bookings/Bookings';
 
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
-  const newBooking = {
-    spotId: 3,
-    userId: 3,
-    startDate: "2022-01-10",
-    endDate: "2022-01-15",
-    numGuests: 6
-  }
 
   useEffect(() => {
     (async() => {
       await dispatch(authenticate());
       await dispatch(fetchAllSpots())
-      // await dispatch(fetchSpot(3))
-      await dispatch(fetchProfile(3))
       await dispatch(fetchBookings())
       await dispatch(fetchAllLocations())
+      await dispatch(fetchAllReviews())
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -57,15 +53,18 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList />
+        {/* <ProtectedRoute path="/become-a-host" exact={true}>
+          <CreateSpot />
+        </ProtectedRoute> */}
+        <ProtectedRoute path="/users/:userId/bookings" exact={true}>
+            <Bookings />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/" exact={true}>
+        <Route path="/users/:userId" exact={true}>
+          <ProfilePage />
+        </Route>
+        <Route path="/" exact={true}>
           <SplashPage />
-        </ProtectedRoute>
+        </Route>
         <Route path="/spots/:location" exact={true}>
           <SpotsPage />
         </Route>

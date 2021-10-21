@@ -7,7 +7,7 @@ review_routes = Blueprint('reviews', __name__)
 def reviews():
     if request.method == "GET":
         reviews = Review.query.all()
-        return {review.to_dict()["id"]: review.to_dict() for review in reviews}
+        return {"allReviews": [review.to_dict() for review in reviews]}
     if request.method == "POST":
         body = request.json
         new_review = Review(

@@ -1,6 +1,6 @@
 
 function SingleReview({review}) {
-    console.log("SINGLE REVIEW", review)
+    // console.log("SINGLE REVIEW", review)
     return (
       <div>
         <div className="sr-header">
