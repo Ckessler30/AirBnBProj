@@ -17,45 +17,48 @@ const NavBar = () => {
   }
   return (
     <nav>
-        <ul className="nav-links">
+      <ul className="nav-links">
+        <li>
+          <NavLink className="inactive" to="/" exact={true} activeClassName="active">
+            Home
+          </NavLink>
+        </li>
+        {sessionUser && (
           <li>
-            <NavLink to="/" exact={true} activeClassName="active">
-              Home
-            </NavLink>
-          </li>
-         { sessionUser && <li>
-            <NavLink to="/become-a-host" exact={true} activeClassName="active">
+            <NavLink className="inactive" to="/become-a-host" exact={true} activeClassName="active">
               Become a host
             </NavLink>
-          </li>}
-          <li className="nav-login-signup">
-            <div onClick={()=>setOpenDropDown(!openDropDown)}>
-              <p>Profile</p>
-            </div>
-            {openDropDown &&
+          </li>
+        )}
+        <li className="nav-login-signup">
+          <div onClick={() => setOpenDropDown(!openDropDown)}>
+            <p>Profile</p>
+          </div>
+          {openDropDown && (
             <div className="profile-drop-down">
-               { !sessionUser ? (
-                 <div>
-                  <NavLink to="/login" exact={true} activeClassName="active">
+              {!sessionUser ? (
+                <div>
+                  <NavLink to="/login" className="inactive" exact={true} activeClassName="active">
                     Login
                   </NavLink>
-                    <NavLink to="/sign-up" exact={true} activeClassName="active">
-                      Sign Up
-                    </NavLink> 
-                    <button onClick={handleDemoLogin}>Demo</button>
-                 </div>
-                ) : (
-                    <div>
-                      <NavLink to={`/users/${sessionUser.id}`}>My Profile</NavLink>
-                      <NavLink to={`/users/${sessionUser.id}/bookings`}>Trips</NavLink>
-                      <LogoutButton />
-                    </div>
-                )}
+                  <NavLink to="/sign-up" className="inactive" exact={true} activeClassName="active">
+                    Sign Up
+                  </NavLink>
+                  <button onClick={handleDemoLogin}>Demo</button>
+                </div>
+              ) : (
+                <div>
+                  <NavLink className="inactive" to={`/users/${sessionUser.id}`}>My Profile</NavLink>
+                  <NavLink className="inactive" to={`/users/${sessionUser.id}/bookings`}>
+                    Trips
+                  </NavLink>
+                  <LogoutButton />
+                </div>
+              )}
             </div>
-            }
-          </li>
-          
-        </ul>
+          )}
+        </li>
+      </ul>
     </nav>
   );
 }

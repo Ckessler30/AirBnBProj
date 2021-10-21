@@ -25,7 +25,7 @@ function Bookings() {
                 const endDateFormat = `${endDate[2]} ${endDate[1]}, ${endDate[3]}`;
                 return (
                   <div>
-                      <NavLink to={`/rooms/${spot.id}`} exact={true}>
+                      <NavLink className="inactive" to={`/rooms/${spot.id}`} exact={true}>
                         <div
                         className="booking-spot-pic"
                         style={{ backgroundImage: `url('${spot.spotPics[0]}')` }}

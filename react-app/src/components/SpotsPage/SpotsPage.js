@@ -16,7 +16,7 @@ function SpotsPage() {
             <p>{filterdSpots.length}+ stays</p>
             <h4>{location} getaways</h4>
             {filterdSpots && filterdSpots.map(spot => (
-                <NavLink to={`/rooms/${spot.id}`} exact={true}>
+                <NavLink className="inactive" to={`/rooms/${spot.id}`} exact={true}>
                     <div className="main-spot-pic" style={{"backgroundImage": `url('${spot.spotPics[0]}')`}}></div>
                     <div>
                         <p>{spot.spotType}</p>

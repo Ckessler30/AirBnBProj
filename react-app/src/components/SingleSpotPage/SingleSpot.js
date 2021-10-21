@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, useHistory } from "react-router"
+import { NavLink } from 'react-router-dom'
 import { fetchSpot } from '../../store/currentSpot'
 import {avgReview, getCity} from '../utils'
 import SSReviewSection from "../SSReviewSection/SSReviewSection"
@@ -82,10 +83,12 @@ function SingleSpot() {
                     <p>{spot.numBedrooms} bedrooms</p>
                     <p>{spot.numBeds} bed</p>
                     <p>{spot.numBaths} bath</p>
-                    <div
-                        className="ss-profile-pic"
-                        style={{ backgroundImage: `url('${spot.user.profile_pic}')` }}
-                    ></div>
+                    <NavLink to={`/users/${spot.user.id}`} className="inactive">
+                      <div
+                          className="ss-profile-pic"
+                          style={{ backgroundImage: `url('${spot.user.profile_pic}')` }}
+                      ></div>
+                    </NavLink>
                 </div>
                 <div>
                     <h3>

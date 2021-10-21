@@ -22,7 +22,7 @@ function SplashPage() {
                 <h3>Explore nearby</h3>
                 {locations && locations.map(location => (
                     <div>
-                        <NavLink to={`/spots/${location}`}>
+                        <NavLink className="inactive" to={`/spots/${location}`}>
                             <p>{location}</p>
                         </NavLink>
                     </div>

@@ -3,7 +3,7 @@ export const avgReview = (reviews) => {
     for(let i = 0; i < reviews.length; i++){
         avg += reviews[i].avgRating
     }
-    return avg/reviews.length
+    return (avg/reviews.length).toFixed(2)
 }
 
 export const getCity = (address) => {

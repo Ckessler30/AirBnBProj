@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router"
+import { NavLink } from "react-router-dom";
 import { fetchAllSpots } from "../../store/allSpots"
 import {fetchProfile} from '../../store/currProfile'
 import { avgReview } from "../utils"
@@ -42,9 +43,9 @@ function ProfilePage() {
             <p>{currProfile.bio}</p>
             <div>
               <h3>{currProfile.name}'s listings</h3>
-              {userListings &&
+              {userListings.length > 0 ?
                 userListings.map((listing) => (
-                  <div>
+                  <NavLink className="inactive" to={`/rooms/${listing.id}`}>
                     <div
                     className="profile-listing-pics"
                       style={{
@@ -54,28 +55,36 @@ function ProfilePage() {
                     <p>{avgReview(listing.reviews)}({listing.reviews.length})</p>
                     <p>{listing.spotType}</p>
                     <p>{listing.name}</p>
-                  </div>
-                ))}
+                  </NavLink>
+                ))
+              :
+              <p>{user.id === currProfile.id ? "You do not have any listings" : `${currProfile.name} does not have any listings`}</p>
+              }
             </div>
             <div>
                 <h3>Reviews</h3>
-                {userReviews && userReviews.map(review => {
+                {userReviews.length > 0 ? userReviews.map(review => {
                     const spot = listings.filter(listing=> listing.id === review.spotId)[0]
                     // console.log(spot)
                     return (
                       <div>
                         <p>{review.avgRating}</p>
                         <p>{spot.name}</p>
-                        <div
-                        className="rev-spot-pics"
-                          style={{
-                            backgroundImage: `url('${spot.spotPics[0]}')`,
-                          }}
-                        ></div>
+                        <NavLink className="inactive" to={`/rooms/${spot.id}`}>
+                          <div
+                          className="rev-spot-pics"
+                            style={{
+                              backgroundImage: `url('${spot.spotPics[0]}')`,
+                            }}
+                          ></div>
+                        </NavLink>
                         <p>{review.reviewText}</p>
                       </div>
                     );
-                })}
+                })
+              :
+              <p>{user.id === currProfile.id ? "You have not left any reviews" : `${currProfile.name} has not left any reviews`}</p>
+              }
             </div>
           </div>
         </div>
