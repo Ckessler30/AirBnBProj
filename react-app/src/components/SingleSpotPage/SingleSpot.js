@@ -50,7 +50,7 @@ function SingleSpot() {
               <p>
                 {getCity(spot.stAddress)}, {spot.city}, United States
               </p>
-              {spot.user.id === user.id &&
+              {spot.user?.id === user?.id &&
                 <div>
                   <button onClick={()=> history.push(`/rooms/${spotId}/edit`)}>Edit {spot.spotType} listing</button>
                   <button onClick={handleDelete}>Delete {spot.spotType} listing</button>
@@ -133,10 +133,10 @@ function SingleSpot() {
                             <SingleReview user={user} review={review}/>
                         ))}
                     </div>
-                    <div>
+                    {user && <div>
                       <h3>Create a Review</h3>
                         <CreateReview madeReview={madeReview} spot={spot}/>
-                    </div>
+                    </div>}
                 </div>
 
             </div>

@@ -58,7 +58,7 @@ function ProfilePage() {
                   </NavLink>
                 ))
               :
-              <p>{user.id === currProfile.id ? "You do not have any listings" : `${currProfile.name} does not have any listings`}</p>
+              <p>{user?.id === currProfile.id ? "You do not have any listings" : `${currProfile.name} does not have any listings`}</p>
               }
             </div>
             <div>
@@ -83,7 +83,7 @@ function ProfilePage() {
                     );
                 })
               :
-              <p>{user.id === currProfile.id ? "You have not left any reviews" : `${currProfile.name} has not left any reviews`}</p>
+              <p>{user?.id === currProfile.id ? "You have not left any reviews" : `${currProfile.name} has not left any reviews`}</p>
               }
             </div>
           </div>
