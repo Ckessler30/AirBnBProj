@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import { login } from '../../store/session';
+import {MdStorage} from 'react-icons/md'
+
 
 import './NavBar.css'
 
@@ -19,45 +21,95 @@ const NavBar = () => {
     <nav>
       <ul className="nav-links">
         <li>
-          <NavLink className="inactive" to="/" exact={true} activeClassName="active">
-            Home
+          <NavLink
+            className="inactive"
+            to="/"
+            exact={true}
+            activeClassName="active"
+          >
+            <div
+              className="bearbnb-logo"
+              style={{
+                backgroundImage: `url("https://m.media-amazon.com/images/I/41io9KLyNaL._AC_SX466_.jpg")`,
+              }}
+            ></div>
           </NavLink>
         </li>
-        {sessionUser && (
-          <li>
-            <NavLink className="inactive" to="/become-a-host" exact={true} activeClassName="active">
-              Become a host
-            </NavLink>
-          </li>
-        )}
-        <li className="nav-login-signup">
-          <div onClick={() => setOpenDropDown(!openDropDown)}>
-            <p>Profile</p>
-          </div>
-          {openDropDown && (
-            <div className="profile-drop-down">
-              {!sessionUser ? (
-                <div>
-                  <NavLink to="/login" className="inactive" exact={true} activeClassName="active">
-                    Login
-                  </NavLink>
-                  <NavLink to="/sign-up" className="inactive" exact={true} activeClassName="active">
-                    Sign Up
-                  </NavLink>
-                  <button onClick={handleDemoLogin}>Demo</button>
-                </div>
-              ) : (
-                <div>
-                  <NavLink className="inactive" to={`/users/${sessionUser.id}`}>My Profile</NavLink>
-                  <NavLink className="inactive" to={`/users/${sessionUser.id}/bookings`}>
-                    Trips
-                  </NavLink>
-                  <LogoutButton />
-                </div>
-              )}
-            </div>
+        <div>
+          <h1 className="page-name">Bearbnb</h1>
+        </div>
+        <div className="nav-bar-right">
+
+          {sessionUser && (
+            <li>
+              <NavLink
+                className="inactive"
+                to="/become-a-host"
+                exact={true}
+                activeClassName="active"
+              >
+                Become a host
+              </NavLink>
+            </li>
           )}
-        </li>
+          <li className="nav-login-signup">
+            <div
+              onClick={() => setOpenDropDown(!openDropDown)}
+              className={openDropDown ? "nav-profile-click open" : "nav-profile-click closed"}
+            >
+              <MdStorage className="nav-pp-logo" />
+              <div
+                className="nav-profile-pic"
+                style={{
+                  backgroundImage: `url("https://a0.muscache.com/defaults/user_pic-50x50.png?v=3")`,
+                }}
+              ></div>
+            </div>
+            {openDropDown && (
+              <div className="profile-drop-down">
+                {!sessionUser ? (
+                  <div className="dropdown-inside-loggedout">
+                    <NavLink
+                      to="/login"
+                      className="inactive"
+                      exact={true}
+                      activeClassName="active"
+                    >
+                      Login
+                    </NavLink>
+                    <NavLink
+                      to="/sign-up"
+                      className="inactive"
+                      exact={true}
+                      activeClassName="active"
+                    >
+                      Sign Up
+                    </NavLink>
+                    <button onClick={handleDemoLogin}>Demo</button>
+                  </div>
+                ) : (
+                  <div className="dropdown-inside">
+                    <div className="dropdown-content">
+                      <NavLink className="inactive" to={`/users/${sessionUser.id}`}>
+                        My Profile
+                      </NavLink>
+                      <NavLink
+                        className="inactive"
+                        to={`/users/${sessionUser.id}/bookings`}
+                      >
+                        Trips
+                      </NavLink>
+                    </div>
+                    <div className="logout-btn">
+
+                      <LogoutButton />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </li>
+        </div>
       </ul>
     </nav>
   );

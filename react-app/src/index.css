@@ -1,11 +1,30 @@
+@font-face {
+    font-family: 'airbnb';
+    src: url('./fonts/AirbnbCerealLight.ttf')
+
+}
+@font-face {
+    font-family: "airbnbMed";
+    src: url("./fonts/AirbnbCerealMedium.ttf");
+}
 /* TODO Add site wide styles */
 a, u, NavLink{
     text-decoration: none;
 }
+#root{
+    font-family: 'airbnb';
+  
+}
 
 .active{
+    color: #222222;
     text-decoration: none;
 }
 .inactive{
+    color: #222222;
     text-decoration: none;
+}
+
+*{
+    box-sizing: border-box;
 }
