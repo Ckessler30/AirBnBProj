@@ -11,6 +11,11 @@
 a, u, NavLink{
     text-decoration: none;
 }
+
+.headertxt{
+    font-family: airbnbMed;
+}
+
 #root{
     font-family: 'airbnb';
   
@@ -23,6 +28,9 @@ a, u, NavLink{
 .inactive{
     color: #222222;
     text-decoration: none;
+}
+.active:hover, .inactive:hover{
+    color: #FE385C;
 }
 
 *{

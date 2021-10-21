@@ -1,0 +1,35 @@
+.splash-main-pic{
+    background-position: center;
+    background-size: cover;
+    height: 650px;
+    width: 100vw;
+}
+
+.splash-states-cont{
+    display: flex;
+    flex-direction: column;
+    margin: 20px 40px;
+}
+
+.state-pics{
+    background-position: center;
+    background-size: cover;
+    height: 80px;
+    width: 80px;
+    border-radius: 15px;
+}
+
+.splash-states{
+    display: flex;
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.single-state{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-family: "airbnbMed";
+    cursor: pointer;
+    font-size: 1.1em;
+}
