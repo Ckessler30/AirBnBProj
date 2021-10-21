@@ -20,8 +20,8 @@ function SingleSpot() {
     const spot = useSelector(state => state.currSpot)
     const reviews = useSelector(state => state.reviews)
     const spotReviews = reviews.filter(review => review.spotId === spot.id)
-    console.log(spot)
-    console.log(user)
+    // console.log(spot)
+    // console.log(user)
     const madeReview = spotReviews.filter(review=> review?.userId === user?.id).length > 0 ? true : false
 
     useEffect(() => {
