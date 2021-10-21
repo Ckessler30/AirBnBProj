@@ -1,9 +1,21 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Spot, db
+from app.forms import SpotForm
 
 
 spots_routes = Blueprint('spots', __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
+
 
 @spots_routes.route('/')
 def spots():
@@ -15,24 +27,28 @@ def spots():
 @login_required
 def create_spot():
     body = request.json
-    new_spot = Spot(
-        name=body['name'],
-        price=body['price'],
-        description=body['description'],
-        spot_type=body['type'],
-        num_bedrooms=body['numBedrooms'],
-        num_baths=body['numBaths'],
-        num_beds=body['numBeds'],
-        total_guests=body['totalGuests'],
-        city=body['city'],
-        st_address=body['address'],
-        longitude=body['long'],
-        latitude=body['lat'],
+    form = SpotForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        spot = Spot(
+        name=form.data['name'],
+        price=form.data['price'],
+        description=form.data['description'],
+        spot_type=form.data['type'],
+        num_bedrooms=form.data['num_bedrooms'],
+        num_baths=form.data['num_baths'],
+        num_beds=form.data['numBeds'],
+        total_guests=form.data['total_guests'],
+        city=form.data['city'],
+        st_address=form.data['address'],
+        longitude=form.data['longitude'],
+        latitude=form.data['latitude'],
         user_id=body['userId']
-    )
-    db.session.add(new_spot),
-    db.session.commit()
-    return new_spot.to_dict()
+        )
+        db.session.add(spot),
+        db.session.commit()
+        return spot.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @spots_routes.route('/<int:id>', methods=["GET", "PATCH", "DELETE"])
 def update_delete_spot(id):
