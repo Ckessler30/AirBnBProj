@@ -5,7 +5,7 @@ import { addNewReview } from '../../store/reviews'
 
 import './CreateReview.css'
 
-function CreateReview({spot}) {
+function CreateReview({spot, madeReview}) {
     const {user} = useSelector(state => state.session)
     const dispatch = useDispatch()
     const [cleanRating, setCleanRating] = useState(0)
@@ -68,44 +68,56 @@ function CreateReview({spot}) {
     }
 
 
-    return (
-        <div>
-            <div className="create-rev-rating">
-                <p>Cleanliness</p>
-            <StarRatings rating={cleanRating} changeRating={changeRating} name="cleanRating" starRatedColor="red" starDimension="20px"/>
-            </div>
-            <div className="create-rev-rating">
-            <p>Accuracy</p>
-            <StarRatings rating={accurRating} changeRating={changeRating} name="accurRating" starRatedColor="red" starDimension="20px"/>
-            </div>
-            <div className="create-rev-rating">
-            <p>Check-In</p>
-            <StarRatings rating={checkInRating} changeRating={changeRating} name="checkInRating" starRatedColor="red" starDimension="20px"/>
-            </div>
-            <div className="create-rev-rating">
-            <p>Communication</p>
-            <StarRatings rating={commRating} changeRating={changeRating} name="commRating" starRatedColor="red" starDimension="20px"/>
-            </div>
-            <div className="create-rev-rating">
-            <p>Location</p>
-            <StarRatings rating={locationRating} changeRating={changeRating} name="locationRating" starRatedColor="red" starDimension="20px"/>
-            </div>
-            <div className="create-rev-rating">
-            <p>Value</p>
-            <StarRatings rating={valueRating} changeRating={changeRating} name="valueRating" starRatedColor="red" starDimension="20px"/>
-            </div>
+    return (<div>
+
+        {madeReview ? (
             <div>
-                <h3>Please write your review here</h3>
-                {errors.length > 0 && errors.map(error => (
-                    <div>
-                        <p>{error}</p>
-                    </div>
-                ))}
-                <textarea name="" id="" cols="30" rows="5" onChange={(e)=>setReviewText(e.target.value)} value={reviewText}></textarea>
+                <p>You have already left your review on this spot</p>
             </div>
-            <button onClick={handleSubmit}>Submit Review</button>
-            
-        </div>
+        )
+        :
+        (
+
+            <div>
+                <div className="create-rev-rating">
+                    <p>Cleanliness</p>
+                <StarRatings rating={cleanRating} changeRating={changeRating} name="cleanRating" starRatedColor="red" starDimension="20px"/>
+                </div>
+                <div className="create-rev-rating">
+                <p>Accuracy</p>
+                <StarRatings rating={accurRating} changeRating={changeRating} name="accurRating" starRatedColor="red" starDimension="20px"/>
+                </div>
+                <div className="create-rev-rating">
+                <p>Check-In</p>
+                <StarRatings rating={checkInRating} changeRating={changeRating} name="checkInRating" starRatedColor="red" starDimension="20px"/>
+                </div>
+                <div className="create-rev-rating">
+                <p>Communication</p>
+                <StarRatings rating={commRating} changeRating={changeRating} name="commRating" starRatedColor="red" starDimension="20px"/>
+                </div>
+                <div className="create-rev-rating">
+                <p>Location</p>
+                <StarRatings rating={locationRating} changeRating={changeRating} name="locationRating" starRatedColor="red" starDimension="20px"/>
+                </div>
+                <div className="create-rev-rating">
+                <p>Value</p>
+                <StarRatings rating={valueRating} changeRating={changeRating} name="valueRating" starRatedColor="red" starDimension="20px"/>
+                </div>
+                <div>
+                    <h3>Please write your review here</h3>
+                    {errors.length > 0 && errors.map(error => (
+                        <div>
+                            <p>{error}</p>
+                        </div>
+                    ))}
+                    <textarea name="" id="" cols="30" rows="5" onChange={(e)=>setReviewText(e.target.value)} value={reviewText}></textarea>
+                </div>
+                <button onClick={handleSubmit}>Submit Review</button>
+                
+            </div>
+        )
+    }
+    </div>
     )
 }
 

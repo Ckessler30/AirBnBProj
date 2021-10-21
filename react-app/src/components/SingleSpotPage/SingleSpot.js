@@ -20,6 +20,7 @@ function SingleSpot() {
     const spotReviews = reviews.filter(review => review.spotId === spot.id)
     // console.log("HERE",spotReviews)
     // console.log(user)
+    const madeReview = spotReviews.filter(review=> review.userId === user.id).length > 0 ? true : false
 
     useEffect(() => {
        (async () => {
@@ -119,7 +120,7 @@ function SingleSpot() {
                     </div>
                     <div>
                       <h3>Create a Review</h3>
-                        <CreateReview spot={spot}/>
+                        <CreateReview madeReview={madeReview} spot={spot}/>
                     </div>
                 </div>
 
