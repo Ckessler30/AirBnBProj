@@ -1,15 +1,20 @@
 
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
+import { login } from '../../store/session';
 
 import './NavBar.css'
 
 const NavBar = () => {
+  const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const [openDropDown, setOpenDropDown] = useState(false)
   // console.log(sessionUser)
+  const handleDemoLogin = () => {
+    dispatch(login("demo@aa.io", "password"))
+  }
   return (
     <nav>
         <ul className="nav-links">
@@ -37,6 +42,7 @@ const NavBar = () => {
                     <NavLink to="/sign-up" exact={true} activeClassName="active">
                       Sign Up
                     </NavLink> 
+                    <button onClick={handleDemoLogin}>Demo</button>
                  </div>
                 ) : (
                     <div>

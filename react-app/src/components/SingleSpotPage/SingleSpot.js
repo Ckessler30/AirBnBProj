@@ -14,10 +14,13 @@ function SingleSpot() {
     const {spotId} = useParams()
     const dispatch = useDispatch()
     // console.log(spotId)
+    const {user} = useSelector(state =>  state.session)
     const spot = useSelector(state => state.currSpot)
     const reviews = useSelector(state => state.reviews)
     const spotReviews = reviews.filter(review => review.spotId === spot.id)
     // console.log("HERE",spotReviews)
+    // console.log(user)
+    const madeReview = spotReviews.filter(review=> review.userId === user.id).length > 0 ? true : false
 
     useEffect(() => {
        (async () => {
@@ -112,12 +115,12 @@ function SingleSpot() {
                     </div>
                     <div className="ss-all-reviews">
                         {spotReviews&& spotReviews.map(review => (
-                            <SingleReview review={review}/>
+                            <SingleReview user={user} review={review}/>
                         ))}
                     </div>
                     <div>
                       <h3>Create a Review</h3>
-                        <CreateReview spot={spot}/>
+                        <CreateReview madeReview={madeReview} spot={spot}/>
                     </div>
                 </div>
 

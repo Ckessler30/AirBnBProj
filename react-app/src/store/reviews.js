@@ -4,6 +4,7 @@
 
 const GET_REVIEWS = "reviews/GET_REVIEWS";
 const ADD_REVIEW = "reviews/ADD_REVIEW"
+const DELETE_REVIEW = "reviews/DELETE_REVIEW"
 
 /* ----------------------------------------------------------------------- */
 /* ----------------------------Action Creators---------------------------- */
@@ -17,6 +18,11 @@ const getReviews = (allReviews) => ({
 const addReview = (review) => ({
   type: ADD_REVIEW,
   review
+})
+
+const deleteReview = (revId) => ({
+  type: DELETE_REVIEW,
+  revId
 })
 
 /* ----------------------------------------------------------------------- */
@@ -44,6 +50,13 @@ export const addNewReview = (review) => async (dispatch) => {
   dispatch(addReview(newReview))
 }
 
+export const deleteSingleReview = (reviewId) => async(dispatch)=> {
+  const res = await fetch(`/api/reviews/${reviewId}`, {
+    method: 'DELETE'
+  })
+  dispatch(deleteReview(reviewId))
+}
+
 /* ----------------------------------------------------------------------- */
 /* -----------------------Initial State & Reducer------------------------- */
 /* ----------------------------------------------------------------------- */
@@ -59,6 +72,14 @@ const allReviewsReducer = (state = initialState, action) => {
     case ADD_REVIEW:
       newState = [...state]
       newState.push(action.review)
+      return newState
+    case DELETE_REVIEW:
+      newState = [...state]
+      newState.map(review=> {
+        if(review.id === action.revId){
+          newState.splice(newState.indexOf(review), 1)
+        }
+      })
       return newState
     default:
       return state;
