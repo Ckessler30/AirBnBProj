@@ -106,27 +106,27 @@ function SingleSpot() {
                 <div>
                     <div>
                         <p>Cleanliness</p>
-                        <SSReviewSection spot={spot} revSec={'cleanRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'cleanRating'}/>
                     </div>
                     <div>
                         <p>Accuracy</p>
-                        <SSReviewSection spot={spot} revSec={'accurRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'accurRating'}/>
                     </div>
                     <div>
                         <p>Communication</p>
-                        <SSReviewSection spot={spot} revSec={'commRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'commRating'}/>
                     </div>
                     <div>
                         <p>Location</p>
-                        <SSReviewSection spot={spot} revSec={'locationRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'locationRating'}/>
                     </div>
                     <div>
                         <p>Check-in</p>
-                        <SSReviewSection spot={spot} revSec={'checkInRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'checkInRating'}/>
                     </div>
                     <div>
                         <p>Value</p>
-                        <SSReviewSection spot={spot} revSec={'valueRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'valueRating'}/>
                     </div>
                     <div className="ss-all-reviews">
                         {spotReviews&& spotReviews.map(review => (

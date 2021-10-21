@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from '../../store/bookings'
 import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
 
+import './CheckIn.css'
+
 function CheckIn({ spot }) {
     const dispatch = useDispatch()
     const {user} = useSelector(state => state.session)
