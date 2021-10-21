@@ -8,7 +8,7 @@ class SpotForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
     price = FloatField('price', validators=[DataRequired()])
     description = TextAreaField('description', validators=[DataRequired()])
-    type = SelectField('type', options=["Condo", "Cabin", "House", "Villa", "Tree House", "Beach House", "Camp Site"], validators=[DataRequired()])
+    type = SelectField('type', choices=["Condo", "Cabin", "House", "Villa", "Tree House", "Beach House", "Camp Site"], validators=[DataRequired()])
     num_bedrooms = IntegerField('num_bedrooms', validators=[DataRequired()])
     num_beds = IntegerField('num_beds', validators=[DataRequired()])
     num_baths = IntegerField('num_baths', validators=[DataRequired()])

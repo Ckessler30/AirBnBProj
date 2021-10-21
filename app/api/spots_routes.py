@@ -29,6 +29,7 @@ def create_spot():
     body = request.json
     form = SpotForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    # print("-----------------", form)
     if form.validate_on_submit():
         spot = Spot(
         name=form.data['name'],
@@ -40,7 +41,7 @@ def create_spot():
         num_beds=form.data['num_beds'],
         total_guests=form.data['total_guests'],
         city=form.data['city'],
-        st_address=form.data['address'],
+        st_address=form.data['st_address'],
         longitude=form.data['longitude'],
         latitude=form.data['latitude'],
         user_id=body['userId']

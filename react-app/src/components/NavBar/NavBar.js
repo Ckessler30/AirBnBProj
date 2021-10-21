@@ -23,11 +23,11 @@ const NavBar = () => {
               Home
             </NavLink>
           </li>
-          {/* <li>
+         { sessionUser && <li>
             <NavLink to="/become-a-host" exact={true} activeClassName="active">
               Become a host
             </NavLink>
-          </li> */}
+          </li>}
           <li className="nav-login-signup">
             <div onClick={()=>setOpenDropDown(!openDropDown)}>
               <p>Profile</p>

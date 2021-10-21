@@ -16,7 +16,7 @@ function SingleReview({review, user}) {
         <div>
             <p>{review.reviewText}</p>
         </div>
-        {user.id === review.userId &&
+        {user?.id === review.userId &&
           <div>
             <button onClick={handleDelete}>Delete</button>
           </div>

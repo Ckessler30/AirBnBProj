@@ -32,7 +32,8 @@ export const fetchAllSpots = () => async (dispatch) => {
 
 
 export const addSpot = (spot) => async(dispatch) => {
-  const res = await fetch("/api/spots", {
+  // console.log("HERERER", spot)
+  const res = await fetch("/api/spots/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -41,14 +42,15 @@ export const addSpot = (spot) => async(dispatch) => {
   });
   // const newSpot = await res.json()
   // console.log(newSpot)
+  // console.log(res)
     if (res.ok) {
       const data = await res.json();
       dispatch(addSpotAction(data));
-      return null;
+      return data;
     } else if (res.status < 500) {
       const data = await res.json();
       if (data.errors) {
-        return data.errors;
+        return data;
       }
     } else {
       return ["An error occurred. Please try again."];
