@@ -30,7 +30,7 @@ function SingleSpot() {
 
     return (
       <>
-        {spotReviews && (
+        {spot.reviews && (
           <div>
             <div className="ss-header">
               <h3>{spot.name}</h3>

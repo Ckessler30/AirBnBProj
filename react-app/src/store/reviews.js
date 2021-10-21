@@ -27,7 +27,7 @@ export const fetchAllReviews = () => async (dispatch) => {
   const res = await fetch("/api/reviews/");
   const reviews = await res.json();
     // console.log("all reviews",reviews)
- 
+  console.log("HER", reviews)
   dispatch(getReviews(reviews.allReviews));
 };
 
