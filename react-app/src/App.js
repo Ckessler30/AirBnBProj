@@ -21,7 +21,7 @@ import CreateSpot from './components/CreateSpot/CreateSpot';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import Bookings from './components/Bookings/Bookings';
 import EditSpot from './components/EditSpot/EditSpot';
-
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -76,6 +76,7 @@ function App() {
           <SingleSpot />
         </Route>
       </Switch>
+      <Footer/>
     </BrowserRouter>
   );
 }

@@ -1,0 +1,17 @@
+.footer-container{
+    width: 100vw;
+    background-color: #F7F7F7;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 300px;
+}
+
+.footer-logos{
+    background-position: center;
+    background-size: cover;
+    height: 70px;
+    width: 70px;
+    border-radius: 20px;
+}

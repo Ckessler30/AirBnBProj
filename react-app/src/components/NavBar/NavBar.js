@@ -16,6 +16,7 @@ const NavBar = () => {
   // console.log(sessionUser)
   const handleDemoLogin = () => {
     dispatch(login("demo@aa.io", "password"))
+    setOpenDropDown(false)
   }
   return (
     <nav>
@@ -81,6 +82,7 @@ const NavBar = () => {
                       className="inactive"
                       exact={true}
                       activeClassName="active"
+                      onClick={() => setOpenDropDown(false)}
                     >
                       Login
                     </NavLink>
@@ -89,6 +91,7 @@ const NavBar = () => {
                       className="inactive"
                       exact={true}
                       activeClassName="active"
+                      onClick={() => setOpenDropDown(false)}
                     >
                       Sign Up
                     </NavLink>
@@ -100,17 +103,22 @@ const NavBar = () => {
                       <NavLink
                         className="inactive"
                         to={`/users/${sessionUser.id}`}
+                        onClick={() => setOpenDropDown(false)}
                       >
                         My Profile
                       </NavLink>
                       <NavLink
                         className="inactive"
                         to={`/users/${sessionUser.id}/bookings`}
+                        onClick={() => setOpenDropDown(false)}
                       >
                         Trips
                       </NavLink>
                     </div>
-                    <div className="logout-btn">
+                    <div
+                      className="logout-btn"
+                      onClick={() => setOpenDropDown(false)}
+                    >
                       <LogoutButton />
                     </div>
                   </div>
