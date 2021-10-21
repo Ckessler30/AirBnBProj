@@ -1,9 +1,13 @@
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import StarRatings from 'react-star-ratings'
+import { addNewReview } from '../../store/reviews'
 
 import './CreateReview.css'
 
-function CreateReview() {
+function CreateReview({spot}) {
+    const {user} = useSelector(state => state.session)
+    const dispatch = useDispatch()
     const [cleanRating, setCleanRating] = useState(0)
     const [accurRating, setAccurRating] = useState(0)
     const [checkInRating, setCheckInRating] = useState(0)
@@ -11,7 +15,7 @@ function CreateReview() {
     const [locationRating, setLocationRating] = useState(0)
     const [valueRating, setValueRating] = useState(0)
     const [reviewText, setReviewText] = useState(null)
-
+    console.log(user)
     const changeRating = (newRating, name) => {
         console.log(newRating)
         console.log(name)
@@ -35,7 +39,21 @@ function CreateReview() {
         }
     }
 
-    
+    const handleSubmit = () => {
+        const newReview = {
+            userId: user.id,
+            spotId: spot.id,
+            cleanRating,
+            accurRating,
+            commRating,
+            locationRating,
+            checkInRating,
+            valueRating,
+            reviewText
+        }
+        dispatch(addNewReview(newReview))
+    }
+
 
     return (
         <div>
@@ -65,9 +83,9 @@ function CreateReview() {
             </div>
             <div>
                 <h3>Please write your review here</h3>
-                <textarea name="" id="" cols="30" rows="5"></textarea>
+                <textarea name="" id="" cols="30" rows="5" onChange={(e)=>setReviewText(e.target.value)} value={reviewText}></textarea>
             </div>
-            <button>Submit Review</button>
+            <button onClick={handleSubmit}>Submit Review</button>
         </div>
     )
 }
