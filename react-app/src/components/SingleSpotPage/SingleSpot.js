@@ -34,10 +34,6 @@ function SingleSpot() {
         dispatch(deleteSpot(spotId))
         history.push(`/users/${user.id}`)
     }
-    const handleEdit = () => {
-
-    }
-    
 
    
 
@@ -55,7 +51,7 @@ function SingleSpot() {
               </p>
               {spot.user.id === user.id &&
                 <div>
-                  <button>Edit {spot.spotType} listing</button>
+                  <button onClick={()=> history.push(`/rooms/${spotId}/edit`)}>Edit {spot.spotType} listing</button>
                   <button onClick={handleDelete}>Delete {spot.spotType} listing</button>
                 </div>
               }

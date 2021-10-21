@@ -20,6 +20,7 @@ import SingleSpot from './components/SingleSpotPage/SingleSpot';
 import CreateSpot from './components/CreateSpot/CreateSpot';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import Bookings from './components/Bookings/Bookings';
+import EditSpot from './components/EditSpot/EditSpot';
 
 
 function App() {
@@ -55,6 +56,9 @@ function App() {
         </Route>
         <ProtectedRoute path="/become-a-host" exact={true}>
           <CreateSpot />
+        </ProtectedRoute>
+        <ProtectedRoute path="/rooms/:spotId/edit" exact={true}>
+          <EditSpot />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId/bookings" exact={true}>
             <Bookings />
