@@ -1,10 +1,18 @@
-import { useSelector } from "react-redux"
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux"
 import { NavLink } from "react-router-dom";
+import { fetchAllLocations } from '../../store/locations'
 
 
 function SplashPage() {
+    const dispatch = useDispatch()
     const locations = useSelector(state => state.locations)
     // console.log(locations)
+
+    useEffect(()=> {
+        dispatch(fetchAllLocations())
+    }, [dispatch])
+
     return (
         <div>
             <div>
