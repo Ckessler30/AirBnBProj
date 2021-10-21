@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router"
+import { fetchAllSpots } from "../../store/allSpots"
 import {fetchProfile} from '../../store/currProfile'
 import { avgReview } from "../utils"
 
@@ -21,6 +22,7 @@ function ProfilePage() {
 
     useEffect(()=> {
           dispatch(fetchProfile(userId))
+          dispatch(fetchAllSpots())
     },[dispatch])
 
     return (

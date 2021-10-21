@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router"
+import { useParams, useHistory } from "react-router"
 import { fetchSpot } from '../../store/currentSpot'
 import {avgReview, getCity} from '../utils'
 import SSReviewSection from "../SSReviewSection/SSReviewSection"
@@ -9,17 +9,19 @@ import CheckIn from "../CheckIn/CheckIn"
 import CreateReview from "../CreateReview/CreateReview"
 
 import './SingleSpot.css'
+import { deleteSpot } from "../../store/allSpots"
 
 function SingleSpot() {
     const {spotId} = useParams()
     const dispatch = useDispatch()
+    const history = useHistory()
     // console.log(spotId)
     const {user} = useSelector(state =>  state.session)
     const spot = useSelector(state => state.currSpot)
     const reviews = useSelector(state => state.reviews)
     const spotReviews = reviews.filter(review => review.spotId === spot.id)
-    // console.log("HERE",spotReviews)
-    // console.log(user)
+    console.log(spot)
+    console.log(user)
     const madeReview = spotReviews.filter(review=> review?.userId === user?.id).length > 0 ? true : false
 
     useEffect(() => {
@@ -27,6 +29,14 @@ function SingleSpot() {
          await dispatch(fetchSpot(spotId));
        })();
     }, [dispatch])
+
+    const handleDelete = () => {
+        dispatch(deleteSpot(spotId))
+        history.push(`/users/${user.id}`)
+    }
+    const handleEdit = () => {
+
+    }
     
 
    
@@ -43,6 +53,12 @@ function SingleSpot() {
               <p>
                 {getCity(spot.stAddress)}, {spot.city}, United States
               </p>
+              {spot.user.id === user.id &&
+                <div>
+                  <button>Edit {spot.spotType} listing</button>
+                  <button onClick={handleDelete}>Delete {spot.spotType} listing</button>
+                </div>
+              }
             </div>
             <div className="ss-pics-container">
               {spot.spotPics && (

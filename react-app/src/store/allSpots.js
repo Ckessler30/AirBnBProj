@@ -4,6 +4,7 @@
 
 const GET_SPOTS = "allSpots/GET_SPOTS";
 const ADD_SPOT = "allSpots/ADD_SPOT"
+const DELETE_SPOT = 'allSpots/DELETE_SPOT'
 
 /* ----------------------------------------------------------------------- */
 /* ----------------------------Action Creators---------------------------- */
@@ -17,6 +18,11 @@ const getSpotsAction = (allSpots) => ({
 const addSpotAction = (spot) => ({
   type: ADD_SPOT,
   spot
+})
+
+const deleteSpotAction = (id) => ({
+  type: DELETE_SPOT,
+  id
 })
 
 /* ----------------------------------------------------------------------- */
@@ -56,6 +62,16 @@ export const addSpot = (spot) => async(dispatch) => {
       return ["An error occurred. Please try again."];
     }
 }
+
+export const deleteSpot = (id) => async(dispatch) => {
+  const res = await fetch(`/api/spots/${id}`, {
+    method: "DELETE"
+  })
+  console.log(res)
+  if(res.ok){
+    dispatch(deleteSpotAction(id))
+  }
+}
 /* ----------------------------------------------------------------------- */
 /* -----------------------Initial State & Reducer------------------------- */
 /* ----------------------------------------------------------------------- */
@@ -71,6 +87,14 @@ const allSpotsReducer = (state = initialState, action) => {
     case ADD_SPOT:
       newState=[...state]
       newState.push(action.spot)
+      return newState
+    case DELETE_SPOT:
+      newState = [...state]
+      newState.map(spot=> {
+        if(spot.id === action.id){
+          newState.splice(newState.indexOf(spot), 1)
+        }
+      })
       return newState
     default:
       return state;
