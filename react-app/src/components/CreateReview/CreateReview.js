@@ -15,10 +15,11 @@ function CreateReview({spot}) {
     const [locationRating, setLocationRating] = useState(0)
     const [valueRating, setValueRating] = useState(0)
     const [reviewText, setReviewText] = useState(null)
-    console.log(user)
+    const [errors, setErrors] = useState([])
+    // console.log(user)
     const changeRating = (newRating, name) => {
-        console.log(newRating)
-        console.log(name)
+        // console.log(newRating)
+        // console.log(name)
         if(name === "cleanRating"){
             setCleanRating(newRating)
         }
@@ -40,18 +41,30 @@ function CreateReview({spot}) {
     }
 
     const handleSubmit = () => {
-        const newReview = {
-            userId: user.id,
-            spotId: spot.id,
-            cleanRating,
-            accurRating,
-            commRating,
-            locationRating,
-            checkInRating,
-            valueRating,
-            reviewText
+        if(cleanRating && accurRating && commRating && locationRating && checkInRating && valueRating && reviewText){
+            const newReview = {
+                userId: user.id,
+                spotId: spot.id,
+                cleanRating,
+                accurRating,
+                commRating,
+                locationRating,
+                checkInRating,
+                valueRating,
+                reviewText
+            }
+            dispatch(addNewReview(newReview))
+            setAccurRating(0)
+            setCleanRating(0)
+            setCommRating(0)
+            setLocationRating(0)
+            setCheckInRating(0)
+            setValueRating(0)
+            setReviewText('')
+        }else{
+            const newErrors = ["Please fill out all ratings and submit a review"]
+            setErrors(newErrors)
         }
-        dispatch(addNewReview(newReview))
     }
 
 
@@ -83,9 +96,15 @@ function CreateReview({spot}) {
             </div>
             <div>
                 <h3>Please write your review here</h3>
+                {errors.length > 0 && errors.map(error => (
+                    <div>
+                        <p>{error}</p>
+                    </div>
+                ))}
                 <textarea name="" id="" cols="30" rows="5" onChange={(e)=>setReviewText(e.target.value)} value={reviewText}></textarea>
             </div>
             <button onClick={handleSubmit}>Submit Review</button>
+            
         </div>
     )
 }
