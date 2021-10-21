@@ -39,8 +39,20 @@ export const addSpot = (spot) => async(dispatch) => {
     },
     body: JSON.stringify(spot),
   });
-  const newSpot = await res.json()
-  console.log(newSpot)
+  // const newSpot = await res.json()
+  // console.log(newSpot)
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(addSpotAction(data));
+      return null;
+    } else if (res.status < 500) {
+      const data = await res.json();
+      if (data.errors) {
+        return data.errors;
+      }
+    } else {
+      return ["An error occurred. Please try again."];
+    }
 }
 /* ----------------------------------------------------------------------- */
 /* -----------------------Initial State & Reducer------------------------- */

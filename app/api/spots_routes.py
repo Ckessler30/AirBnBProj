@@ -37,7 +37,7 @@ def create_spot():
         spot_type=form.data['type'],
         num_bedrooms=form.data['num_bedrooms'],
         num_baths=form.data['num_baths'],
-        num_beds=form.data['numBeds'],
+        num_beds=form.data['num_beds'],
         total_guests=form.data['total_guests'],
         city=form.data['city'],
         st_address=form.data['address'],
