@@ -44,7 +44,7 @@ function SingleSpot() {
             <div className="ss-header">
               <h3>{spot.name}</h3>
               <p>
-                {avgReview(spotReviews)}({spotReviews.length} reviews)
+                {spotReviews.length > 0 && avgReview(spotReviews)}({spotReviews.length} reviews)
               </p>
               <p>
                 {getCity(spot.stAddress)}, {spot.city}, United States

@@ -87,7 +87,7 @@ function CheckIn({ spot }) {
       <div>
         <p>${spot.price}/night</p>
         <p>
-          {avgReview(spot.reviews)}({spot.reviews.length} reviews)
+          {spot.reviews.length > 0 && avgReview(spot.reviews)}({spot.reviews.length} reviews)
         </p>
         <div>
           <div>

@@ -10,7 +10,7 @@ function SSReviewSection({spot, revSec}) {
     return (
         <div className="progress-bar-wrapper">
             <ProgressBar now={avg} max={5}/> 
-            <p>{avg}</p>
+            {spot.reviews.length > 0 && <p>{avg}</p>}
         </div>
     )
 }
