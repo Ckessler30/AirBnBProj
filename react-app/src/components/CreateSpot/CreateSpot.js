@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { addSpot } from '../../store/allSpots'
+import {addSpotPic} from '../../store/currentSpot'
 
 function CreateSpot() {
     const history = useHistory()
@@ -45,7 +46,14 @@ function CreateSpot() {
         }
         const data = await dispatch(addSpot(newSpot))
         console.log("RIGHT HERE",data)
-        if(data){
+        if(data && !data.errors){
+            const newPic = await dispatch(addSpotPic({spotId:data.id, imgUrl: pic1}))
+            if(pic2){
+                await dispatch(addSpotPic({spotId:data.id, imgUrl:pic2}))
+            }
+            if(pic3){
+                await dispatch(addSpotPic({spotId:data.id, imgUrl:pic3}))
+            }
             return history.push(`/rooms/${data.id}`)
         }
         if(data.errors){
@@ -102,7 +110,7 @@ function CreateSpot() {
                 </div>
                 <div>
                     <h3>Pictures</h3>
-                    <input type="text" placeholder="Picture Url" onChange={(e)=> setPic1(e.target.value)} value={pic1}/>
+                    <input type="text" placeholder="Picture Url" onChange={(e)=> setPic1(e.target.value)} value={pic1} required/>
                     <input type="text" placeholder="Picture Url" onChange={(e)=> setPic2(e.target.value)} value={pic2}/>
                     <input type="text" placeholder="Picture Url" onChange={(e)=> setPic3(e.target.value)} value={pic3}/>
                 </div>

@@ -46,6 +46,18 @@ export const updateSpot = (updatedSpot) => async(dispatch)=> {
     dispatch(updateSpotAction(spot))
 }
 
+export const addSpotPic = (spotPic) => async(dispatch) => {
+  const res = await fetch("/api/spotpics/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(spotPic),
+  });
+  const newSpotPic = await res.json()
+  return newSpotPic
+}
+
 
 
 /* ----------------------------------------------------------------------- */
