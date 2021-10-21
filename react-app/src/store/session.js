@@ -70,16 +70,23 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (name, email, password, bio, profilePic) => async (dispatch) => {
+  if(!profilePic){
+    profilePic =
+      "https://thepowerofthedream.org/wp-content/uploads/2015/09/generic-profile-picture.jpg";
+  }
+  console.log("LOOK HERE", profilePic)
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      username,
+      name,
       email,
       password,
+      bio,
+      profile_pic: profilePic
     }),
   });
   

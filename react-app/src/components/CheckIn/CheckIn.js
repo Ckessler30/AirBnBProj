@@ -7,6 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from '../../store/bookings'
 import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
 
+import './CheckIn.css'
+
 function CheckIn({ spot }) {
     const dispatch = useDispatch()
     const {user} = useSelector(state => state.session)
@@ -87,7 +89,7 @@ function CheckIn({ spot }) {
       <div>
         <p>${spot.price}/night</p>
         <p>
-          {avgReview(spot.reviews)}({spot.reviews.length} reviews)
+          {spot.reviews.length > 0 && avgReview(spot.reviews)}({spot.reviews.length} reviews)
         </p>
         <div>
           <div>

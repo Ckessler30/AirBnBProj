@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux"
+import { NavLink } from "react-router-dom";
 import { useParams } from "react-router"
 import { avgReview } from "../utils"
 import GoogleMaps from "../GoogleMaps/GoogleMaps"
@@ -15,7 +16,7 @@ function SpotsPage() {
             <p>{filterdSpots.length}+ stays</p>
             <h4>{location} getaways</h4>
             {filterdSpots && filterdSpots.map(spot => (
-                <a href={`/rooms/${spot.id}`}>
+                <NavLink className="inactive" to={`/rooms/${spot.id}`} exact={true}>
                     <div className="main-spot-pic" style={{"backgroundImage": `url('${spot.spotPics[0]}')`}}></div>
                     <div>
                         <p>{spot.spotType}</p>
@@ -24,10 +25,10 @@ function SpotsPage() {
                         <p>{spot.numBedrooms} bedrooms</p>
                         <p>{spot.numBeds} bed</p>
                         <p>{spot.numBaths} bath</p>
-                        <p>{avgReview(spot.reviews)}({spot.reviews.length} reviews)</p>
+                        <p>{spot.reviews.length > 0 && avgReview(spot.reviews)}({spot.reviews.length} reviews)</p>
                         <p>${spot.price}/night</p>
                     </div>
-                </a>
+                </NavLink>
             ))}
             <div>
                 <GoogleMaps />

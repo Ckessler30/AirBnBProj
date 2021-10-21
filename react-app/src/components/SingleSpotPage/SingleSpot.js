@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router"
+import { useParams, useHistory } from "react-router"
+import { NavLink } from 'react-router-dom'
 import { fetchSpot } from '../../store/currentSpot'
 import {avgReview, getCity} from '../utils'
 import SSReviewSection from "../SSReviewSection/SSReviewSection"
@@ -9,25 +10,31 @@ import CheckIn from "../CheckIn/CheckIn"
 import CreateReview from "../CreateReview/CreateReview"
 
 import './SingleSpot.css'
+import { deleteSpot } from "../../store/allSpots"
 
 function SingleSpot() {
     const {spotId} = useParams()
     const dispatch = useDispatch()
+    const history = useHistory()
     // console.log(spotId)
     const {user} = useSelector(state =>  state.session)
     const spot = useSelector(state => state.currSpot)
     const reviews = useSelector(state => state.reviews)
     const spotReviews = reviews.filter(review => review.spotId === spot.id)
-    // console.log("HERE",spotReviews)
+    // console.log(spot)
     // console.log(user)
-    const madeReview = spotReviews.filter(review=> review.userId === user.id).length > 0 ? true : false
+    const madeReview = spotReviews.filter(review=> review?.userId === user?.id).length > 0 ? true : false
 
     useEffect(() => {
        (async () => {
          await dispatch(fetchSpot(spotId));
        })();
     }, [dispatch])
-    
+
+    const handleDelete = () => {
+        dispatch(deleteSpot(spotId))
+        history.push(`/users/${user.id}`)
+    }
 
    
 
@@ -38,11 +45,17 @@ function SingleSpot() {
             <div className="ss-header">
               <h3>{spot.name}</h3>
               <p>
-                {avgReview(spotReviews)}({spotReviews.length} reviews)
+                {spotReviews.length > 0 && avgReview(spotReviews)}({spotReviews.length} reviews)
               </p>
               <p>
                 {getCity(spot.stAddress)}, {spot.city}, United States
               </p>
+              {spot.user?.id === user?.id &&
+                <div>
+                  <button onClick={()=> history.push(`/rooms/${spotId}/edit`)}>Edit {spot.spotType} listing</button>
+                  <button onClick={handleDelete}>Delete {spot.spotType} listing</button>
+                </div>
+              }
             </div>
             <div className="ss-pics-container">
               {spot.spotPics && (
@@ -70,10 +83,12 @@ function SingleSpot() {
                     <p>{spot.numBedrooms} bedrooms</p>
                     <p>{spot.numBeds} bed</p>
                     <p>{spot.numBaths} bath</p>
-                    <div
-                        className="ss-profile-pic"
-                        style={{ backgroundImage: `url('${spot.user.profile_pic}')` }}
-                    ></div>
+                    <NavLink to={`/users/${spot.user.id}`} className="inactive">
+                      <div
+                          className="ss-profile-pic"
+                          style={{ backgroundImage: `url('${spot.user.profile_pic}')` }}
+                      ></div>
+                    </NavLink>
                 </div>
                 <div>
                     <h3>
@@ -91,37 +106,37 @@ function SingleSpot() {
                 <div>
                     <div>
                         <p>Cleanliness</p>
-                        <SSReviewSection spot={spot} revSec={'cleanRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'cleanRating'}/>
                     </div>
                     <div>
                         <p>Accuracy</p>
-                        <SSReviewSection spot={spot} revSec={'accurRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'accurRating'}/>
                     </div>
                     <div>
                         <p>Communication</p>
-                        <SSReviewSection spot={spot} revSec={'commRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'commRating'}/>
                     </div>
                     <div>
                         <p>Location</p>
-                        <SSReviewSection spot={spot} revSec={'locationRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'locationRating'}/>
                     </div>
                     <div>
                         <p>Check-in</p>
-                        <SSReviewSection spot={spot} revSec={'checkInRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'checkInRating'}/>
                     </div>
                     <div>
                         <p>Value</p>
-                        <SSReviewSection spot={spot} revSec={'valueRating'}/>
+                        <SSReviewSection spotReviews={spotReviews} revSec={'valueRating'}/>
                     </div>
                     <div className="ss-all-reviews">
                         {spotReviews&& spotReviews.map(review => (
                             <SingleReview user={user} review={review}/>
                         ))}
                     </div>
-                    <div>
+                    {user && <div>
                       <h3>Create a Review</h3>
                         <CreateReview madeReview={madeReview} spot={spot}/>
-                    </div>
+                    </div>}
                 </div>
 
             </div>

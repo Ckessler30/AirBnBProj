@@ -4,13 +4,13 @@ import {specRevAvg} from '../utils'
 import "bootstrap/dist/css/bootstrap.min.css";
 import './SSReview.css'
 
-function SSReviewSection({spot, revSec}) {
+function SSReviewSection({spotReviews, revSec}) {
     // console.log("REVIEW",spot)
-    const avg = specRevAvg(spot.reviews, revSec)
+    const avg = specRevAvg(spotReviews, revSec)
     return (
         <div className="progress-bar-wrapper">
             <ProgressBar now={avg} max={5}/> 
-            <p>{avg}</p>
+            {spotReviews.length > 0 && <p>{avg}</p>}
         </div>
     )
 }

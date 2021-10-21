@@ -1,4 +1,5 @@
 import { useDispatch } from "react-redux";
+import {NavLink} from "react-router-dom"
 import { deleteSingleReview } from '../../store/reviews'
 
 function SingleReview({review, user}) {
@@ -10,13 +11,15 @@ function SingleReview({review, user}) {
     return (
       <div>
         <div className="sr-header">
-          <div className="ss-profile-pic" style={{ backgroundImage: `url('${review.user.profilePic}')` }}></div>
+          <NavLink to={`/users/${review.userId}`} className="inactive">
+            <div className="ss-profile-pic" style={{ backgroundImage: `url('${review.user.profilePic}')` }}></div>
+          </NavLink>
           <p>{review.user.name}</p>
         </div>
         <div>
             <p>{review.reviewText}</p>
         </div>
-        {user.id === review.userId &&
+        {user?.id === review.userId &&
           <div>
             <button onClick={handleDelete}>Delete</button>
           </div>

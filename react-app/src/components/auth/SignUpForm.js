@@ -5,25 +5,37 @@ import { signUp } from '../../store/session';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [bio, setBio] = useState('')
+  const [profilePic, setProfilePic] = useState('')
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(
+        signUp(
+          name,
+          email,
+          password,
+          bio,
+          profilePic
+            ? profilePic
+            : "https://thepowerofthedream.org/wp-content/uploads/2015/09/generic-profile-picture.jpg"
+        )
+      );
       if (data) {
         setErrors(data)
       }
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
+  const updateName = (e) => {
+    setName(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -50,12 +62,12 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
-        <label>User Name</label>
+        <label>Name</label>
         <input
           type='text'
           name='username'
-          onChange={updateUsername}
-          value={username}
+          onChange={updateName}
+          value={name}
         ></input>
       </div>
       <div>
@@ -84,6 +96,19 @@ const SignUpForm = () => {
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
+        ></input>
+      </div>
+      <div>
+        <label>Bio</label>
+        <textarea name="bio" id="" cols="30" rows="5" value={bio} onChange={(e)=>setBio(e.target.value)}></textarea>
+      </div>
+      <div>
+        <label>Profile Pic</label>
+        <input
+          type='text'
+          name='profile_pic'
+          onChange={(e)=>setProfilePic(e.target.value)}
+          value={profilePic}
         ></input>
       </div>
       <button type='submit'>Sign Up</button>

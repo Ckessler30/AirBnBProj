@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
+import { NavLink } from "react-router-dom";
 import { deleteBooking } from "../../store/bookings"
 import './Bookings.css'
 
@@ -24,7 +25,7 @@ function Bookings() {
                 const endDateFormat = `${endDate[2]} ${endDate[1]}, ${endDate[3]}`;
                 return (
                   <div>
-                      <a href={`/rooms/${spot.id}`}>
+                      <NavLink className="inactive" to={`/rooms/${spot.id}`} exact={true}>
                         <div
                         className="booking-spot-pic"
                         style={{ backgroundImage: `url('${spot.spotPics[0]}')` }}
@@ -32,7 +33,7 @@ function Bookings() {
                         <p>{spot.name}</p>
                         <p>Reserved from: {startDateFormat} -> {endDateFormat}</p>
                         <p>Guests: {booking.numGuest}</p>
-                      </a>
+                      </NavLink>
                       <button onClick={() => handleCancel(booking.id)}>Cancel Trip</button>
                     </div>
                 );
