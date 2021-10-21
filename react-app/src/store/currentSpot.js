@@ -41,9 +41,20 @@ export const updateSpot = (updatedSpot) => async(dispatch)=> {
         },
         body: JSON.stringify(updatedSpot)
     })
-    const spot = await res.json()
-    // console.log(spot)
-    dispatch(updateSpotAction(spot))
+
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(updateSpotAction(data));
+      return data;
+    } else if (res.status < 500) {
+      const data = await res.json();
+      if (data.errors) {
+        return data;
+      }
+    } else {
+      return ["An error occurred. Please try again."];
+    }
+   
 }
 
 export const addSpotPic = (spotPic) => async(dispatch) => {

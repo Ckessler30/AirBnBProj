@@ -40,7 +40,7 @@ function EditSpot() {
       id: spotId
     };
     const data = await dispatch(updateSpot(newSpot));
-    // console.log("RIGHT HERE", data);
+    console.log("RIGHT HERE", data);
     if (data && !data.errors) {
       const newPic = await dispatch(
         addSpotPic({ spotId: data.id, imgUrl: pic1 })
@@ -129,7 +129,6 @@ function EditSpot() {
             placeholder="Picture Url"
             onChange={(e) => setPic1(e.target.value)}
             value={pic1}
-            required
           />
           <input
             type="text"

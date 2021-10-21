@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required
 from app.models import Spot, db
-from app.forms import SpotForm
+from app.forms import SpotForm, EditSpotForm
 
 
 spots_routes = Blueprint('spots', __name__)
@@ -57,18 +57,21 @@ def update_delete_spot(id):
         current_spot = Spot.query.get(id)
         return current_spot.to_dict()
     if request.method == "PATCH":
-        body = request.json
-        current_spot = Spot.query.get(id)
-        current_spot.description = body['description']
-        current_spot.name = body['name']
-        current_spot.num_baths = body['numBaths']
-        current_spot.num_bedrooms = body['numBedrooms']
-        current_spot.num_beds = body['numBeds']
-        current_spot.price = body['price']
-        current_spot.total_guests = body['totalGuests']
+        form = EditSpotForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+            current_spot = Spot.query.get(id)
+            current_spot.description = form.data['description']
+            current_spot.name = form.data['name']
+            current_spot.num_baths = form.data['num_baths']
+            current_spot.num_bedrooms = form.data['num_bedrooms']
+            current_spot.num_beds = form.data['num_beds']
+            current_spot.price = form.data['price']
+            current_spot.total_guests = form.data['total_guests']
 
-        db.session.commit()
-        return current_spot.to_dict()
+            db.session.commit()
+            return current_spot.to_dict()
+        return {'errors': validation_errors_to_error_messages(form.errore)}, 401
     if request.method == "DELETE":
         current_spot = Spot.query.get(id)
         db.session.delete(current_spot)
