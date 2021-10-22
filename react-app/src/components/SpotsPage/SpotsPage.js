@@ -28,7 +28,7 @@ function SpotsPage() {
         <div className="spot-left-container">
           <div className="sp-header">
             <p>{filterdSpots.length}+ stays</p>
-            <h4 className="headertxt">Stays in {location}</h4>
+            <h4 className="headertxt sp-stay-loc">Stays in {location}</h4>
           </div>
           {filterdSpots &&
             filterdSpots.map((spot) => (
@@ -74,7 +74,7 @@ function SpotsPage() {
                       <p>
                         {spot.reviews.length > 0 && avgReview(spot.reviews) }
                       </p>
-                      <span className="sp-spot-text">
+                      <span className="sp-spot-text sp-spot-reviews">
                         ({spot.reviews.length} reviews)
                       </span>
                     </div>

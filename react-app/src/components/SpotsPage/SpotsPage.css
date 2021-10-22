@@ -6,17 +6,33 @@
     border-radius: 20px;
 }
 
+.sp-header{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.sp-stay-loc{
+    margin-top: -15px;
+    /* margin-bottom: 10px; */
+}
+
 .spot-page-wrapper{
     display: flex;
     width: 100vw;
+    /* overflow: hidden; */
 }
-
+.sp-spot-reviews{
+    margin-top: 2px;
+}
 .spot-left-container{
     width: 40%;
     margin-left: 24px;
     margin-top: 25px;
     overflow: scroll;
     max-height: 100vh;
+    /* overflow-y: hidden; */
+    /* scrollbar-width: none; */
 }
 .map-wrapper{
     width: 60%;
@@ -80,7 +96,9 @@
 .sp-review{
     display: flex;
     gap: 5px;
-
+    align-self: flex-start;
+    justify-self: flex-start;
+    margin-top: 2px;
 }
 
 .sp-price{
@@ -98,6 +116,6 @@
 }
 
 .sp-star{
-    margin-top: 3px;
+    margin-top: 4px;
     color: #FE385C;
 }

@@ -45,3 +45,19 @@ export const bookedDates = (bookings) => {
     })
     return dateArray;
 }
+
+export const capitalizeString = (string) => {
+    const words = string.split(' ')
+    let capitalString= ''
+    words.forEach((word, ind) => {
+        if(ind === words.length -1){
+            capitalString += word.charAt(0).toUpperCase() + word.slice(1)
+            
+        }else{
+
+            capitalString += word.charAt(0).toUpperCase() + word.slice(1) + ' '
+        }
+    })
+    // console.log(capitalString)
+    return capitalString
+}
