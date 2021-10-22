@@ -26,7 +26,7 @@ const updateProfileAction = (updatedProfile) => ({
 export const fetchProfile = (id) => async (dispatch) => {
   const res = await fetch(`/api/users/${id}`);
   const profile = await res.json();
-  console.log(profile)
+  // console.log(profile)
   dispatch(getProfileAction(profile));
 };
 

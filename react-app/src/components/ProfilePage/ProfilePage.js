@@ -17,7 +17,7 @@ function ProfilePage() {
     const reviews = useSelector(state => state.reviews)
     const userReviews = reviews.filter(review => review.userId === currProfile.id)
     const userListings = listings.filter(listing=> listing.user.id === currProfile.id)
-    console.log("HEREEEEEEEEE", userReviews)
+    // console.log("HEREEEEEEEEE", userReviews)
     // console.log("HERE",user)
     // console.log("AGAIN", currProfile)
 

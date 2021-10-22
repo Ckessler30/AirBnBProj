@@ -18,7 +18,7 @@ function GoogleMaps() {
     if(loadError) return "Error loading maps"
     if(!isLoaded) return "Loading Maps"
     return (
-        <div className="map-wrapper">
+        <div className="map-wrapper-comp">
             <GoogleMap mapContainerStyle={mapContainerStyle} zoom={8} center={center}></GoogleMap>
         </div>
     )

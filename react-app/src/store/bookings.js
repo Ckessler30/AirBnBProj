@@ -68,16 +68,22 @@ const bookingsReducer = (state = initialState, action) => {
       newState = [...action.bookings];
       return newState;
     case ADD_BOOKING:
-        newState = [...state]
-        newState.push(action.booking)
+        newState = [...state, action.booking]
+        // newState.push(action.booking)
         return newState
     case DELETE_BOOKING:
         newState = [...state]
-        newState.map(booking => {
-            if(booking.id === action.id){
-                newState.splice(newState.indexOf(booking), 1)
-            }
-        })
+        for(let i = 0; i < newState.length; i++){
+          const booking = newState[i]
+          if (booking.id === action.id) {
+            newState.splice(newState.indexOf(booking), 1);
+          }
+        }
+        // newState.map(booking => {
+        //     if(booking.id === action.id){
+        //         newState.splice(newState.indexOf(booking), 1)
+        //     }
+        // })
         // console.log('NEWSTATE HERE', newState)
         return newState
     default:

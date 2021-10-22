@@ -45,7 +45,7 @@ function CreateSpot() {
             userId: user.id
         }
         const data = await dispatch(addSpot(newSpot))
-        console.log("RIGHT HERE",data)
+        console.log("HERE IS THE DATA",data)
         if(data && !data.errors){
             const newPic = await dispatch(addSpotPic({spotId:data.id, imgUrl: pic1}))
             if(pic2){

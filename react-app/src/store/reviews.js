@@ -33,7 +33,7 @@ export const fetchAllReviews = () => async (dispatch) => {
   const res = await fetch("/api/reviews/");
   const reviews = await res.json();
     // console.log("all reviews",reviews)
-  console.log("HER", reviews)
+  // console.log("HER", reviews)
   dispatch(getReviews(reviews.allReviews));
 };
 
@@ -70,16 +70,22 @@ const allReviewsReducer = (state = initialState, action) => {
       newState = [...action.allReviews];
       return newState;
     case ADD_REVIEW:
-      newState = [...state]
-      newState.push(action.review)
+      newState = [...state, action.review]
+      // newState.push(action.review)
       return newState
     case DELETE_REVIEW:
       newState = [...state]
-      newState.map(review=> {
-        if(review.id === action.revId){
-          newState.splice(newState.indexOf(review), 1)
-        }
-      })
+      for(let i = 0; i < newState.length; i++){
+        const review = newState[i]
+         if (review.id === action.revId) {
+           newState.splice(newState.indexOf(review), 1);
+         }
+      }
+      // newState.map(review=> {
+      //   if(review.id === action.revId){
+      //     newState.splice(newState.indexOf(review), 1)
+      //   }
+      // })
       return newState
     default:
       return state;

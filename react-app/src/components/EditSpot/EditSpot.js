@@ -40,7 +40,7 @@ function EditSpot() {
       id: spotId
     };
     const data = await dispatch(updateSpot(newSpot));
-    console.log("RIGHT HERE", data);
+    // console.log("RIGHT HERE", data);
     if (data && !data.errors) {
       const newPic = await dispatch(
         addSpotPic({ spotId: data.id, imgUrl: pic1 })
