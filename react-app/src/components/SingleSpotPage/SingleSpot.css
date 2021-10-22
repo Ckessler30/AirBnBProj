@@ -188,6 +188,7 @@
 .ss-description{
     border-top: 1px solid #DDDDDD;
     /* margin: 25px 0px; */
+    min-height: 150px;
     padding: 25px 0px;
 }
 

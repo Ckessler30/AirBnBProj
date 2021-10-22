@@ -98,7 +98,7 @@ const NavBar = () => {
                     >
                       Sign Up
                     </NavLink>
-                    <button onClick={handleDemoLogin}>Demo</button>
+                    <p className="inactive" onClick={handleDemoLogin}>Demo</p>
                   </div>
                 ) : (
                   <div className="dropdown-inside">
