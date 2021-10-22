@@ -62,7 +62,7 @@ function CreateReview({spot, madeReview}) {
             setValueRating(0)
             setReviewText('')
         }else{
-            const newErrors = ["Please fill out all ratings and submit a review"]
+            const newErrors = ["Please fill out all ratings and resubmit"]
             setErrors(newErrors)
         }
     }
@@ -110,16 +110,16 @@ function CreateReview({spot, madeReview}) {
                         </div>
                     </div>
                 </div>
-                <div>
-                    <h3>Please write your review here</h3>
+                <div className="rev-input">
+                    <h3>Please write your review here...</h3>
                     {errors.length > 0 && errors.map(error => (
-                        <div>
-                            <p>{error}</p>
-                        </div>
+                            <p className="error">{error}</p>
                     ))}
-                    <textarea name="" id="" cols="30" rows="5" onChange={(e)=>setReviewText(e.target.value)} value={reviewText}></textarea>
+                    <textarea className="textarea-rev" name="" id="" cols="30" rows="5" onChange={(e)=>setReviewText(e.target.value)} value={reviewText}></textarea>
                 </div>
-                <button onClick={handleSubmit}>Submit Review</button>
+                <div className="rev-submit">
+                    <button className="submit-btn" onClick={handleSubmit}>Submit Review</button>
+                </div>
                 
             </div>
         )
