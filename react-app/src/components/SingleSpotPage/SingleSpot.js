@@ -53,7 +53,7 @@ function SingleSpot() {
                     <div className="ss-head-review">
                       <AiFillStar className="sp-star" />
                       <p>{spotReviews.length > 0 && avgReview(spotReviews)}</p>
-                      <a href="#reviewSection">
+                      <a href="#reviewSection" className="rev-anch">
                         <span className="greytxt">
                           ({spotReviews.length} reviews)
                         </span>

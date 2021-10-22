@@ -103,10 +103,10 @@ function CheckIn({ spot }) {
             <span>/ night</span>
           </div>
           <div className="ci-rev">
-            <AiFillStar className="sp-star"/>
+            <AiFillStar className="sp-star" />
             <p>{spot.reviews.length > 0 && avgReview(spot.reviews)}</p>
-            <a href="#reviewSection">
-             <span>({spot.reviews.length} reviews)</span>
+            <a href="#reviewSection" className="rev-anch">
+              <span>({spot.reviews.length} reviews)</span>
             </a>
           </div>
         </div>
@@ -206,8 +206,9 @@ function CheckIn({ spot }) {
       )}
       {errors.length ? <p>{errors}</p> : null}
       {userBooks.length ? (
-        <div>
-          <p>You are all set for your reservation on {formatResDate}</p>
+        <div className="res-set">
+          <p>You are all set for your reservation on </p>
+          <span>{formatResDate}</span>
         </div>
       ) : null}
     </div>
