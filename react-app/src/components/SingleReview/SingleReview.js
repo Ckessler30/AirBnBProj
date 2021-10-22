@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import {NavLink} from "react-router-dom"
 import { deleteSingleReview } from '../../store/reviews'
+import {BsTrash} from 'react-icons/bs'
 
 function SingleReview({review, user}) {
     const dispatch = useDispatch()
@@ -9,21 +10,21 @@ function SingleReview({review, user}) {
         dispatch(deleteSingleReview(review.id))
     }
     return (
-      <div>
+      <div className="single-rev">
         <div className="sr-header">
           <NavLink to={`/users/${review.userId}`} className="inactive">
             <div className="ss-profile-pic" style={{ backgroundImage: `url('${review.user.profilePic}')` }}></div>
           </NavLink>
-          <p>{review.user.name}</p>
+          <div className="rev-name">
+            <p className="headertxt">{review.user.name}</p>
+            {user?.id === review.userId &&
+                <BsTrash className="trash-btn" onClick={handleDelete} />
+            }
+          </div>
         </div>
         <div>
             <p>{review.reviewText}</p>
         </div>
-        {user?.id === review.userId &&
-          <div>
-            <button onClick={handleDelete}>Delete</button>
-          </div>
-        }
       </div>
     );
 }
