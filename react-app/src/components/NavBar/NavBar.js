@@ -9,15 +9,21 @@ import {MdStorage} from 'react-icons/md'
 
 
 import './NavBar.css'
+import LoginForm from '../auth/LoginForm';
 
 const NavBar = () => {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const [openDropDown, setOpenDropDown] = useState(false)
+  const [openLogin, setOpenLogin] = useState(false)
   // console.log(sessionUser)
   const handleDemoLogin = () => {
     dispatch(login("demo@aa.io", "password"))
     setOpenDropDown(false)
+  }
+  const handleLoginClick = () => {
+    setOpenLogin(true)
+    setOpenDropDown(false);
   }
   return (
     <nav>
@@ -80,7 +86,7 @@ const NavBar = () => {
               <div className="profile-drop-down">
                 {!sessionUser ? (
                   <div className="dropdown-inside-loggedout">
-                    <NavLink
+                    {/* <NavLink
                       to="/login"
                       className="inactive"
                       exact={true}
@@ -88,7 +94,9 @@ const NavBar = () => {
                       onClick={() => setOpenDropDown(false)}
                     >
                       Login
-                    </NavLink>
+                    </NavLink> */}
+                    <p onClick={handleLoginClick}>Login</p>
+
                     <NavLink
                       to="/sign-up"
                       className="inactive"
@@ -98,7 +106,9 @@ const NavBar = () => {
                     >
                       Sign Up
                     </NavLink>
-                    <p className="inactive" onClick={handleDemoLogin}>Demo</p>
+                    <p className="inactive" onClick={handleDemoLogin}>
+                      Demo
+                    </p>
                   </div>
                 ) : (
                   <div className="dropdown-inside">
@@ -131,6 +141,7 @@ const NavBar = () => {
           </li>
         </div>
       </ul>
+      {openLogin && <LoginForm />}
     </nav>
   );
 }
