@@ -17,9 +17,9 @@ function EditSpot() {
   const [numBeds, setNumBeds] = useState(spot.numBeds);
   const [numBaths, setNumBaths] = useState(spot.numBaths);
   const [totalGuests, setTotalGuests] = useState(spot.totalGuests);
-  const [pic1, setPic1] = useState(spot.spotPics ? spot.spotPics[0] : null);
-  const [pic2, setPic2] = useState(spot.spotPics ? spot.spotPics[1] : null);
-  const [pic3, setPic3] = useState(spot.spotPics ? spot.spotPics[2] : null);
+  const [pic1, setPic1] = useState(null);
+  const [pic2, setPic2] = useState(null);
+  const [pic3, setPic3] = useState(null);
 
   const [errors, setErrors] = useState([]);
 
@@ -40,7 +40,7 @@ function EditSpot() {
       id: spotId
     };
     const data = await dispatch(updateSpot(newSpot));
-    console.log("RIGHT HERE", data);
+    // console.log("RIGHT HERE", data);
     if (data && !data.errors) {
       const newPic = await dispatch(
         addSpotPic({ spotId: data.id, imgUrl: pic1 })
@@ -144,6 +144,7 @@ function EditSpot() {
           />
         </div>
         <button type="submit">Submit</button>
+        <button onClick={()=> history.push(`/rooms/${spotId}`)}>Cancel</button>
       </form>
     </div>
   );

@@ -13,6 +13,7 @@ nav{
   width: 100vw;
   
   background-color: white;
+  box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px;
 }
 
 .profile-drop-down{

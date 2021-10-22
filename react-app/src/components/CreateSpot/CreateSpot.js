@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { addSpot } from '../../store/allSpots'
 import {addSpotPic} from '../../store/currentSpot'
+import { capitalizeString } from "../utils";
 
 function CreateSpot() {
     const history = useHistory()
@@ -38,14 +39,14 @@ function CreateSpot() {
             num_baths:numBaths,
             num_beds:numBeds,
             total_guests:totalGuests,
-            city: state,
+            city: capitalizeString(state),
             st_address:address,
             longitude:long,
             latitude:lat,
             userId: user.id
         }
         const data = await dispatch(addSpot(newSpot))
-        console.log("RIGHT HERE",data)
+        console.log("HERE IS THE DATA",data)
         if(data && !data.errors){
             const newPic = await dispatch(addSpotPic({spotId:data.id, imgUrl: pic1}))
             if(pic2){

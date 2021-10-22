@@ -1,40 +1,99 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { NavLink } from "react-router-dom";
 import { useParams } from "react-router"
 import { avgReview } from "../utils"
 import GoogleMaps from "../GoogleMaps/GoogleMaps"
+import {AiFillStar} from 'react-icons/ai'
+import { fetchAllSpots } from "../../store/allSpots";
 
 import './SpotsPage.css'
+import { useEffect } from "react";
 
 
 function SpotsPage() {
     const {location} = useParams()
+    const dispatch = useDispatch()
     const spots = useSelector(state => state.allSpots)
     const filterdSpots = spots.filter(spot => spot.city === location)
+
+    useEffect(()=>{
+        dispatch(fetchAllSpots())
+    }, [dispatch])
+
+
     return (
-        <div className="spot-page-wrapper">
+        <>
+        {filterdSpots &&
+      <div className="spot-page-wrapper">
+        <div className="spot-left-container">
+          <div className="sp-header">
             <p>{filterdSpots.length}+ stays</p>
-            <h4>{location} getaways</h4>
-            {filterdSpots && filterdSpots.map(spot => (
-                <NavLink className="inactive" to={`/rooms/${spot.id}`} exact={true}>
-                    <div className="main-spot-pic" style={{"backgroundImage": `url('${spot.spotPics[0]}')`}}></div>
-                    <div>
-                        <p>{spot.spotType}</p>
-                        <p>{spot.name}</p>
-                        <p>{spot.totalGuests} guests</p>
-                        <p>{spot.numBedrooms} bedrooms</p>
-                        <p>{spot.numBeds} bed</p>
-                        <p>{spot.numBaths} bath</p>
-                        <p>{spot.reviews.length > 0 && avgReview(spot.reviews)}({spot.reviews.length} reviews)</p>
-                        <p>${spot.price}/night</p>
+            <h4 className="headertxt sp-stay-loc">Stays in {location}</h4>
+          </div>
+          {filterdSpots &&
+            filterdSpots.map((spot) => (
+              <NavLink
+                className="inactive sp-list-cont"
+                to={`/rooms/${spot.id}`}
+                exact={true}
+              >
+                <div
+                  className="main-spot-pic"
+                  style={{ backgroundImage: `url('${spot.spotPics[0]}')` }}
+                ></div>
+                <div className="sp-spot-info">
+                  <div className="sp-spot-header">
+                    <p className="sp-spot-text">{spot.spotType}</p>
+                    <p className="sp-spot-name">{spot.name}</p>
+                  </div>
+                  <div className="sp-spot-stats">
+                    <div className="sp-spot-stat-top">
+                      <p className="sp-spot-text">{spot.totalGuests} guests</p>
+                      <span> · </span>
+                      <p className="sp-spot-text">
+                        {spot.numBedrooms} bedrooms
+                      </p>
+                      <span> · </span>
+                      <p className="sp-spot-text">{spot.numBeds} bed</p>
+                      <span> · </span>
+                      <p className="sp-spot-text">{spot.numBaths} bath</p>
                     </div>
-                </NavLink>
+                    <div className="sp-spot-stat-btm">
+                      <p className="sp-spot-text">Wifi</p>
+                      <span> · </span>
+                      <p className="sp-spot-text">Kitchen</p>
+                      <span> · </span>
+                      <p className="sp-spot-text">Air conditioning</p>
+                      <span> · </span>
+                      <p className="sp-spot-text">Heating</p>
+                    </div>
+                  </div>
+                  <div className="sp-info-btm">
+                    <div className="sp-review">
+                        <AiFillStar className="sp-star" />
+                      <p>
+                        {spot.reviews.length > 0 && avgReview(spot.reviews) }
+                      </p>
+                      <span className="sp-spot-text sp-spot-reviews">
+                        ({spot.reviews.length} reviews)
+                      </span>
+                    </div>
+                    <div className="sp-price-cont">
+                        <p className="sp-price">${spot.price}</p>{" "}
+                        <span> / night</span>
+                    </div>
+                  </div>
+                </div>
+              </NavLink>
             ))}
-            <div>
-                <GoogleMaps />
-            </div>
         </div>
-    )
+        <div className="map-wrapper">
+          <GoogleMaps spot={filterdSpots[0]}/>
+        </div>
+      </div>
+        }
+        </>
+    );
 }
 
 export default SpotsPage

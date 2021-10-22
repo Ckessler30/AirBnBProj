@@ -7,6 +7,7 @@ import { login } from '../../store/session';
 import {MdStorage} from 'react-icons/md'
 
 
+
 import './NavBar.css'
 
 const NavBar = () => {
@@ -37,7 +38,9 @@ const NavBar = () => {
           </NavLink>
         </li>
         <div>
-          <h1 className="page-name">Bearbnb</h1>
+          <NavLink className="inactive" to="/" exact={true}>
+            <h1 className="page-name">Bearbnb</h1>
+          </NavLink>
         </div>
         <div className="nav-bar-right">
           {sessionUser && (

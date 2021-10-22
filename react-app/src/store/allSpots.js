@@ -85,16 +85,17 @@ const allSpotsReducer = (state = initialState, action) => {
       newState = [...action.payload];
       return newState;
     case ADD_SPOT:
-      newState=[...state]
-      newState.push(action.spot)
+      newState=[...state, action.spot]
+      console.log("HERE IS THE STATE",newState)
       return newState
     case DELETE_SPOT:
       newState = [...state]
-      newState.map(spot=> {
-        if(spot.id === action.id){
-          newState.splice(newState.indexOf(spot), 1)
+      for(let i = 0; i < newState.length; i ++){
+        const spot = newState[i]
+        if (spot.id === action.id) {
+          newState.splice(newState.indexOf(spot), 1);
         }
-      })
+      }
       return newState
     default:
       return state;

@@ -10,7 +10,7 @@ function SplashPage() {
     const {user} = useSelector(state=> state.session)
     const locations = useSelector(state => state.locations)
     // console.log(locations)
-    console.log(user)
+    // console.log(user)
 
     const statePics = [
       "https://wallpaperaccess.com/full/1761719.jpg",
@@ -41,7 +41,7 @@ function SplashPage() {
             <div className="splash-states">
               {locations &&
                 locations.map((location, ind) => {
-                  console.log(ind);
+                  // console.log(ind);
                   return (
                     <div className="single-state">
                       <div
@@ -115,9 +115,9 @@ function SplashPage() {
                 </div>
               </NavLink>
           </div>
-          <div>
+          {/* <div>
             <h3>Discover things to do</h3>
-          </div>
+          </div> */}
         </div>
       </div>
     );
