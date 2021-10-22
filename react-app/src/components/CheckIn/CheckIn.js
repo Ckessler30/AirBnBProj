@@ -5,6 +5,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from '../../store/bookings'
+import { AiFillStar } from "react-icons/ai";
 import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
 
 import './CheckIn.css'
@@ -15,7 +16,7 @@ function CheckIn({ spot }) {
     const bookings = useSelector(state => state.bookings)
     const userBooks = bookings.filter(booking => booking.userId === user?.id && booking.spotId === spot.id)
     const spotBookings = bookings.filter(booking => booking.spotId === spot.id)
-
+    
     const [startDate, setStartDate] = useState(new Date())
     const [endDate, setEndDate] = useState(new Date())
     const [numGuests, setNumGuests] = useState(1)
@@ -76,6 +77,11 @@ function CheckIn({ spot }) {
         //   console.log("Done")
         }
     }
+
+    const handleCIClick = () => {
+      setOpenGuests(false)
+      setOpenCalendar(!openCalendar);
+    }
     
     let split;
     let formatResDate;
@@ -83,36 +89,71 @@ function CheckIn({ spot }) {
         split = userBooks[0].startDate.split(" ");
         formatResDate = `${split[2]} ${split[1]}, ${split[3]}`
     }
-
+    let startDateSplit = startDate.toString().split(' ')
+    let endDateSplit = endDate.toString().split(' ')
+    let startDateFormat = `${startDateSplit[1]}/${startDateSplit[2]}/${startDateSplit[3]}`
+    let endDateFormat = `${endDateSplit[1]}/${endDateSplit[2]}/${endDateSplit[3]}`
+    
   return (
     <div className="check-in-container">
-      <div>
-        <p>${spot.price}/night</p>
-        <p>
-          {spot.reviews.length > 0 && avgReview(spot.reviews)}({spot.reviews.length} reviews)
-        </p>
+      <div className="check-in-wrapper">
+        <div className="check-in-head">
+          <div className="ppn">
+            <p>${spot.price}</p>
+            <span>/ night</span>
+          </div>
+          <div className="ci-rev">
+            <AiFillStar className="sp-star" />
+            <p>{spot.reviews.length > 0 && avgReview(spot.reviews)}</p>
+            <a href="#reviewSection" className="rev-anch">
+              <span>({spot.reviews.length} reviews)</span>
+            </a>
+          </div>
+        </div>
         <div>
-          <div>
-            <div onClick={() => setOpenCalendar(!openCalendar)}>
-              <div>
-                <p>Check-in</p>
-                <p>Add date</p>
+          <div className="ci-co-mid">
+            <div className="ci-co" onClick={handleCIClick}>
+              <div className="ci-co-but ci-right">
+                <p className="ci-co-text">Check-in</p>
+                <p className="ci-co-ad">{startDateFormat}</p>
               </div>
-              <div>
-                <p>Checkout</p>
-                <p>Add date</p>
+              <div className="ci-co-but">
+                <p className="ci-co-text">Checkout</p>
+                <p className="ci-co-ad">{endDateFormat}</p>
               </div>
             </div>
-            <div>
+            {openCalendar && (
+              <div className="calendar-pop">
+                <DateRangePicker
+                  ranges={[selectionRange]}
+                  onChange={handlePicker}
+                  disabledDates={currBookedDates}
+                  minDate={new Date()}
+                />
+                <div className="drp-btn-cont">
+                  <button
+                    className="drp-btns"
+                    onClick={() => setOpenCalendar(false)}
+                  >
+                    Close
+                  </button>
+                  <button className="drp-btns" onClick={clearDates}>
+                    Clear Dates
+                  </button>
+                </div>
+              </div>
+            )}
+            <div className="ci-co-guest">
               <div onClick={() => setOpenGuests(!openGuests)}>
-                <p>Guests</p>
-                <p>{numGuests} guests</p>
+                <p className="ci-co-text">Guests</p>
+                <p className="ci-co-gtext">{numGuests} guests</p>
               </div>
               {openGuests && (
-                <div>
+                <div className="guests-pop">
                   <h3>Guests</h3>
-                  <div>
+                  <div className="plus-minus">
                     <button
+                      className="guest-btns"
                       onClick={() => setNumGuests(numGuests - 1)}
                       disabled={numGuests === 1}
                     >
@@ -120,6 +161,7 @@ function CheckIn({ spot }) {
                     </button>
                     <p>{numGuests}</p>
                     <button
+                      className="guest-btns"
                       onClick={() => setNumGuests(numGuests + 1)}
                       disabled={numGuests === spot.totalGuests}
                     >
@@ -132,50 +174,41 @@ function CheckIn({ spot }) {
           </div>
         </div>
       </div>
-      {openCalendar && (
-        <div>
-          <DateRangePicker
-            ranges={[selectionRange]}
-            onChange={handlePicker}
-            disabledDates={currBookedDates}
-            minDate={new Date()}
-          />
-          <button onClick={() => setOpenCalendar(false)}>Close</button>
-          <button onClick={clearDates}>Clear Dates</button>
+
+      <button
+        className="reserve-btn"
+        onClick={handleReserve}
+        disabled={startDate.toString() === endDate.toString()}
+      >
+        Reserve Spot!
+      </button>
+      {!(startDate.toString() === endDate.toString()) && (
+        <div className="costs-cont">
+          <div className="fees">
+            <p>
+              ${spot.price} x {Math.abs(nights)} nights{" "}
+            </p>
+            <p>${spot.price * Math.abs(nights)}</p>
+          </div>
+          <div className="fees">
+            <p>Cleaning Fee</p>
+            <p>$50</p>
+          </div>
+          <div className="fees">
+            <p>Service Fee</p>
+            <p>$28</p>
+          </div>
+          <div className="total">
+            <p>Total</p>
+            <p>${spot.price * Math.abs(nights) + 70}</p>
+          </div>
         </div>
       )}
-      <div>
-        <button
-          onClick={handleReserve}
-          disabled={startDate.toString() === endDate.toString()}
-        >
-          Reserve
-        </button>
-        {errors.length ? <p>{errors}</p> : null}
-      </div>
-      {!(startDate.toString() === endDate.toString()) &&
-      <div>
-          <div>
-            <p>${spot.price} x {Math.abs(nights)} nights </p>
-            <p>${spot.price*Math.abs(nights)}</p>
-          </div>
-          <div>
-              <p>Cleaning Fee</p>
-              <p>$50</p>
-          </div>
-          <div>
-              <p>Service Fee</p>
-              <p>$28</p>
-          </div>
-          <div>
-              <p>Total</p>
-              <p>${spot.price*Math.abs(nights)+70}</p>
-          </div>
-      </div>
-      }
+      {errors.length ? <p>{errors}</p> : null}
       {userBooks.length ? (
-        <div>
-          <p>You are all set for your reservation on {formatResDate}</p>
+        <div className="res-set">
+          <p>You are all set for your reservation on </p>
+          <span>{formatResDate}</span>
         </div>
       ) : null}
     </div>

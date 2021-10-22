@@ -1,6 +1,7 @@
 .prgress-bar-wrapper{
     height: 10px;
     width: 50px;
+    display: flex;
 }
 
 .progress{
@@ -8,5 +9,9 @@
     height: 10px;
 }
 
+.prog-num{
+    font-family: 'airbnbMed';
+    font-size: .8em;
+}
 
 

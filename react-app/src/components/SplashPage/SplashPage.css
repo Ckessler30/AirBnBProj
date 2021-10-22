@@ -91,6 +91,9 @@
     max-width: 400px;
     margin-left: 20px;
 }
+.try-hosting:hover{
+    box-shadow: 0px 2px 4px rgb(0 0 0 / 18%)
+}
 .try-hosting-inner>p{
     padding-left: 50px;
     padding-right: 10px;

@@ -6,6 +6,9 @@
     align-items: center;
     justify-content: center;
     gap: 300px;
+    /* position: fixed;
+    bottom: 0; */
+    /* margin-top: calc(100vh - 900px); */
 }
 
 .footer-logos{

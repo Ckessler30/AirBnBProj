@@ -12,6 +12,7 @@ a, u, NavLink{
     text-decoration: none;
 }
 
+
 .headertxt{
     font-family: airbnbMed;
 }
@@ -35,4 +36,12 @@ a, u, NavLink{
 
 *{
     box-sizing: border-box;
+}
+
+body{
+    min-height: 100vh;
+}
+
+textarea{
+    resize: none;
 }
