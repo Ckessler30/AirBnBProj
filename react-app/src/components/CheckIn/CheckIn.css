@@ -182,8 +182,9 @@
 
 .drp-btn-cont{
     display: flex;
-    gap: 8px;
-    align-self: center;
+    gap: 4px;
+    align-self: flex-end;
+    /* justify-content: space-between; */
 }
 
 .costs-cont{
