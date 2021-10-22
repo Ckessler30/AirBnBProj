@@ -1,7 +1,7 @@
 .ss-main-pic{
     background-position: center;
     background-size: cover;
-    height: 340px;
+    height: 350px;
     width: 560px;
     border-radius: 10px;
 }
@@ -127,10 +127,11 @@
 }
 
 .ss-check-in{
-    height: 277px;
+    min-height: 277px;
     width: 370px;
-    background-color: red;
-
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 12px;
+    box-shadow: rgba(0 0 0 / 12%) 0px 6px 16px;
 }
 
 .ss-sh-info{
