@@ -18,7 +18,7 @@ function SpotsPage() {
 
     useEffect(()=>{
         dispatch(fetchAllSpots())
-    }, [spots])
+    }, [dispatch])
 
 
     return (
@@ -88,7 +88,7 @@ function SpotsPage() {
             ))}
         </div>
         <div className="map-wrapper">
-          <GoogleMaps />
+          <GoogleMaps spot={filterdSpots[0]}/>
         </div>
       </div>
         }
