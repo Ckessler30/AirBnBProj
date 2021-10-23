@@ -204,6 +204,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 80px;
 }
 
 .ss-rev-bars{
@@ -287,4 +288,10 @@
 
 .trash-btn:hover{
     color: #FE385C;
+}
+
+.rev-body{
+    display: flex;
+    /* flex-wrap: wrap; */
+    word-wrap: normal;
 }

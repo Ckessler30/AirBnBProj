@@ -35,4 +35,20 @@
     border-radius: 5px;
     align-items: center;
     
+    
+}
+
+.login-boxes{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.input-pass{
+    display: flex;
+}
+
+.input-email{
+    
 }
