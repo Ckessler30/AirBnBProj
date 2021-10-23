@@ -95,7 +95,7 @@ const NavBar = () => {
                     >
                       Login
                     </NavLink> */}
-                    <p onClick={handleLoginClick}>Login</p>
+                    <p className="login-p" onClick={handleLoginClick}>Login</p>
 
                     <NavLink
                       to="/sign-up"
