@@ -9,14 +9,26 @@ import {MdStorage} from 'react-icons/md'
 
 
 import './NavBar.css'
+import LoginForm from '../auth/LoginForm';
+import SignUpForm from '../auth/SignUpForm';
 
 const NavBar = () => {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const [openDropDown, setOpenDropDown] = useState(false)
+  const [openLogin, setOpenLogin] = useState(false)
+  const [openSignUp, setOpenSignUp] = useState(false)
   // console.log(sessionUser)
   const handleDemoLogin = () => {
     dispatch(login("demo@aa.io", "password"))
+    setOpenDropDown(false)
+  }
+  const handleLoginClick = () => {
+    setOpenLogin(true)
+    setOpenDropDown(false);
+  }
+  const handleSignUpClick = () => {
+    setOpenSignUp(true)
     setOpenDropDown(false)
   }
   return (
@@ -80,7 +92,7 @@ const NavBar = () => {
               <div className="profile-drop-down">
                 {!sessionUser ? (
                   <div className="dropdown-inside-loggedout">
-                    <NavLink
+                    {/* <NavLink
                       to="/login"
                       className="inactive"
                       exact={true}
@@ -88,17 +100,18 @@ const NavBar = () => {
                       onClick={() => setOpenDropDown(false)}
                     >
                       Login
-                    </NavLink>
-                    <NavLink
-                      to="/sign-up"
-                      className="inactive"
-                      exact={true}
-                      activeClassName="active"
-                      onClick={() => setOpenDropDown(false)}
+                    </NavLink> */}
+                    <p className="login-p" onClick={handleLoginClick}>Login</p>
+
+                    <p
+                    className="login-p"
+                      onClick={handleSignUpClick}
                     >
                       Sign Up
-                    </NavLink>
-                    <button onClick={handleDemoLogin}>Demo</button>
+                    </p>
+                    <p className="inactive" onClick={handleDemoLogin}>
+                      Demo
+                    </p>
                   </div>
                 ) : (
                   <div className="dropdown-inside">
@@ -131,6 +144,8 @@ const NavBar = () => {
           </li>
         </div>
       </ul>
+      {openLogin && <LoginForm setOpenLogin={setOpenLogin} />}
+      {openSignUp && <SignUpForm setOpenSignUp={setOpenSignUp}/>}
     </nav>
   );
 }

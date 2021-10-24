@@ -22,7 +22,7 @@ function SingleReview({review, user}) {
             }
           </div>
         </div>
-        <div>
+        <div className="rev-body">
             <p>{review.reviewText}</p>
         </div>
       </div>

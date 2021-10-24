@@ -99,6 +99,13 @@
     text-align: left;
 }
 
+.guests-pop>h3{
+    font-family: "airbnbMed";
+    font-size: 1.3em;
+    align-self: center;
+    margin-top: 5px;
+}
+
 .reserve-btn{
     z-index: 2;
     width: 100%;
@@ -182,8 +189,9 @@
 
 .drp-btn-cont{
     display: flex;
-    gap: 8px;
-    align-self: center;
+    gap: 4px;
+    align-self: flex-end;
+    /* justify-content: space-between; */
 }
 
 .costs-cont{

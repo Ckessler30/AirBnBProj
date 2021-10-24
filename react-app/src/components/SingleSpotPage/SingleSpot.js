@@ -70,10 +70,10 @@ function SingleSpot() {
                       className="ss-btns"
                       onClick={() => history.push(`/rooms/${spotId}/edit`)}
                     >
-                      Edit {spot.spotType} listing
+                      Edit listing
                     </button>
                     <button className="ss-btns" onClick={handleDelete}>
-                      Delete {spot.spotType} listing
+                      Delete listing
                     </button>
                   </div>
                 )}
