@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
-import './SignUpFrom.css'
+import { AiOutlineClose } from "react-icons/ai";
+import './SignUpForm.css'
 
-const SignUpForm = () => {
+const SignUpForm = ({setOpenSignUp}) => {
   const [errors, setErrors] = useState([]);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -57,9 +58,18 @@ const SignUpForm = () => {
 
   return (
     <div className="signUpForm">
-        <div className="signUpFormInner">
-
+      <div className="signUpFormInner">
+        <div className="login-top">
+          <AiOutlineClose
+            onClick={() => setOpenSignUp(false)}
+            className="close-btn"
+          />
+          <p>Sign Up</p>
+        </div>
         <form onSubmit={onSignUp}>
+          <div className="welcome-bbnb">
+            <p className="welcome-p">Welcome to Bearbnb</p>
+          </div>
           <div>
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
@@ -68,8 +78,8 @@ const SignUpForm = () => {
           <div>
             <label>Name</label>
             <input
-              type='text'
-              name='username'
+              type="text"
+              name="username"
               onChange={updateName}
               value={name}
             ></input>
@@ -77,8 +87,8 @@ const SignUpForm = () => {
           <div>
             <label>Email</label>
             <input
-              type='text'
-              name='email'
+              type="text"
+              name="email"
               onChange={updateEmail}
               value={email}
             ></input>
@@ -86,8 +96,8 @@ const SignUpForm = () => {
           <div>
             <label>Password</label>
             <input
-              type='password'
-              name='password'
+              type="password"
+              name="password"
               onChange={updatePassword}
               value={password}
             ></input>
@@ -95,8 +105,8 @@ const SignUpForm = () => {
           <div>
             <label>Repeat Password</label>
             <input
-              type='password'
-              name='repeat_password'
+              type="password"
+              name="repeat_password"
               onChange={updateRepeatPassword}
               value={repeatPassword}
               required={true}
@@ -104,20 +114,27 @@ const SignUpForm = () => {
           </div>
           <div>
             <label>Bio</label>
-            <textarea name="bio" id="" cols="30" rows="5" value={bio} onChange={(e)=>setBio(e.target.value)}></textarea>
+            <textarea
+              name="bio"
+              id=""
+              cols="30"
+              rows="5"
+              value={bio}
+              onChange={(e) => setBio(e.target.value)}
+            ></textarea>
           </div>
           <div>
             <label>Profile Pic</label>
             <input
-              type='text'
-              name='profile_pic'
-              onChange={(e)=>setProfilePic(e.target.value)}
+              type="text"
+              name="profile_pic"
+              onChange={(e) => setProfilePic(e.target.value)}
               value={profilePic}
             ></input>
           </div>
-          <button type='submit'>Sign Up</button>
+          <button type="submit">Sign Up</button>
         </form>
-        </div>
+      </div>
     </div>
   );
 };

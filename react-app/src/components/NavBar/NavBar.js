@@ -103,15 +103,12 @@ const NavBar = () => {
                     </NavLink> */}
                     <p className="login-p" onClick={handleLoginClick}>Login</p>
 
-                    <NavLink
-                      to="/sign-up"
-                      className="inactive"
-                      exact={true}
-                      activeClassName="active"
+                    <p
+                    className="login-p"
                       onClick={handleSignUpClick}
                     >
                       Sign Up
-                    </NavLink>
+                    </p>
                     <p className="inactive" onClick={handleDemoLogin}>
                       Demo
                     </p>

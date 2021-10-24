@@ -18,8 +18,10 @@ const LoginForm = ({setOpenLogin}) => {
     const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    }else{
+
+      setOpenLogin(false)
     }
-    setOpenLogin(false)
   };
 
   const updateEmail = (e) => {
@@ -30,9 +32,9 @@ const LoginForm = ({setOpenLogin}) => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+  // if (user) {
+  //   return <Redirect to='/' />;
+  // }
 
   return (
     <div className="loginForm">
@@ -43,9 +45,10 @@ const LoginForm = ({setOpenLogin}) => {
         </div>
 
         <form onSubmit={onLogin} className="login-boxes">
+          <div className="welcome-bbnb"><p className="welcome-p">Welcome to Bearbnb</p></div>
           <div>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div key={ind} className="login-err">{error.split(':')[1]}</div>
             ))}
           </div>
           <div className="login-inputs">
@@ -58,6 +61,7 @@ const LoginForm = ({setOpenLogin}) => {
                 placeholder='example@email.com'
                 value={email}
                 onChange={updateEmail}
+                required
               />
             </div>
             <div className="input-pass">
@@ -68,6 +72,7 @@ const LoginForm = ({setOpenLogin}) => {
                 placeholder='Password'
                 value={password}
                 onChange={updatePassword}
+                required
               />
             </div>
           </div>

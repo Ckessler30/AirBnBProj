@@ -28,7 +28,7 @@
     position: relative;
     padding: 24px;
     width: 568px;
-    height: 399px;
+    max-height: 800px;
     max-width: 568px;
     background-color: white;
     display: flex;
@@ -121,7 +121,7 @@
 }
 
 .login-top>P{
-    margin-left: 200px;
+    margin-left: 210px;
     font-family: 'airbnbMed';
 
 }
@@ -137,4 +137,19 @@
 
 .loginFormInner button{
     margin-top: 40px;
+}
+
+.welcome-p{
+    font-family: 'airbnbMed';
+    font-size: 1.3em;
+    margin: 0;
+}
+
+.welcome-bbnb{
+    margin-bottom: -18px;
+    margin-top: 10px;
+}
+
+.login-err{
+    color: #FE385C;
 }
