@@ -10,12 +10,14 @@ import {MdStorage} from 'react-icons/md'
 
 import './NavBar.css'
 import LoginForm from '../auth/LoginForm';
+import SignUpForm from '../auth/SignUpForm';
 
 const NavBar = () => {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   const [openDropDown, setOpenDropDown] = useState(false)
   const [openLogin, setOpenLogin] = useState(false)
+  const [openSignUp, setOpenSignUp] = useState(false)
   // console.log(sessionUser)
   const handleDemoLogin = () => {
     dispatch(login("demo@aa.io", "password"))
@@ -24,6 +26,10 @@ const NavBar = () => {
   const handleLoginClick = () => {
     setOpenLogin(true)
     setOpenDropDown(false);
+  }
+  const handleSignUpClick = () => {
+    setOpenSignUp(true)
+    setOpenDropDown(false)
   }
   return (
     <nav>
@@ -102,7 +108,7 @@ const NavBar = () => {
                       className="inactive"
                       exact={true}
                       activeClassName="active"
-                      onClick={() => setOpenDropDown(false)}
+                      onClick={handleSignUpClick}
                     >
                       Sign Up
                     </NavLink>
@@ -142,6 +148,7 @@ const NavBar = () => {
         </div>
       </ul>
       {openLogin && <LoginForm setOpenLogin={setOpenLogin} />}
+      {openSignUp && <SignUpForm setOpenSignUp={setOpenSignUp}/>}
     </nav>
   );
 }

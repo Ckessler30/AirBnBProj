@@ -19,6 +19,7 @@ const LoginForm = ({setOpenLogin}) => {
     if (data) {
       setErrors(data);
     }
+    setOpenLogin(false)
   };
 
   const updateEmail = (e) => {

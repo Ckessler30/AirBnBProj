@@ -51,9 +51,9 @@ function App() {
         {/* <Route path="/login" exact={true}>
           <LoginForm />
         </Route> */}
-        <Route path="/sign-up" exact={true}>
+        {/* <Route path="/sign-up" exact={true}>
           <SignUpForm />
-        </Route>
+        </Route> */}
         <ProtectedRoute path="/become-a-host" exact={true}>
           <CreateSpot />
         </ProtectedRoute>

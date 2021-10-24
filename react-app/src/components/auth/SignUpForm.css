@@ -1,0 +1,27 @@
+.signUpForm{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+
+.signUpFormInner{
+    position: relative;
+    padding: 24px;
+    width: 568px;
+    height: 399px;
+    max-width: 568px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    /* align-items: center; */
+    margin-top: -250px;
+    
+}
