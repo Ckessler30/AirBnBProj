@@ -32,6 +32,8 @@ const SignUpForm = ({setOpenSignUp}) => {
       );
       if (data) {
         setErrors(data)
+      }else{
+        setOpenSignUp(false)
       }
     }
   };
@@ -52,14 +54,14 @@ const SignUpForm = ({setOpenSignUp}) => {
     setRepeatPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+  // if (user) {
+  //   return setOpenSignUp(false);
+  // }
 
   return (
     <div className="signUpForm">
       <div className="signUpFormInner">
-        <div className="login-top">
+        <div className="login-top ">
           <AiOutlineClose
             onClick={() => setOpenSignUp(false)}
             className="close-btn"
@@ -67,72 +69,78 @@ const SignUpForm = ({setOpenSignUp}) => {
           <p>Sign Up</p>
         </div>
         <form onSubmit={onSignUp}>
-          <div className="welcome-bbnb">
+          <div className="welcome-bbnb-si su">
             <p className="welcome-p">Welcome to Bearbnb</p>
           </div>
           <div>
             {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
+              <div className="login-err" key={ind}>{error.split(":")[1]}</div>
             ))}
           </div>
-          <div>
-            <label>Name</label>
-            <input
-              type="text"
-              name="username"
-              onChange={updateName}
-              value={name}
-            ></input>
+          <div className="signup-inputs">
+
+            <div className="input-email">
+              <label>Name</label>
+              <input
+                type="text"
+                name="username"
+                onChange={updateName}
+                value={name}
+                required
+              ></input>
+            </div>
+            <div className="input-email">
+              <label>Email</label>
+              <input
+                type="text"
+                name="email"
+                onChange={updateEmail}
+                value={email}
+                required
+              ></input>
+            </div>
+            <div className="input-email">
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                onChange={updatePassword}
+                value={password}
+                required
+              ></input>
+            </div>
+            <div className="input-email">
+              <label>Repeat Password</label>
+              <input
+                type="password"
+                name="repeat_password"
+                onChange={updateRepeatPassword}
+                value={repeatPassword}
+                required={true}
+              ></input>
+            </div>
+            <div className="input-email">
+              <label>Profile Pic</label>
+              <input
+                type="text"
+                name="profile_pic"
+                onChange={(e) => setProfilePic(e.target.value)}
+                value={profilePic}
+              ></input>
+            </div>
+            <div className="bio-area">
+              <label>Bio</label>
+              <textarea
+                name="bio"
+                id=""
+                cols="30"
+                rows="3"
+                value={bio}
+                onChange={(e) => setBio(e.target.value)}
+              ></textarea>
+            </div>
           </div>
-          <div>
-            <label>Email</label>
-            <input
-              type="text"
-              name="email"
-              onChange={updateEmail}
-              value={email}
-            ></input>
-          </div>
-          <div>
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              onChange={updatePassword}
-              value={password}
-            ></input>
-          </div>
-          <div>
-            <label>Repeat Password</label>
-            <input
-              type="password"
-              name="repeat_password"
-              onChange={updateRepeatPassword}
-              value={repeatPassword}
-              required={true}
-            ></input>
-          </div>
-          <div>
-            <label>Bio</label>
-            <textarea
-              name="bio"
-              id=""
-              cols="30"
-              rows="5"
-              value={bio}
-              onChange={(e) => setBio(e.target.value)}
-            ></textarea>
-          </div>
-          <div>
-            <label>Profile Pic</label>
-            <input
-              type="text"
-              name="profile_pic"
-              onChange={(e) => setProfilePic(e.target.value)}
-              value={profilePic}
-            ></input>
-          </div>
-          <button type="submit">Sign Up</button>
+          <button className="reserve-btn surb" type="submit">Sign Up</button>
         </form>
       </div>
     </div>

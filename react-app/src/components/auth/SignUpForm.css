@@ -15,7 +15,7 @@
     position: relative;
     padding: 24px;
     width: 568px;
-    height: 399px;
+    max-height: 1000px;
     max-width: 568px;
     
     background-color: white;
@@ -23,6 +23,42 @@
     flex-direction: column;
     border-radius: 12px;
     /* align-items: center; */
-    margin-top: -250px;
+    margin-top: 18px;
     
+}
+
+.signup-inputs{
+    border: 1px solid #B0B0B0;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px 0px;
+    /* margin: ; */
+}
+
+.su{
+    margin-top: 10px;
+}
+
+.bio-area{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+}
+
+.bio-area>textarea{
+    resize: none;
+    border: 1px solid #B0B0B0
+}
+
+.bio-area>textarea:focus{
+    outline: none;
+    padding-left: 3px;
+}
+
+.surb{
+    margin-top: 0;
 }
