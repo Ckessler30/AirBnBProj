@@ -141,7 +141,7 @@ const NavBar = () => {
           </li>
         </div>
       </ul>
-      {openLogin && <LoginForm />}
+      {openLogin && <LoginForm setOpenLogin={setOpenLogin} />}
     </nav>
   );
 }
