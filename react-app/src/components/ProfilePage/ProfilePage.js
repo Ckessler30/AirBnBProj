@@ -5,6 +5,8 @@ import { NavLink } from "react-router-dom";
 import { fetchAllSpots } from "../../store/allSpots"
 import {fetchProfile} from '../../store/currProfile'
 import { avgReview } from "../utils"
+import {RiMedalLine} from 'react-icons/ri'
+import {IoShieldCheckmarkOutline} from 'react-icons/io5'
 
 import "./ProfilePage.css"
 
@@ -27,32 +29,42 @@ function ProfilePage() {
     },[dispatch])
 
     return (
-      <div>
-        <div>
+      <div className="pp-container">
+        <div className="pp-left">
           <div
-            className="profile-pic"
+            className="profile-pic pp-pic"
             style={{ backgroundImage: `url('${currProfile.profile_pic}')` }}
           ></div>
-          {currProfile.is_superhost && <p>Superhost</p>}
-          <p>Identity verified</p>
+          <div className="pp-stats">
+            <div className="pp-stat">
+              <RiMedalLine className="pp-symbols" />
+              {currProfile.is_superhost && <p>Superhost</p>}
+            </div>
+            <div className="pp-stat">
+              <IoShieldCheckmarkOutline className="pp-symbols" />
+              <p>Identity verified</p>
+            </div>
+          </div>
         </div>
         <div>
-          <h2>Hi, I'm {currProfile.name}</h2>
+          <h2 className="headertxt pp-head">Hi, I'm {currProfile.name}</h2>
           <div>
-            <h3>About</h3>
-            <p>{currProfile.bio}</p>
-            <div>
+            <div className="pp-about">
+              <h3 className="headertxt">About</h3>
+              <p>{currProfile.bio}</p>
+            </div>
+            <div className="pp-listing">
               <h3>{currProfile.name}'s listings</h3>
               {userListings.length > 0 ?
                 userListings.map((listing) => (
-                  <NavLink className="inactive" to={`/rooms/${listing.id}`}>
+                  <NavLink className="inactive pp-spots" to={`/rooms/${listing.id}`}>
                     <div
                     className="profile-listing-pics"
                       style={{
                         backgroundImage: `url('${listing.spotPics[0]}')`,
                       }}
                     ></div>
-                    <p>{avgReview(listing.reviews)}({listing.reviews.length})</p>
+                    <p>{listing.reviews.length > 0 ? avgReview(listing.reviews) : ''}({listing.reviews.length})</p>
                     <p>{listing.spotType}</p>
                     <p>{listing.name}</p>
                   </NavLink>

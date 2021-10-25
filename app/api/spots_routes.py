@@ -71,7 +71,7 @@ def update_delete_spot(id):
 
             db.session.commit()
             return current_spot.to_dict()
-        return {'errors': validation_errors_to_error_messages(form.errore)}, 401
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
     if request.method == "DELETE":
         current_spot = Spot.query.get(id)
         db.session.delete(current_spot)
