@@ -67,7 +67,7 @@ export const deleteSpot = (id) => async(dispatch) => {
   const res = await fetch(`/api/spots/${id}`, {
     method: "DELETE"
   })
-  console.log(res)
+  // console.log(res)
   if(res.ok){
     dispatch(deleteSpotAction(id))
   }
@@ -86,7 +86,7 @@ const allSpotsReducer = (state = initialState, action) => {
       return newState;
     case ADD_SPOT:
       newState=[...state, action.spot]
-      console.log("HERE IS THE STATE",newState)
+      // console.log("HERE IS THE STATE",newState)
       return newState
     case DELETE_SPOT:
       newState = [...state]

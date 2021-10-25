@@ -48,12 +48,12 @@ function CreateSpot() {
             userId: user.id
         }
         const data = await dispatch(addSpot(newSpot))
-        console.log("HERE IS THE DATA",data)
+        // console.log("HERE IS THE DATA",data)
         if(data.errors){
             setErrors(data.errors)
         }
         if(data.name && !data.errors ){
-            console.log("MADE IT IN")
+            // console.log("MADE IT IN")
             const newPic = await dispatch(addSpotPic({spotId:data.id, imgUrl: pic1}))
             if(pic2){
                 await dispatch(addSpotPic({spotId:data.id, imgUrl:pic2}))
@@ -65,7 +65,7 @@ function CreateSpot() {
         }
 
     }
-    console.log(errors)
+    // console.log(errors)
 
     return (
       <div className="cs-container">

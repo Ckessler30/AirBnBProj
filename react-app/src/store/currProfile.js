@@ -31,7 +31,7 @@ export const fetchProfile = (id) => async (dispatch) => {
 };
 
 export const updateProfile = (updatedProfile) => async (dispatch) => {
-  console.log("LOOK", updatedProfile)
+  // console.log("LOOK", updatedProfile)
   const res = await fetch(`/api/users/${updatedProfile.id}`, {
     method: "PATCH",
     headers: {
@@ -40,7 +40,7 @@ export const updateProfile = (updatedProfile) => async (dispatch) => {
     body: JSON.stringify(updatedProfile),
   });
   const profile = await res.json();
-  console.log(profile)
+  // console.log(profile)
   dispatch(updateProfileAction(profile));
 };
 

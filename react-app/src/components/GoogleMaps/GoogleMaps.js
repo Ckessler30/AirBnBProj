@@ -4,7 +4,7 @@ import './GoogleMaps.css'
 
 
 function GoogleMaps({spot}) {
-  console.log(spot)
+  // console.log(spot)
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyCTF4z3Ho1G4Jzkb6ZoIizcat-HwzOmFs0",
   });
