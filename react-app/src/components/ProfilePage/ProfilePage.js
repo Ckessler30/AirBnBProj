@@ -10,6 +10,7 @@ import {IoShieldCheckmarkOutline} from 'react-icons/io5'
 import { AiFillStar, AiOutlineEdit } from "react-icons/ai";
 
 import "./ProfilePage.css"
+import { fetchAllReviews } from "../../store/reviews";
 
 function ProfilePage() {
     const dispatch = useDispatch()
@@ -29,6 +30,7 @@ function ProfilePage() {
     useEffect(()=> {
           dispatch(fetchProfile(userId))
           dispatch(fetchAllSpots())
+          dispatch(fetchAllReviews());
     },[dispatch])
     
     const handleUpdate = () => {

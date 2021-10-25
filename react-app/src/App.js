@@ -34,7 +34,7 @@ function App() {
       await dispatch(fetchAllSpots())
       await dispatch(fetchBookings())
       await dispatch(fetchAllLocations())
-      await dispatch(fetchAllReviews())
+      // await dispatch(fetchAllReviews())
       setLoaded(true);
     })();
   }, [dispatch]);
