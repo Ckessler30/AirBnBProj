@@ -19,6 +19,7 @@
     background-size: cover;
     height: 70px;
     width: 70px;
+    border-radius: 50%;
 }
 
 .ss-top-cont{

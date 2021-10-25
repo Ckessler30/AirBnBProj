@@ -4,7 +4,7 @@ import { useHistory, useParams } from "react-router";
 import { addSpot } from "../../store/allSpots";
 import { addSpotPic, fetchSpot, updateSpot } from "../../store/currentSpot";
 import { deleteSpotPic } from "../../store/allPics";
-import { BsTrash } from "react-icons/bs";
+import {FaTrash} from 'react-icons/fa'
 import './EditSpot.css'
 import { fetchAllPics } from "../../store/allPics";
 
@@ -168,10 +168,10 @@ function EditSpot() {
           {currSpotPics &&
             currSpotPics.map((spotPic) => (
               <div
-                className="ss-pics"
+                className="ss-pics esp"
                 style={{ backgroundImage: `url("${spotPic.imgUrl}")` }}
               >
-                <BsTrash className="trash-btn" onClick={()=> handlePicDelete(spotPic.id)} />
+                <FaTrash className="trash-btn esptrash" onClick={()=> handlePicDelete(spotPic.id)} />
               </div>
             ))}
         </div>
