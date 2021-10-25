@@ -5,7 +5,7 @@ class SpotPic(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     spot_id = db.Column(db.Integer, db.ForeignKey('spots.id'), nullable=False)
-    img_url = db.Column(db.String(255), nullable=False)
+    img_url = db.Column(db.Text, nullable=False)
 
     spot = db.relationship('Spot', back_populates='spot_pics')
 

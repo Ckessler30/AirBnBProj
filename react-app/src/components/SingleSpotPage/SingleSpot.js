@@ -39,6 +39,8 @@ function SingleSpot() {
         history.push(`/users/${user.id}`)
     }
 
+    
+
    
 
     return (

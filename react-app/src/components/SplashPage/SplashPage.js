@@ -46,7 +46,12 @@ function SplashPage() {
                     <div className="single-state">
                       <div
                         className="state-pics"
-                        style={{ backgroundImage: `url(${statePics[ind]})` }}
+                        style={{
+                          backgroundImage:
+                            ind < 6
+                              ? `url(${statePics[ind]})`
+                              : `url(${statePics[1]})`,
+                        }}
                       ></div>
                       <NavLink className="inactive" to={`/spots/${location}`}>
                         <p>{location}</p>
