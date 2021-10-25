@@ -90,3 +90,23 @@
 /* .loc>input{
     color: black;
 } */
+
+.cs-input-field>p{
+     color: #717171;
+    font-size: 1em;
+    margin-left: 2px;
+}
+
+.es>input{
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.ep-btns{
+    display: flex;
+    gap: 10px;
+}
+
+.ep{
+    width: 200px;
+}
