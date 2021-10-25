@@ -96,6 +96,7 @@
 .pp-spot-rev{
     display: flex;
     gap: 1px;
+    margin-top: 5px;
 }
 .pp-spot-rev>p{
     margin-top: .5px;

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {NavLink} from 'react-router-dom'
 import { DateRangePicker } from "react-date-range";
 import { bookedDates, avgReview } from "../utils";
 import "react-date-range/dist/styles.css"; // main style file
@@ -208,7 +209,9 @@ function CheckIn({ spot }) {
       {userBooks.length ? (
         <div className="res-set">
           <p>You are all set for your reservation on </p>
-          <span>{formatResDate}</span>
+          <NavLink className="inactive bookdate" to={`/users/${user.id}/bookings`}>
+            <span>{formatResDate}</span>
+          </NavLink>
         </div>
       ) : null}
     </div>
