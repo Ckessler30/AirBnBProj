@@ -3,27 +3,29 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { addSpot } from '../../store/allSpots'
 import {addSpotPic} from '../../store/currentSpot'
-import { capitalizeString } from "../utils";
+import { capitalizeString, stateList } from "../utils";
+
+import "./CreateSpot.css"
 
 function CreateSpot() {
     const history = useHistory()
     const dispatch = useDispatch()
     const {user} = useSelector(state => state.session)
-    const [spotName, setSpotName] = useState(null)
-    const [spotPrice, setSpotPrice] = useState(null)
-    const [description, setDescription] = useState(null)
-    const [type, setType] = useState(null)
-    const [numBedrooms, setNumBedrooms] = useState(null)
-    const [numBeds, setNumBeds] = useState(null)
-    const [numBaths, setNumBaths] = useState(null)
-    const [totalGuests, setTotalGuests] = useState(null)
-    const [state, setState] = useState(null)
-    const [address, setAddress] = useState(null)
-    const [long, setLong] = useState(null)
-    const [lat, setLat] = useState(null)
-    const [pic1, setPic1] = useState(null)
-    const [pic2, setPic2] = useState(null)
-    const [pic3, setPic3] = useState(null)
+    const [spotName, setSpotName] = useState('')
+    const [spotPrice, setSpotPrice] = useState(0)
+    const [description, setDescription] = useState('')
+    const [type, setType] = useState('')
+    const [numBedrooms, setNumBedrooms] = useState(0)
+    const [numBeds, setNumBeds] = useState(0)
+    const [numBaths, setNumBaths] = useState(0)
+    const [totalGuests, setTotalGuests] = useState(0)
+    const [state, setState] = useState('')
+    const [address, setAddress] = useState('')
+    const [long, setLong] = useState(0)
+    const [lat, setLat] = useState(0)
+    const [pic1, setPic1] = useState('')
+    const [pic2, setPic2] = useState('')
+    const [pic3, setPic3] = useState('')
 
     const [errors, setErrors] = useState([])
 
@@ -39,7 +41,7 @@ function CreateSpot() {
             num_baths:numBaths,
             num_beds:numBeds,
             total_guests:totalGuests,
-            city: capitalizeString(state),
+            city: state ? capitalizeString(state) : '',
             st_address:address,
             longitude:long,
             latitude:lat,
@@ -47,7 +49,10 @@ function CreateSpot() {
         }
         const data = await dispatch(addSpot(newSpot))
         console.log("HERE IS THE DATA",data)
-        if(data && !data.errors){
+        if(data.errors){
+            setErrors(data.errors)
+        }
+        if(data.name && !data.errors ){
             const newPic = await dispatch(addSpotPic({spotId:data.id, imgUrl: pic1}))
             if(pic2){
                 await dispatch(addSpotPic({spotId:data.id, imgUrl:pic2}))
@@ -57,32 +62,38 @@ function CreateSpot() {
             }
             return history.push(`/rooms/${data.id}`)
         }
-        if(data.errors){
-            setErrors(data)
-        }
 
     }
+    console.log(errors)
 
     return (
-        <div>
+        <div className="cs-container">
             <form onSubmit={handleSubmit}>
+                <div className="cs-header">
+                    <p>Host a spot</p>
+                </div>
+                <div className="err-box">
                 {errors.length > 0 && errors.map(error=>
-                <p>{error}</p>
+
+                    <p className="login-err">{error}</p>
                     )}
-                <div>
+                    </div>
+                <div className="cs-input-field">
                     <h3>Spot Name</h3>
                     <input type="text" placeholder="What is the name of your getaway?" onChange={(e)=>setSpotName(e.target.value)} value={spotName} required/>
                 </div>
-                <div>
+                <div className="cs-input-field">
                     <h3>Price per night</h3>
                     <input type="number" placeholder={"$"+ 0} onChange={(e)=>setSpotPrice(e.target.value)} value={spotPrice} required/>
-                    <h3>Please give a description of your getaway</h3>
-                    <textarea name="" id="" cols="30" rows="10" onChange={(e)=>setDescription(e.target.value)} value={description} required></textarea>
                 </div>
-                <div>
+                <div className="cs-input-field">
+                    <h3>Please give a description of your getaway</h3>
+                    <textarea name="" id="" cols="30" rows="5" onChange={(e)=>setDescription(e.target.value)} value={description} required placeholder="Tell us about your getaway"></textarea>
+                </div>
+                <div className="cs-input-field">
                     <p>What kind of place is this?</p>
                     <select name="type" id="" onChange={(e)=>setType(e.target.value)} value={type} required>
-                        <option value="">Please select an option</option>
+                        {/* <option value="">Please select an option</option> */}
                         <option value="Condo">Condo</option>
                         <option value="House">House</option>
                         <option value="Villa">Villa</option>
@@ -92,24 +103,34 @@ function CreateSpot() {
                         <option value="Camp Site">Camp Site</option>
                     </select>
                 </div>
-                <div>
+                <div className="cs-input-field">
                     <p>How many bedrooms?</p>
-                    <input type="number" onChange={(e)=> setNumBedrooms(e.target.value)} value={numBedrooms} required/>
-                    <p>How many bathrooms?</p>
-                    <input type="number" onChange={(e)=>setNumBaths(e.target.value)} value={numBaths} required/>
-                    <p>How many beds?</p>
-                    <input type="number" onChange={(e)=> setNumBeds(e.target.value)} value={numBeds} required/>
-                    <p>What is the max occupancy?</p>
-                    <input type="number" onChange={(e)=> setTotalGuests(e.target.value)} value={totalGuests} required/>
+                    <input type="number" onChange={(e)=> setNumBedrooms(e.target.value)} placeholder="0 bedrooms" value={numBedrooms} required/>
                 </div>
-                <div>
+                <div className="cs-input-field">
+                    <p>How many bathrooms?</p>
+                    <input type="number" onChange={(e)=>setNumBaths(e.target.value)} value={numBaths} placeholder="0 baths" required/>
+                </div>
+                <div className="cs-input-field">
+                    <p>How many beds?</p>
+                    <input type="number" onChange={(e)=> setNumBeds(e.target.value)} value={numBeds} placeholder="0 beds" required/>
+                </div>
+                <div className="cs-input-field">
+                    <p>What is the max occupancy?</p>
+                    <input type="number" onChange={(e)=> setTotalGuests(e.target.value)} value={totalGuests} placeholder="0 guests" required/>
+                </div>
+                <div className="cs-input-field">
                     <h3>Location</h3>
-                    <input type="text" placeholder="State" onChange={(e)=>setState(e.target.value)} value={state} required/>
+                    <select name="state" placeholder="State" onChange={(e)=>setState(e.target.value)} value={state} required>
+                        {stateList && stateList.map(state => (
+                            <option value={state}>{state}</option>
+                        ))}
+                        </select>
                     <input type="text" placeholder="Street Address" onChange={(e)=>setAddress(e.target.value)} value={address} required/>
                     <input type="number" placeholder="Longitude" onChange={(e)=>setLong(e.target.value)} value={long} required/>
                     <input type="number" placeholder="Latitude" onChange={(e)=> setLat(e.target.value)} value={lat} required/>
                 </div>
-                <div>
+                <div className="cs-input-field">
                     <h3>Pictures</h3>
                     <input type="text" placeholder="Picture Url" onChange={(e)=> setPic1(e.target.value)} value={pic1} required/>
                     <input type="text" placeholder="Picture Url" onChange={(e)=> setPic2(e.target.value)} value={pic2}/>
