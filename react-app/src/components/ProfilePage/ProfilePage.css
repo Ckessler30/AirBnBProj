@@ -3,6 +3,7 @@
     background-size: cover;
     height: 128px;
     width: 128px;
+    border-radius: 50%;
 }
 .profile-listing-pics{
     background-position: center;
@@ -157,4 +158,26 @@
     display: flex;
     margin-top: -5px;
     gap: 2px;
+}
+
+.pp-edit{
+    font-size: 1.6em;
+    cursor: pointer;
+
+}
+
+.pp-edit:hover{
+    color: #FE385C;
+}
+
+.pp-edit-btns{
+    display: flex;
+    gap: 5px;
+}
+
+.ppbtn{
+    min-height: 10px;
+    min-width: 10px;
+    width: 80px;
+    padding: 0px;
 }

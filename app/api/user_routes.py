@@ -24,7 +24,7 @@ def update_user(id):
     user = User.query.get(id)
     if body["bio"]:
         user.bio = body["bio"]
-    elif body["profilePic"]:
+    if body["profilePic"]:
         user.profile_pic = body["profilePic"]
     db.session.commit()
     return user.to_dict()
