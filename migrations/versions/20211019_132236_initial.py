@@ -23,7 +23,7 @@ def upgrade():
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('name', sa.String(length=100), nullable=False),
     sa.Column('bio', sa.Text(), nullable=True),
-    sa.Column('profile_pic', sa.String(length=255), nullable=True),
+    sa.Column('profile_pic', sa.Text(), nullable=True),
     sa.Column('is_superhost', sa.Boolean(), nullable=True),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
     sa.PrimaryKeyConstraint('id'),

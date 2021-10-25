@@ -65,7 +65,7 @@ def upgrade():
     op.create_table('spotPics',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('spot_id', sa.Integer(), nullable=False),
-    sa.Column('img_url', sa.String(length=255), nullable=False),
+    sa.Column('img_url', sa.Text(), nullable=False),
     sa.ForeignKeyConstraint(['spot_id'], ['spots.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
