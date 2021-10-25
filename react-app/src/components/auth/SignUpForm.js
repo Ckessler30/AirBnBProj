@@ -87,6 +87,7 @@ const SignUpForm = ({setOpenSignUp}) => {
                 onChange={updateName}
                 value={name}
                 required
+                placeholder="This is what other users will see as your name"
               ></input>
             </div>
             <div className="input-email">
@@ -97,6 +98,7 @@ const SignUpForm = ({setOpenSignUp}) => {
                 onChange={updateEmail}
                 value={email}
                 required
+                placeholder="example@email.com"
               ></input>
             </div>
             <div className="input-email">
@@ -107,16 +109,19 @@ const SignUpForm = ({setOpenSignUp}) => {
                 onChange={updatePassword}
                 value={password}
                 required
+                placeholder="Please make a hard to guess password"
               ></input>
             </div>
             <div className="input-email">
-              <label>Repeat Password</label>
+              <label>Confirm Password</label>
               <input
                 type="password"
                 name="repeat_password"
                 onChange={updateRepeatPassword}
                 value={repeatPassword}
                 required={true}
+                placeholder="Please repeat your password"
+                
               ></input>
             </div>
             <div className="input-email">
@@ -126,6 +131,7 @@ const SignUpForm = ({setOpenSignUp}) => {
                 name="profile_pic"
                 onChange={(e) => setProfilePic(e.target.value)}
                 value={profilePic}
+                placeholder="image url here"
               ></input>
             </div>
             <div className="bio-area">
@@ -137,6 +143,7 @@ const SignUpForm = ({setOpenSignUp}) => {
                 rows="3"
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}
+                placeholder="Tell us about yourself"
               ></textarea>
             </div>
           </div>
