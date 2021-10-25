@@ -7,6 +7,7 @@ import {fetchProfile} from '../../store/currProfile'
 import { avgReview } from "../utils"
 import {RiMedalLine} from 'react-icons/ri'
 import {IoShieldCheckmarkOutline} from 'react-icons/io5'
+import { AiFillStar } from "react-icons/ai";
 
 import "./ProfilePage.css"
 
@@ -46,7 +47,7 @@ function ProfilePage() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="pp-right">
           <h2 className="headertxt pp-head">Hi, I'm {currProfile.name}</h2>
           <div>
             <div className="pp-about">
@@ -54,49 +55,93 @@ function ProfilePage() {
               <p>{currProfile.bio}</p>
             </div>
             <div className="pp-listing">
-              <h3>{currProfile.name}'s listings</h3>
-              {userListings.length > 0 ?
-                userListings.map((listing) => (
-                  <NavLink className="inactive pp-spots" to={`/rooms/${listing.id}`}>
-                    <div
-                    className="profile-listing-pics"
-                      style={{
-                        backgroundImage: `url('${listing.spotPics[0]}')`,
-                      }}
-                    ></div>
-                    <p>{listing.reviews.length > 0 ? avgReview(listing.reviews) : ''}({listing.reviews.length})</p>
-                    <p>{listing.spotType}</p>
-                    <p>{listing.name}</p>
-                  </NavLink>
-                ))
-              :
-              <p>{user?.id === currProfile.id ? "You do not have any listings" : `${currProfile.name} does not have any listings`}</p>
-              }
+              <div className="pp-listing-head">
+                <h3>{currProfile.name}'s listings</h3>
+              </div>
+              <div className="pp-spots1">
+
+                {userListings.length > 0 ? (
+                  userListings.map((listing) => (
+                    <NavLink
+                      className="inactive pp-spots"
+                      to={`/rooms/${listing.id}`}
+                    >
+                      <div
+                        className="profile-listing-pics"
+                        style={{
+                          backgroundImage: `url('${listing.spotPics[0]}')`,
+                        }}
+                      ></div>
+                      <div className="pp-spot-rev">
+                        <AiFillStar className="sp-star" />
+                        <p>
+                          {listing.reviews.length > 0
+                            ? avgReview(listing.reviews)
+                            : ""}
+                          ({listing.reviews.length})
+                        </p>
+                      </div>
+                      <div className="pp-spot-stat">
+                        <p>{listing.spotType}</p>
+                        <p className="pp-spot-name">{listing.name}</p>
+                      </div>
+                    </NavLink>
+                  ))
+                ) : (
+                  <p>
+                    {user?.id === currProfile.id
+                      ? "You do not have any listings"
+                      : `${currProfile.name} does not have any listings`}
+                  </p>
+                )}
+              </div>
             </div>
-            <div>
+            <div className="pp-rev">
+              <div className="pp-rev-head">
                 <h3>Reviews</h3>
-                {userReviews.length > 0 ? userReviews.map(review => {
-                    const spot = listings.filter(listing=> listing.id === review.spotId)[0]
+              </div>
+              <div className="pp-rev-section">
+
+                {userReviews.length > 0 ? (
+                  userReviews.map((review) => {
+                    const spot = listings.filter(
+                      (listing) => listing.id === review.spotId
+                    )[0];
                     // console.log(spot)
                     return (
                       <div>
-                        <p>{review.avgRating}</p>
-                        <p>{spot.name}</p>
-                        <NavLink className="inactive" to={`/rooms/${spot.id}`}>
-                          <div
-                          className="rev-spot-pics"
-                            style={{
-                              backgroundImage: `url('${spot.spotPics[0]}')`,
-                            }}
-                          ></div>
-                        </NavLink>
+                        <div className="pp-rev-top">
+                          <div className="pp-srev-head">
+                            <p className="headertxt">{spot.name}</p>
+                            <div className="pp-srev-starrate">
+                              <AiFillStar className="sp-star" />
+                              <p className="pp-srev-rate">{review.avgRating}</p>
+                            </div>
+                          </div>
+                          <NavLink
+                            className="inactive"
+                            to={`/rooms/${spot.id}`}
+                          >
+                            <div
+                              className="rev-spot-pics"
+                              style={{
+                                backgroundImage: `url('${spot.spotPics[0]}')`,
+                              }}
+                            ></div>
+                          </NavLink>
+                        </div>
                         <p>{review.reviewText}</p>
                       </div>
                     );
-                })
-              :
-              <p>{user?.id === currProfile.id ? "You have not left any reviews" : `${currProfile.name} has not left any reviews`}</p>
-              }
+                  })
+                ) : (
+                  <p>
+                    {user?.id === currProfile.id
+                      ? "You have not left any reviews"
+                      : `${currProfile.name} has not left any reviews`}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </div>

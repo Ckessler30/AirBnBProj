@@ -9,12 +9,14 @@
     background-size: cover;
     height: 200px;
     width: 300px;
+    border-radius: 12px;
 }
 .rev-spot-pics{
     background-position: center;
     background-size: cover;
-    height: 100px;
-    width: 100px;
+    height: 48px;
+    width: 78px;
+    border-radius: 12px;
 }
 .pp-container{
     width: 1032px;
@@ -74,9 +76,13 @@
 
 .pp-listing{
     margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+     border-bottom: 1px solid #DDDDDD
+
 }
 
-.pp-listing>h3{
+.pp-listing-head>h3{
     font-family: 'airbnbMed';
     font-size: 1.3em;
 }
@@ -84,4 +90,71 @@
 .pp-spots{
     display: flex;
     flex-direction: column;
+}
+
+.pp-spot-rev{
+    display: flex;
+    gap: 1px;
+}
+.pp-spot-rev>p{
+    margin-top: .5px;
+}
+
+.pp-spot-stat{
+    display: flex;
+    flex-direction: column;
+    margin-top: -10px;
+}
+
+.pp-spot-name{
+    margin-top: -10px;
+    word-wrap: break-word;
+}
+.pp-spots1{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.pp-right{
+    display: flex;
+    flex-direction: column;
+    max-width: 640px;
+}
+
+.pp-rev{
+    padding-top: 30px;
+}
+
+.pp-rev-head>h3{
+     font-family: 'airbnbMed';
+    font-size: 1.3em;
+}
+
+.pp-srev-head{
+    display: flex;
+    flex-direction: column;
+}
+
+.pp-rev-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+.pp-rev-section{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.pp-srev-rate{
+    /* margin-top: -5px; */
+}
+
+.pp-srev-starrate{
+    display: flex;
+    margin-top: -5px;
+    gap: 2px;
 }
