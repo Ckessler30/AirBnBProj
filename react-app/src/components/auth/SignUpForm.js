@@ -109,7 +109,7 @@ const SignUpForm = ({setOpenSignUp}) => {
                 onChange={updatePassword}
                 value={password}
                 required
-                placeholder="Please make a hard to guess password"
+                placeholder="Please make it hard to guess"
               ></input>
             </div>
             <div className="input-email">

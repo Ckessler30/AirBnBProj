@@ -70,6 +70,7 @@ const NavBar = () => {
           <li className="nav-login-signup">
             <div
               onClick={() => setOpenDropDown(!openDropDown)}
+   
               className={
                 openDropDown
                   ? "nav-profile-click open"
@@ -101,12 +102,11 @@ const NavBar = () => {
                     >
                       Login
                     </NavLink> */}
-                    <p className="login-p" onClick={handleLoginClick}>Login</p>
+                    <p className="login-p" onClick={handleLoginClick}>
+                      Login
+                    </p>
 
-                    <p
-                    className="login-p"
-                      onClick={handleSignUpClick}
-                    >
+                    <p className="login-p" onClick={handleSignUpClick}>
                       Sign Up
                     </p>
                     <p className="inactive" onClick={handleDemoLogin}>
@@ -145,7 +145,7 @@ const NavBar = () => {
         </div>
       </ul>
       {openLogin && <LoginForm setOpenLogin={setOpenLogin} />}
-      {openSignUp && <SignUpForm setOpenSignUp={setOpenSignUp}/>}
+      {openSignUp && <SignUpForm setOpenSignUp={setOpenSignUp} />}
     </nav>
   );
 }
