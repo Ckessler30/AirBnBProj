@@ -7,6 +7,7 @@ import currProfileReducer from './currProfile';
 import bookingsReducer from './bookings';
 import allLocationsReducer from './locations';
 import allReviewsReducer from './reviews';
+import allPicsReducer from './allPics';
 
 const rootReducer = combineReducers({
   session,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   currProfile: currProfileReducer,
   bookings: bookingsReducer,
   locations: allLocationsReducer,
-  reviews: allReviewsReducer
+  reviews: allReviewsReducer,
+  spotPics: allPicsReducer
 });
 
 

@@ -3,7 +3,7 @@ from app.models import SpotPic, db
 
 spot_pic_routes = Blueprint('spot_pics', __name__)
 
-@spot_pic_routes.route('/', methods=["GET", "POST"])
+@spot_pic_routes.route('/', methods=["GET", "POST", "DELETE"])
 def spot_pics():
     if request.method == "GET":
         all_pics = SpotPic.query.all()
@@ -18,3 +18,10 @@ def spot_pics():
             db.session.add(new_pic)
             db.session.commit()
             return new_pic.to_dict()
+
+@spot_pic_routes.route('/<int:id>', methods=['DELETE'])
+def del_spot_pic(id):
+    pic = SpotPic.query.get(id)
+    db.session.delete(pic)
+    db.session.commit()
+    return 'ok'

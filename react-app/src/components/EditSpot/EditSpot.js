@@ -3,10 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
 import { addSpot } from "../../store/allSpots";
 import { addSpotPic, fetchSpot, updateSpot } from "../../store/currentSpot";
+import { deleteSpotPic } from "../../store/allPics";
+import { BsTrash } from "react-icons/bs";
+import './EditSpot.css'
+import { fetchAllPics } from "../../store/allPics";
 
 function EditSpot() {
   const { spotId } = useParams();
   const spot = useSelector(state => state.currSpot )
+  const spotPics = useSelector(state => state.spotPics)
+  const currSpotPics = spotPics.filter(pic => +pic["spot_id"] === +spotId)
+  // console.log(currSpotPics)
   const history = useHistory();
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.session);
@@ -25,6 +32,7 @@ function EditSpot() {
 
   useEffect(()=> {
     dispatch(fetchSpot(spotId))
+    dispatch(fetchAllPics())
   }, [dispatch])
 
   const handleSubmit = async (e) => {
@@ -57,6 +65,11 @@ function EditSpot() {
       setErrors(data.errors);
     }
   };
+
+  const handlePicDelete = (id) => {
+    // console.log(spotPic)
+    dispatch(deleteSpotPic(id))
+  }
 
   return (
     <div className="cs-container">
@@ -150,6 +163,17 @@ function EditSpot() {
             onChange={(e) => setPic3(e.target.value)}
             value={pic3}
           />
+        </div>
+        <div className="edit-sp">
+          {currSpotPics &&
+            currSpotPics.map((spotPic) => (
+              <div
+                className="ss-pics"
+                style={{ backgroundImage: `url("${spotPic.imgUrl}")` }}
+              >
+                <BsTrash className="trash-btn" onClick={()=> handlePicDelete(spotPic.id)} />
+              </div>
+            ))}
         </div>
         <div className="ep-btns">
           <button className="reserve-btn ep" type="submit">
