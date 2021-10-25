@@ -10,10 +10,11 @@ def spot_pics():
         return {"allPics": [spot_pic.to_dict() for spot_pic in all_pics]}
     if request.method == "POST":
         body = request.json
-        new_pic = SpotPic(
-            spot_id=body["spotId"],
-            img_url=body["imgUrl"]
-        )
-        db.session.add(new_pic)
-        db.session.commit()
-        return new_pic.to_dict()
+        if body["spotId"]:
+            new_pic = SpotPic(
+                spot_id=body["spotId"],
+                img_url=body["imgUrl"]
+            )
+            db.session.add(new_pic)
+            db.session.commit()
+            return new_pic.to_dict()
