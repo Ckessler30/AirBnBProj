@@ -30,6 +30,11 @@ def seed_spots():
     db.session.add(spot1)
     db.session.add(spot2)
     db.session.add(spot3)
+    db.session.add(spot4)
+    db.session.add(spot5)
+    db.session.add(spot6)
+    db.session.add(spot7)
+    db.session.add(spot8)
 
     db.session.commit()
 
