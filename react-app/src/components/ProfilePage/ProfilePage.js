@@ -61,10 +61,12 @@ function ProfilePage() {
           )}
 
           <div className="pp-stats">
-            <div className="pp-stat">
-              <RiMedalLine className="pp-symbols" />
-              {currProfile.is_superhost && <p>Superhost</p>}
-            </div>
+            {currProfile.is_superhost && 
+              <div className="pp-stat">
+                <RiMedalLine className="pp-symbols" />
+                {currProfile.is_superhost && <p>Superhost</p>}
+              </div>
+            }
             <div className="pp-stat">
               <IoShieldCheckmarkOutline className="pp-symbols" />
               <p>Identity verified</p>

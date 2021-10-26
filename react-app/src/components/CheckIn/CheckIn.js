@@ -192,7 +192,7 @@ function CheckIn({ spot, spotReviews }) {
         onClick={handleReserve}
         disabled={startDate.toString() === endDate.toString()}
       >
-        Reserve Spot!
+        {startDate.toString() === endDate.toString() ? "Please select your dates" :  "Reserve Spot!"}
       </button>
       :
       <button className="reserve-btn" onClick={(e)=> handleNotLoggedIn(e)}>You must be signed in to book</button>

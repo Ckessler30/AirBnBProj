@@ -27,35 +27,39 @@ function Bookings() {
                     const endDate = booking.endDate.split(' ')
                     const startDateFormat = `${startDate[2]} ${startDate[1]}, ${startDate[3]}`
                     const endDateFormat = `${endDate[2]} ${endDate[1]}, ${endDate[3]}`;
-                    return (
-                      <div className="single-trip-wrap">
-                        <NavLink
-                          className="inactive"
-                          to={`/rooms/${spot.id}`}
-                          exact={true}
-                        >
-                          <div className="trip-contents">
-                            <div
-                              className="booking-spot-pic"
-                              style={{
-                                backgroundImage: `url('${spot.spotPics[0]}')`,
-                              }}
-                            ></div>
-                            <div className="trip-cont-btm">
-                              <p>{spot.name}</p>
-                              <p>
-                                <span className="trip-span">Reserved from: </span> {startDateFormat} <BsArrowRightShort className="arrowright"/> {" "}
-                                {endDateFormat}
-                              </p>
-                              <p>Guests: {booking.numGuest}</p>
+                    if(spot){
+
+                      return (
+          
+                        <div className="single-trip-wrap">
+                          <NavLink
+                            className="inactive"
+                            to={`/rooms/${spot.id}`}
+                            exact={true}
+                          >
+                            <div className="trip-contents">
+                              <div
+                                className="booking-spot-pic"
+                                style={{
+                                  backgroundImage: `url('${spot.spotPics[0]}')`,
+                                }}
+                              ></div>
+                              <div className="trip-cont-btm">
+                                <p>{spot.name}</p>
+                                <p>
+                                  <span className="trip-span">Reserved from: </span> {startDateFormat} <BsArrowRightShort className="arrowright"/> {" "}
+                                  {endDateFormat}
+                                </p>
+                                <p>Guests: {booking.numGuest}</p>
+                              </div>
                             </div>
-                          </div>
-                        </NavLink>
-                        <button className="reserve-btn cncltrip" onClick={() => handleCancel(booking.id)}>
-                          Cancel Trip
-                        </button>
-                      </div>
-                    );
+                          </NavLink>
+                          <button className="reserve-btn cncltrip" onClick={() => handleCancel(booking.id)}>
+                            Cancel Trip
+                          </button>
+                        </div>
+                      )
+                    }
                 })
             :
             <div>
