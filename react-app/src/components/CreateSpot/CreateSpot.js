@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router"
 import { addSpot } from '../../store/allSpots'
 import {addSpotPic} from '../../store/currentSpot'
-import { capitalizeString, stateList } from "../utils";
+import { capitalizeString, stateList, errorHandler, preventLetters } from "../utils";
 
 import "./CreateSpot.css"
 
@@ -75,7 +75,9 @@ function CreateSpot() {
           </div>
           <div className="err-box">
             {errors.length > 0 &&
-              errors.map((error) => <p className="login-err">{error}</p>)}
+              errors.map((error) => (
+                <p className="login-err">{errorHandler(error)}</p>
+              ))}
           </div>
           <div className="cs-input-field">
             <h3>Spot Name</h3>
@@ -93,6 +95,7 @@ function CreateSpot() {
               type="number"
               placeholder={"$" + 0}
               onChange={(e) => setSpotPrice(e.target.value)}
+              onKeyPress={(e) => preventLetters(e)}
               value={spotPrice}
               required
             />
@@ -136,6 +139,7 @@ function CreateSpot() {
               onChange={(e) => setNumBedrooms(e.target.value)}
               placeholder="0 bedrooms"
               value={numBedrooms}
+              onKeyPress={(e) => preventLetters(e)}
               required
             />
           </div>
@@ -146,6 +150,7 @@ function CreateSpot() {
               onChange={(e) => setNumBaths(e.target.value)}
               value={numBaths}
               placeholder="0 baths"
+              onKeyPress={(e) => preventLetters(e)}
               required
             />
           </div>
@@ -156,6 +161,7 @@ function CreateSpot() {
               onChange={(e) => setNumBeds(e.target.value)}
               value={numBeds}
               placeholder="0 beds"
+              onKeyPress={(e) => preventLetters(e)}
               required
             />
           </div>
@@ -166,6 +172,7 @@ function CreateSpot() {
               onChange={(e) => setTotalGuests(e.target.value)}
               value={totalGuests}
               placeholder="0 guests"
+              onKeyPress={(e) => preventLetters(e)}
               required
             />
           </div>
@@ -198,6 +205,7 @@ function CreateSpot() {
               placeholder="Longitude"
               onChange={(e) => setLong(e.target.value)}
               value={long}
+              onKeyPress={(e) => preventLetters(e)}
               required
             />
             <h3>Latitude</h3>
@@ -206,6 +214,7 @@ function CreateSpot() {
               placeholder="Latitude"
               onChange={(e) => setLat(e.target.value)}
               value={lat}
+              onKeyPress={(e) => preventLetters(e)}
               required
             />
           </div>
@@ -231,7 +240,9 @@ function CreateSpot() {
               value={pic3}
             />
           </div>
-          <button className="reserve-btn" type="submit">Submit</button>
+          <button className="reserve-btn" type="submit">
+            Submit
+          </button>
         </form>
       </div>
     );

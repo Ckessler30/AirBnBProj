@@ -62,6 +62,74 @@ export const capitalizeString = (string) => {
     return capitalString
 }
 
+export const errorHandler = (err) => {
+    const splitErr = err.split(':')
+    console.log(splitErr)
+    if(splitErr[0] === "name " && splitErr[1] === " This field is required."){
+        return "Please provide a name."
+    }
+    if(splitErr[0] === "password " && splitErr[1] === " This field is required."){
+        return "Please provide a password."
+    }
+    if(splitErr[0] === "email " && splitErr[1] === " This field is required."){
+        return "Please provide an email."
+    }
+    if(splitErr[0] === "email " && splitErr[1] === " Email address is already in use."){
+        return "Email address is already in use."
+    }
+    if(splitErr[0] === "pass"){
+        return "Passwords do not match."
+    }
+    if(splitErr[1] === " Email provided not found." ){
+        return "Invalid email."
+    }
+    if( splitErr[1] === " No such user exists."){
+        return "Invalid password."
+    }
+
+
+    if (splitErr[0] === "price " && splitErr[1] === " This field is required.") {
+      return "Please provide a price.";
+    }
+    if (splitErr[0] === "description " && splitErr[1] === " This field is required.") {
+      return "Please provide a description.";
+    }
+    if (splitErr[0] === "type " && splitErr[1] === " This field is required.") {
+      return "Please provide a spot type.";
+    }
+    if (splitErr[0] === "num_bedrooms " && splitErr[1] === " This field is required.") {
+      return "Please provide the number of bedrooms.";
+    }
+    if (splitErr[0] === "num_beds " && splitErr[1] === " This field is required.") {
+      return "Please provide the number of beds.";
+    }
+    if (splitErr[0] === "num_baths " && splitErr[1] === " This field is required.") {
+      return "Please provide the number of bathrooms.";
+    }
+    if (splitErr[0] === "total_guests " && splitErr[1] === " This field is required.") {
+      return "Please provide the maximum occupancy.";
+    }
+    if (splitErr[0] === "city " && splitErr[1] === " This field is required.") {
+      return "Please provide the state that your listing is in.";
+    }
+    if (splitErr[0] === "st_address " && splitErr[1] === " This field is required.") {
+      return "Please provide the address of your listing.";
+    }
+    if (splitErr[0] === "longitude " && splitErr[1] === " This field is required.") {
+      return "Please provide the longitude of your listing.";
+    }
+    if (splitErr[0] === "latitude " && splitErr[1] === " This field is required.") {
+      return "Please provide the latitude of your listing.";
+    }
+
+}
+
+export const preventLetters = (e) => {
+      const charCode = typeof e.which == "undefined" ? e.keyCode : e.which;
+      const charStr = String.fromCharCode(charCode);
+
+      if (!charStr.match(/^[0-9]+$/)) e.preventDefault();
+    }
 
 export const stateList = [
 "Alabama",

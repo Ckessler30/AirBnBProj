@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 import {AiOutlineClose} from 'react-icons/ai'
+import { errorHandler } from '../utils';
 import './LoginForm.css'
 
 const LoginForm = ({setOpenLogin}) => {
@@ -48,7 +49,7 @@ const LoginForm = ({setOpenLogin}) => {
           <div className="welcome-bbnb"><p className="welcome-p">Welcome to Bearbnb</p></div>
           <div>
             {errors.map((error, ind) => (
-              <div key={ind} className="login-err">{error.split(':')[1]}</div>
+              <div key={ind} className="login-err">{errorHandler(error)}</div>
             ))}
           </div>
           <div className="login-inputs">
