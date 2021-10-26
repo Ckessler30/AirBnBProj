@@ -57,6 +57,7 @@ function ProfilePage() {
               value={profilePic}
               onChange={(e) => setProfilePic(e.target.value)}
               placeholder="Profile Image Url"
+              className="edit-pp"
             />
           )}
 
