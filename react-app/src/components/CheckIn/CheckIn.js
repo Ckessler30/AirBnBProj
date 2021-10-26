@@ -60,25 +60,31 @@ function CheckIn({ spot }) {
               booked = true;
             }
         }
-        if(booked){
-            const newErrors = ["That date is unavailable"]
-            setErrors(newErrors)
-        }else{
-            const newBooking = {
-              spotId: spot.id,
-              userId: user.id,
-              startDate,
-              endDate,
-              numGuests,
-            
-            }
+        if (
+          booked
+        ) {
+          const newErrors = ["That date is unavailable"];
+          setErrors(newErrors);
+        } else {
+          const newBooking = {
+            spotId: spot.id,
+            userId: user.id,
+            startDate,
+            endDate,
+            numGuests,
+          };
           dispatch(addBooking(newBooking));
           setStartDate(new Date());
           setEndDate(new Date());
-        //   console.log("Done")
+          //   console.log("Done")
         }
     }
-
+    console.log(
+      startDate.toString().split(" ").slice(0, 4).join(" ") ===
+        endDate.toString().split(" ").slice(0, 4).join(" ")
+    );
+    console.log(endDate.toString().split(" ").slice(0, 4).join(" "));
+    console.log(errors)
     const handleCIClick = () => {
       setOpenGuests(false)
       setOpenCalendar(!openCalendar);
@@ -205,7 +211,7 @@ function CheckIn({ spot }) {
           </div>
         </div>
       )}
-      {errors.length ? <p>{errors}</p> : null}
+      {errors.length ? <p>{errors}</p> : ''}
       {userBooks.length ? (
         <div className="res-set">
           <p>You are all set for your reservation on </p>
