@@ -62,7 +62,7 @@ function CreateReview({spot, madeReview}) {
             setValueRating(0)
             setReviewText('')
         }else{
-            const newErrors = ["Please fill out all ratings and resubmit"]
+            const newErrors = ["Please fill out all ratings and review text then resubmit"]
             setErrors(newErrors)
         }
     }
