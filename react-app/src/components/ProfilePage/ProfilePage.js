@@ -31,7 +31,7 @@ function ProfilePage() {
           dispatch(fetchProfile(userId))
           dispatch(fetchAllSpots())
           dispatch(fetchAllReviews());
-    },[dispatch])
+    },[dispatch, userId])
     
     const handleUpdate = () => {
             if(bio !== '' && profilePic !== ''){
@@ -73,7 +73,7 @@ function ProfilePage() {
         </div>
         <div className="pp-right">
           <h2 className="headertxt pp-head">Hi, I'm {currProfile.name}</h2>
-          {currProfile.id === user.id && (
+          {currProfile?.id === user?.id && (
             <div className="pp-edit-btns">
               <AiOutlineEdit
                 className="pp-edit"
@@ -107,30 +107,33 @@ function ProfilePage() {
               <div className="pp-spots1">
                 {userListings.length > 0 ? (
                   userListings.map((listing) => (
-                    <NavLink
-                      className="inactive pp-spots"
-                      to={`/rooms/${listing.id}`}
-                    >
-                      <div
-                        className="profile-listing-pics"
-                        style={{
-                          backgroundImage: `url('${listing.spotPics[0]}')`,
-                        }}
-                      ></div>
-                      <div className="pp-spot-rev">
-                        <AiFillStar className="sp-star" />
-                        <p>
-                          {listing.reviews.length > 0
-                            ? avgReview(listing.reviews)
-                            : ""}
-                          ({listing.reviews.length})
-                        </p>
-                      </div>
-                      <div className="pp-spot-stat">
-                        <p>{listing.spotType}</p>
-                        <p className="pp-spot-name">{listing.name}</p>
-                      </div>
-                    </NavLink>
+                    <div className="pp-list-box">
+
+                      <NavLink
+                        className="inactive pp-spots"
+                        to={`/rooms/${listing.id}`}
+                      >
+                        <div
+                          className="profile-listing-pics"
+                          style={{
+                            backgroundImage: `url('${listing.spotPics[0]}')`,
+                          }}
+                        ></div>
+                        <div className="pp-spot-rev">
+                          <AiFillStar className="sp-star" />
+                          <p>
+                            {listing.reviews.length > 0
+                              ? avgReview(listing.reviews)
+                              : ""}
+                            ({listing.reviews.length})
+                          </p>
+                        </div>
+                        <div className="pp-spot-stat">
+                          <p>{listing.spotType}</p>
+                          <p className="pp-spot-name">{listing.name}</p>
+                        </div>
+                      </NavLink>
+                    </div>
                   ))
                 ) : (
                   <p>
@@ -153,7 +156,7 @@ function ProfilePage() {
                     )[0];
                     // console.log(spot)
                     return (
-                      <div>
+                      <div className="pp-rev-box">
                         <div className="pp-rev-top">
                           <div className="pp-srev-head">
                             <p className="headertxt">{spot.name}</p>
