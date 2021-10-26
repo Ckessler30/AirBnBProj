@@ -163,7 +163,7 @@ function SingleSpot() {
                   </div>
                 </div>
                 <div className="ss-check-i">
-                  <CheckIn spot={spot} />
+                  <CheckIn spot={spot} spotReviews={spotReviews} />
                 </div>
               </div>
                 <section id="reviewSection">

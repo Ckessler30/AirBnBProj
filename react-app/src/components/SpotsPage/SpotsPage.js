@@ -23,7 +23,7 @@ function SpotsPage() {
 
     return (
         <>
-        {filterdSpots &&
+        {filterdSpots.length > 0 &&
       <div className="spot-page-wrapper">
         <div className="spot-left-container">
           <div className="sp-header">

@@ -7,11 +7,12 @@ import "react-date-range/dist/theme/default.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from '../../store/bookings'
 import { AiFillStar } from "react-icons/ai";
+import LoginForm from "../auth/LoginForm"
 import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
 
 import './CheckIn.css'
 
-function CheckIn({ spot }) {
+function CheckIn({ spot, spotReviews }) {
     const dispatch = useDispatch()
     const {user} = useSelector(state => state.session)
     const bookings = useSelector(state => state.bookings)
@@ -25,6 +26,7 @@ function CheckIn({ spot }) {
     const [openGuests, setOpenGuests] = useState(false)
     const [isBooked, setIsBooked] = useState(userBooks.length ? true : false)
     const [errors, setErrors] = useState([])
+    const [openLogin, setOpenLogin] = useState(false)
     const nights = differenceInCalendarDays(startDate, endDate)
     const currBookedDates = bookedDates(spotBookings)
     const selectionRange = {
@@ -89,6 +91,10 @@ function CheckIn({ spot }) {
       setOpenGuests(false)
       setOpenCalendar(!openCalendar);
     }
+    const handleNotLoggedIn = (e) => {
+      e.preventDefault()
+      setOpenLogin(true)
+    }
     
     let split;
     let formatResDate;
@@ -113,7 +119,7 @@ function CheckIn({ spot }) {
             <AiFillStar className="sp-star" />
             <p>{spot.reviews.length > 0 && avgReview(spot.reviews)}</p>
             <a href="#reviewSection" className="rev-anch">
-              <span>({spot.reviews.length} reviews)</span>
+              <span>({spotReviews.length} reviews)</span>
             </a>
           </div>
         </div>
@@ -181,14 +187,17 @@ function CheckIn({ spot }) {
           </div>
         </div>
       </div>
-
-      <button
+      {user ?    <button
         className="reserve-btn"
         onClick={handleReserve}
         disabled={startDate.toString() === endDate.toString()}
       >
-        Reserve Spot!
+        {startDate.toString() === endDate.toString() ? "Please select your dates" :  "Reserve Spot!"}
       </button>
+      :
+      <button className="reserve-btn" onClick={(e)=> handleNotLoggedIn(e)}>You must be signed in to book</button>
+      }
+   
       {!(startDate.toString() === endDate.toString()) && (
         <div className="costs-cont">
           <div className="fees">
@@ -220,6 +229,7 @@ function CheckIn({ spot }) {
           </NavLink>
         </div>
       ) : null}
+      {openLogin && <LoginForm setOpenLogin={setOpenLogin}/>}
     </div>
   );
 }

@@ -12,7 +12,7 @@ function CreateSpot() {
     const dispatch = useDispatch()
     const {user} = useSelector(state => state.session)
     const [spotName, setSpotName] = useState('')
-    const [spotPrice, setSpotPrice] = useState(0)
+    const [spotPrice, setSpotPrice] = useState(25)
     const [description, setDescription] = useState('')
     const [type, setType] = useState('')
     const [numBedrooms, setNumBedrooms] = useState(0)
@@ -201,7 +201,7 @@ function CreateSpot() {
               placeholder="Street Address"
               onChange={(e) => setAddress(e.target.value)}
               value={address}
-              placeholder="...123 Example Rd, Example City, VA 22201"
+              placeholder="Format: 123 Example Rd, Example City, VA 22201"
               required
             />
             <h3>Longitude</h3>
