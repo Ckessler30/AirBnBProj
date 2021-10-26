@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { AiOutlineClose } from "react-icons/ai";
+import { errorHandler } from '../utils';
 import './SignUpForm.css'
 
 const SignUpForm = ({setOpenSignUp}) => {
@@ -35,6 +36,8 @@ const SignUpForm = ({setOpenSignUp}) => {
       }else{
         setOpenSignUp(false)
       }
+    }else{
+      setErrors(["pass:Passwords do not match"])
     }
   };
 
@@ -74,7 +77,7 @@ const SignUpForm = ({setOpenSignUp}) => {
           </div>
           <div>
             {errors.map((error, ind) => (
-              <div className="login-err" key={ind}>{error.split(":")[1]}</div>
+              <div className="login-err" key={ind}>{errorHandler(error)}</div>
             ))}
           </div>
           <div className="signup-inputs">

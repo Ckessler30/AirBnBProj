@@ -7,6 +7,7 @@ import { deleteSpotPic } from "../../store/allPics";
 import {FaTrash} from 'react-icons/fa'
 import './EditSpot.css'
 import { fetchAllPics } from "../../store/allPics";
+import {errorHandler, preventLetters} from "../utils"
 
 function EditSpot() {
   const { spotId } = useParams();
@@ -79,7 +80,7 @@ function EditSpot() {
         </div>
         <div className="err-box">
           {errors.length > 0 &&
-            errors.map((error) => <p className="login-err">{error}</p>)}
+            errors.map((error) => <p className="login-err">{errorHandler(error)}</p>)}
         </div>
         <div className="cs-input-field">
           <h3>Your Listing Name</h3>
@@ -98,6 +99,8 @@ function EditSpot() {
             placeholder={"$" + 0}
             onChange={(e) => setSpotPrice(e.target.value)}
             value={spotPrice}
+            onKeyPress={(e) => preventLetters(e)}
+            min={25}
             required
           />
         </div>
@@ -119,6 +122,8 @@ function EditSpot() {
             type="number"
             onChange={(e) => setNumBedrooms(e.target.value)}
             value={numBedrooms}
+            onKeyPress={(e) => preventLetters(e)}
+            min={0}
             required
           />
           <p>How many bathrooms?</p>
@@ -126,6 +131,8 @@ function EditSpot() {
             type="number"
             onChange={(e) => setNumBaths(e.target.value)}
             value={numBaths}
+            onKeyPress={(e) => preventLetters(e)}
+            min={0}
             required
           />
           <p>How many beds?</p>
@@ -133,6 +140,8 @@ function EditSpot() {
             type="number"
             onChange={(e) => setNumBeds(e.target.value)}
             value={numBeds}
+            onKeyPress={(e) => preventLetters(e)}
+            min={0}
             required
           />
           <p>What is the max occupancy?</p>
@@ -140,6 +149,8 @@ function EditSpot() {
             type="number"
             onChange={(e) => setTotalGuests(e.target.value)}
             value={totalGuests}
+            onKeyPress={(e) => preventLetters(e)}
+            min={0}
             required
           />
         </div>
