@@ -35,6 +35,8 @@ const SignUpForm = ({setOpenSignUp}) => {
       }else{
         setOpenSignUp(false)
       }
+    }else{
+      setErrors(["pass:Passwords do not match"])
     }
   };
 
