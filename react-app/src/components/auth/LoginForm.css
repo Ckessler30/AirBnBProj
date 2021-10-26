@@ -153,3 +153,32 @@
 .login-err{
     color: #FE385C;
 }
+
+.login-bottom{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.login-demo-btn{
+    cursor: pointer;
+    margin-bottom: -20px;
+    display: flex;
+    font-size: 1.2em;
+    gap: 3px;
+    /* align-items: center; */
+    padding-top:5px;
+    height: 40px;
+}
+
+.login-demo-btn:hover{
+    background-image: radial-gradient(circle at center, #FF385C 0%, #E61E4D 27.5%, #E31C5F 40%, #D70466 57.5%, #BD1E59 75%, #BD1E59 100% ), radial-gradient(circle at center, #FF385C 0%, #E61E4D 27.5%, #E31C5F 40%, #D70466 57.5%, #BD1E59 75%, #BD1E59 100% ) ;;
+    border-radius: 12px;
+    color: white;
+}
+
+.elips{
+    font-size: 1.4em;
+    margin-top: 2px;
+}

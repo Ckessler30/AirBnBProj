@@ -7,6 +7,7 @@ import "react-date-range/dist/theme/default.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addBooking } from '../../store/bookings'
 import { AiFillStar } from "react-icons/ai";
+import LoginForm from "../auth/LoginForm"
 import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
 
 import './CheckIn.css'
@@ -25,6 +26,7 @@ function CheckIn({ spot, spotReviews }) {
     const [openGuests, setOpenGuests] = useState(false)
     const [isBooked, setIsBooked] = useState(userBooks.length ? true : false)
     const [errors, setErrors] = useState([])
+    const [openLogin, setOpenLogin] = useState(false)
     const nights = differenceInCalendarDays(startDate, endDate)
     const currBookedDates = bookedDates(spotBookings)
     const selectionRange = {
@@ -88,6 +90,10 @@ function CheckIn({ spot, spotReviews }) {
     const handleCIClick = () => {
       setOpenGuests(false)
       setOpenCalendar(!openCalendar);
+    }
+    const handleNotLoggedIn = (e) => {
+      e.preventDefault()
+      setOpenLogin(true)
     }
     
     let split;
@@ -181,14 +187,17 @@ function CheckIn({ spot, spotReviews }) {
           </div>
         </div>
       </div>
-
-      <button
+      {user ?    <button
         className="reserve-btn"
         onClick={handleReserve}
         disabled={startDate.toString() === endDate.toString()}
       >
         Reserve Spot!
       </button>
+      :
+      <button className="reserve-btn" onClick={(e)=> handleNotLoggedIn(e)}>You must be signed in to book</button>
+      }
+   
       {!(startDate.toString() === endDate.toString()) && (
         <div className="costs-cont">
           <div className="fees">
@@ -220,6 +229,7 @@ function CheckIn({ spot, spotReviews }) {
           </NavLink>
         </div>
       ) : null}
+      {openLogin && <LoginForm setOpenLogin={setOpenLogin}/>}
     </div>
   );
 }
