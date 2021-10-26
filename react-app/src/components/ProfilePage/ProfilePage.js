@@ -159,7 +159,7 @@ function ProfilePage() {
                       <div className="pp-rev-box">
                         <div className="pp-rev-top">
                           <div className="pp-srev-head">
-                            <p className="headertxt">{spot.name}</p>
+                            <p className="headertxt">{spot?.name}</p>
                             <div className="pp-srev-starrate">
                               <AiFillStar className="sp-star" />
                               <p className="pp-srev-rate">{review.avgRating}</p>
@@ -167,12 +167,12 @@ function ProfilePage() {
                           </div>
                           <NavLink
                             className="inactive"
-                            to={`/rooms/${spot.id}`}
+                            to={`/rooms/${spot?.id}`}
                           >
                             <div
                               className="rev-spot-pics"
                               style={{
-                                backgroundImage: `url('${spot.spotPics[0]}')`,
+                                backgroundImage: `url('${spot?.spotPics[0]}')`,
                               }}
                             ></div>
                           </NavLink>
