@@ -96,6 +96,7 @@ function CreateSpot() {
               placeholder={"$" + 0}
               onChange={(e) => setSpotPrice(e.target.value)}
               onKeyPress={(e) => preventLetters(e)}
+              min={25}
               value={spotPrice}
               required
             />
@@ -140,6 +141,7 @@ function CreateSpot() {
               placeholder="0 bedrooms"
               value={numBedrooms}
               onKeyPress={(e) => preventLetters(e)}
+              min={0}
               required
             />
           </div>
@@ -151,6 +153,7 @@ function CreateSpot() {
               value={numBaths}
               placeholder="0 baths"
               onKeyPress={(e) => preventLetters(e)}
+              min={0}
               required
             />
           </div>
@@ -162,6 +165,7 @@ function CreateSpot() {
               value={numBeds}
               placeholder="0 beds"
               onKeyPress={(e) => preventLetters(e)}
+              min={0}
               required
             />
           </div>
@@ -173,6 +177,7 @@ function CreateSpot() {
               value={totalGuests}
               placeholder="0 guests"
               onKeyPress={(e) => preventLetters(e)}
+              min={0}
               required
             />
           </div>
