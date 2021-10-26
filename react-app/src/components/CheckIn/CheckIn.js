@@ -11,7 +11,7 @@ import differenceInCalendarDays from "date-fns/differenceInCalendarDays";
 
 import './CheckIn.css'
 
-function CheckIn({ spot }) {
+function CheckIn({ spot, spotReviews }) {
     const dispatch = useDispatch()
     const {user} = useSelector(state => state.session)
     const bookings = useSelector(state => state.bookings)
@@ -113,7 +113,7 @@ function CheckIn({ spot }) {
             <AiFillStar className="sp-star" />
             <p>{spot.reviews.length > 0 && avgReview(spot.reviews)}</p>
             <a href="#reviewSection" className="rev-anch">
-              <span>({spot.reviews.length} reviews)</span>
+              <span>({spotReviews.length} reviews)</span>
             </a>
           </div>
         </div>
