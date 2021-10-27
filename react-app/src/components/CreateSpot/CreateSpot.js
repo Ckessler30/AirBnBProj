@@ -211,7 +211,7 @@ function CreateSpot() {
               placeholder="Longitude"
               onChange={(e) => setLong(e.target.value)}
               value={long}
-              onKeyPress={(e) => preventLetters(e)}
+              // onKeyPress={(e) => preventLetters(e)}
               
             />
             <h3>Latitude</h3>
@@ -220,7 +220,7 @@ function CreateSpot() {
               placeholder="Latitude"
               onChange={(e) => setLat(e.target.value)}
               value={lat}
-              onKeyPress={(e) => preventLetters(e)}
+              // onKeyPress={(e) => preventLetters(e)}
               
             />
           </div>
