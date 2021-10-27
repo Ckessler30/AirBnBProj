@@ -32,6 +32,10 @@ function ProfilePage() {
           dispatch(fetchAllSpots())
           dispatch(fetchAllReviews());
     },[dispatch, userId])
+
+    useEffect(() => {
+      dispatch(fetchAllSpots())
+    }, [dispatch])
     
     const handleUpdate = () => {
             if(bio !== '' && profilePic !== ''){

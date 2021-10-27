@@ -110,7 +110,7 @@ function CreateSpot() {
               rows="5"
               onChange={(e) => setDescription(e.target.value)}
               value={description}
-              required
+              
               placeholder="Tell us about your getaway"
             ></textarea>
           </div>
@@ -121,9 +121,9 @@ function CreateSpot() {
               id=""
               onChange={(e) => setType(e.target.value)}
               value={type}
-              required
+              
             >
-              {/* <option value="">Please select an option</option> */}
+              <option value="">--Spot Types--</option>
               <option value="Condo">Condo</option>
               <option value="House">House</option>
               <option value="Villa">Villa</option>
@@ -188,8 +188,9 @@ function CreateSpot() {
               placeholder="State"
               onChange={(e) => setState(e.target.value)}
               value={state}
-              required
+              
             >
+              <option value="">--States--</option>
               {stateList &&
                 stateList.map((state) => (
                   <option value={state}>{state}</option>
