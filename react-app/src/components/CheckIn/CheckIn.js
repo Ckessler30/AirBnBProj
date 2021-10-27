@@ -81,12 +81,6 @@ function CheckIn({ spot, spotReviews }) {
           //   console.log("Done")
         }
     }
-    console.log(
-      startDate.toString().split(" ").slice(0, 4).join(" ") ===
-        endDate.toString().split(" ").slice(0, 4).join(" ")
-    );
-    console.log(endDate.toString().split(" ").slice(0, 4).join(" "));
-    console.log(errors)
     const handleCIClick = () => {
       setOpenGuests(false)
       setOpenCalendar(!openCalendar);

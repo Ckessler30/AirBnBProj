@@ -64,7 +64,7 @@ export const capitalizeString = (string) => {
 
 export const errorHandler = (err) => {
     const splitErr = err.split(':')
-    console.log(splitErr)
+    // console.log(splitErr)
     if(splitErr[0] === "name " && splitErr[1] === " This field is required."){
         return "Please provide a name."
     }
