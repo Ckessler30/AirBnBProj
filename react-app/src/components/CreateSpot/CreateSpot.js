@@ -86,7 +86,7 @@ function CreateSpot() {
               placeholder="What is the name of your getaway?"
               onChange={(e) => setSpotName(e.target.value)}
               value={spotName}
-              required
+              
             />
           </div>
           <div className="cs-input-field">
@@ -142,7 +142,7 @@ function CreateSpot() {
               value={numBedrooms}
               onKeyPress={(e) => preventLetters(e)}
               min={0}
-              required
+              
             />
           </div>
           <div className="cs-input-field">
@@ -154,7 +154,7 @@ function CreateSpot() {
               placeholder="0 baths"
               onKeyPress={(e) => preventLetters(e)}
               min={0}
-              required
+              
             />
           </div>
           <div className="cs-input-field">
@@ -166,7 +166,7 @@ function CreateSpot() {
               placeholder="0 beds"
               onKeyPress={(e) => preventLetters(e)}
               min={0}
-              required
+              
             />
           </div>
           <div className="cs-input-field">
@@ -178,7 +178,7 @@ function CreateSpot() {
               placeholder="0 guests"
               onKeyPress={(e) => preventLetters(e)}
               min={0}
-              required
+              
             />
           </div>
           <div className="cs-input-field loc">
@@ -203,7 +203,7 @@ function CreateSpot() {
               onChange={(e) => setAddress(e.target.value)}
               value={address}
               placeholder="Format: 123 Example Rd, Example City, VA 22201"
-              required
+              
             />
             <h3>Longitude</h3>
             <input
@@ -212,7 +212,7 @@ function CreateSpot() {
               onChange={(e) => setLong(e.target.value)}
               value={long}
               onKeyPress={(e) => preventLetters(e)}
-              required
+              
             />
             <h3>Latitude</h3>
             <input
@@ -221,7 +221,7 @@ function CreateSpot() {
               onChange={(e) => setLat(e.target.value)}
               value={lat}
               onKeyPress={(e) => preventLetters(e)}
-              required
+              
             />
           </div>
           <div className="cs-input-field pics">
@@ -231,7 +231,7 @@ function CreateSpot() {
               placeholder="Picture Url"
               onChange={(e) => setPic1(e.target.value)}
               value={pic1}
-              required
+              
             />
             <input
               type="text"

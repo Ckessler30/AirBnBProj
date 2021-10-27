@@ -23,8 +23,8 @@ function ProfilePage() {
     const userListings = listings.filter(listing=> listing.user.id === currProfile.id)
     // console.log(currProfile)
     // console.log(user)
-    const [bio,setBio] = useState(currProfile.bio)
-    const [profilePic, setProfilePic] = useState(currProfile.profile_pic)
+    const [bio,setBio] = useState(user.bio)
+    const [profilePic, setProfilePic] = useState(user.profile_pic)
     const [openUpdate, setOpenUpdate] = useState(false)
   
     useEffect(()=> {
