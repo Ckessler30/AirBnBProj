@@ -25,7 +25,7 @@ const SignUpForm = ({setOpenSignUp}) => {
           name,
           email,
           password,
-          bio,
+          bio ? bio : `Hi, I am ${name}`,
           profilePic
             ? profilePic
             : "https://thepowerofthedream.org/wp-content/uploads/2015/09/generic-profile-picture.jpg"
