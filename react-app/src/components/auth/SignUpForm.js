@@ -60,6 +60,7 @@ const SignUpForm = ({setOpenSignUp}) => {
   // if (user) {
   //   return setOpenSignUp(false);
   // }
+  // console.log(errors)
 
   return (
     <div className="signUpForm">
