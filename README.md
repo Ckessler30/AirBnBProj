@@ -1,7 +1,9 @@
 # Bearbnb
 
 ## Bearbnb Overview
-Bearbnb is a full stack Airbnb clone that specifically focuses on adventure/outdoors style lodging.  Logged in users can browse several hand picked locations with an abundance of outdoorsy style spots that are available for booking.  Logged in users can also choose to list their very own spot for others to enjoy just as easily. 
+Bearbnb is a full stack Airbnb clone that specifically focuses on adventure/outdoors style lodging.  Logged in users can browse several hand picked locations with an abundance of outdoorsy style spots that are available for booking.  Logged in users can also choose to list their very own spot for others to enjoy just as easily by clicking on the "become a host" button on the nav bar upon login.
+
+Logged out users can enjoy all of the great spots that the site has to offer they are just limited to not being able to interact with the site. (Posting reviews, hosting spots, making reservations, etc.)
 
 ## Bearbnb Architecture 
 Bearbnb is build with a React/Redux frontend and a Python/Flask backend that is working PostgreSQL as a database.  The querying is done on the backend using SQLAlchemy.
