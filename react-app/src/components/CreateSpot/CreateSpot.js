@@ -96,7 +96,7 @@ function CreateSpot() {
               placeholder={"$" + 0}
               onChange={(e) => setSpotPrice(e.target.value)}
               onKeyPress={(e) => preventLetters(e)}
-              min={25}
+              // min={25}
               value={spotPrice}
               required
             />
