@@ -13,6 +13,9 @@ Bearbnb is a React application that utilizes a good bit of front end logic to di
 ### Redux
 Bearbnb is quite dependent on Redux state so that the correct information can be utilized at the correct moments.  Redux thunks are constantly making calls to the backend API to retrieve data.
 
+### Google Maps JavaScript API
+The google maps api was very fun to work with and implement for my filtered spots pages.  There is definitley more I want to customize with the api, for example pinning the exact address at which each spot is located.  But, overall this was extremely helpful in getting the perfect airbnb feel to the site and having a great reference for location as you browse through all of the wonderful spots.
+
 ## Backend Technologies
 
 Bearbnb uses a Python/Flask backend with SQLAlchemy and Alembic to work with a PostgreSQL database that holds all my essential information.
