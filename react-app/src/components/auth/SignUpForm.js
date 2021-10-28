@@ -78,7 +78,7 @@ const SignUpForm = ({setOpenSignUp}) => {
           </div>
           <div>
             {errors.map((error, ind) => (
-              <div className="login-err" key={ind}>{errorHandler(error)}</div>
+              <div className="login-err" key={ind}>{error.split(":")[1]}</div>
             ))}
           </div>
           <div className="signup-inputs">
