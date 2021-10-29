@@ -192,3 +192,21 @@ export const stateList = [
 "Wisconsin",
 "Wyoming",
 ]
+
+export const checkIfImageExists = (url) => {
+  const img = new Image();
+  img.src = url;
+  let outcome;
+  if (img.complete) {
+    outcome = true;
+  } else {
+    img.onload = () => {
+      outcome = true;
+    };
+
+    img.onerror = () => {
+      outcome = false;
+    };
+  }
+  return outcome
+}

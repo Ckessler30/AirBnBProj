@@ -190,5 +190,15 @@
 } */
 
 .edit-pp{
+    margin-top: -15px;
+}
+
+.ppimg-edit{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     margin-top: 3px;
+}
+.ppimg-edit>p{
+    align-self: center;
 }

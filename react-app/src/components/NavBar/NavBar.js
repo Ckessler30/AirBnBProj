@@ -1,9 +1,9 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
-import { login } from '../../store/session';
+import { authenticate, login } from '../../store/session';
 import {MdStorage} from 'react-icons/md'
 
 
@@ -11,6 +11,7 @@ import {MdStorage} from 'react-icons/md'
 import './NavBar.css'
 import LoginForm from '../auth/LoginForm';
 import SignUpForm from '../auth/SignUpForm';
+import { checkIfImageExists } from '../utils';
 
 const NavBar = () => {
   const dispatch = useDispatch()
@@ -18,6 +19,11 @@ const NavBar = () => {
   const [openDropDown, setOpenDropDown] = useState(false)
   const [openLogin, setOpenLogin] = useState(false)
   const [openSignUp, setOpenSignUp] = useState(false)
+  let imgValid;
+
+  if(sessionUser){
+    imgValid = checkIfImageExists(sessionUser.profile_pic)
+  }
   // console.log(sessionUser)
   const handleDemoLogin = () => {
     dispatch(login("demo@aa.io", "password"))
@@ -82,7 +88,7 @@ const NavBar = () => {
                 className="nav-profile-pic"
                 style={{
                   backgroundImage: `url(${
-                    sessionUser
+                    sessionUser && imgValid
                       ? sessionUser.profile_pic
                       : "https://a0.muscache.com/defaults/user_pic-50x50.png?v=3"
                   } )`,
