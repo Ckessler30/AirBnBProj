@@ -26,6 +26,7 @@ function ProfilePage() {
     const [bio,setBio] = useState( user ? user.bio : currProfile.bio)
     const [profilePic, setProfilePic] = useState(user ? user.profile_pic : currProfile.profile_pic)
     const [openUpdate, setOpenUpdate] = useState(false)
+    const [errors, setErrors] = useState([])
   
     useEffect(()=> {
           dispatch(fetchProfile(userId))
@@ -38,14 +39,20 @@ function ProfilePage() {
     }, [dispatch])
     
     const handleUpdate = () => {
-            if(bio !== '' && profilePic !== ''){
+            if(bio.length > 3000){
+              setErrors(["Bio must be less than 3000 characters."])
+              setBio(user.bio)
+            }else if(bio !== '' && profilePic !== ''){
               dispatch(updateProfile({id: user.id, bio, profilePic}))
+              setOpenUpdate(false);
             }else if(bio !== '' && profilePic === ''){
               dispatch(updateProfile({id: user.id, profilePic}))
+              setOpenUpdate(false);
             }else{
               dispatch(updateProfile({id: user.id,bio}))
+              setOpenUpdate(false);
             }
-            setOpenUpdate(false)
+            
     }
 
     return (
@@ -92,6 +99,10 @@ function ProfilePage() {
                 </button>
               )}
             </div>
+          )}
+          {openUpdate && errors && errors.map(error => (
+            <p className="login-err">{error}</p>
+          )
           )}
           <div>
             <div className="pp-about">
