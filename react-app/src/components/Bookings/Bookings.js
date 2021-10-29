@@ -21,7 +21,7 @@ function Bookings() {
                 <h1>Your Trips</h1>
             </div>
             <div className="booking-wrapper">
-                {userBookings ? userBookings.map(booking => {
+                {userBookings.length > 0 ? userBookings.map(booking => {
                     const spot = spots.filter(spot => spot.id === booking.spotId)[0]
                     const startDate = booking.startDate.split(' ')
                     const endDate = booking.endDate.split(' ')
@@ -62,8 +62,8 @@ function Bookings() {
                     }
                 })
             :
-            <div>
-
+            <div className="no-bookings">
+              <h1>You do not have any reservations yet!</h1>
             </div>
             }
             </div>

@@ -71,6 +71,8 @@
 
 }
 
+
+
 .pics{
     gap: 5px;
 }
@@ -109,4 +111,11 @@
 
 .ep{
     width: 200px;
+}
+
+.loc>input{
+    border: 1px solid #B0B0B0;
+    padding-left: 3px;
+    width: 390px;
+    border-radius: 3px;
 }

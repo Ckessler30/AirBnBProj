@@ -205,8 +205,9 @@ function CreateSpot() {
             </select>
             <h3>Street Address</h3>
             <input
+              className="lft"
               type="text"
-              placeholder="Street Address"
+              // placeholder="Street Address"
               onChange={(e) => setAddress(e.target.value)}
               value={address}
               placeholder="Format: 123 Example Rd, Example City, VA 22201"

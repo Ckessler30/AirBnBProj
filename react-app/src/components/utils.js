@@ -210,3 +210,12 @@ export const checkIfImageExists = (url) => {
   }
   return outcome
 }
+
+export const onlyWhiteSpace = (str) => {
+  if (!str.replace(/\s/g, "").length) {
+    return true
+  }else{
+    return false
+  }
+
+}

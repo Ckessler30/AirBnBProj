@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import StarRatings from 'react-star-ratings'
 import { addNewReview } from '../../store/reviews'
+import { onlyWhiteSpace } from '../utils'
 
 import './CreateReview.css'
 
@@ -14,7 +15,7 @@ function CreateReview({spot, madeReview}) {
     const [commRating, setCommRating] = useState(0)
     const [locationRating, setLocationRating] = useState(0)
     const [valueRating, setValueRating] = useState(0)
-    const [reviewText, setReviewText] = useState(null)
+    const [reviewText, setReviewText] = useState('')
     const [errors, setErrors] = useState([])
     // console.log(user)
     const changeRating = (newRating, name) => {
@@ -41,7 +42,10 @@ function CreateReview({spot, madeReview}) {
     }
 
     const handleSubmit = () => {
-        if(cleanRating && accurRating && commRating && locationRating && checkInRating && valueRating && reviewText.length <= 3000){
+        // console.log(onlyWhiteSpace(reviewText))
+        if(reviewText.length > 0 && onlyWhiteSpace(reviewText)){
+            setErrors(["Review must not be only whitespace."])
+        }else if(cleanRating && accurRating && commRating && locationRating && checkInRating && valueRating && reviewText.length <= 3000){
             const newReview = {
                 userId: user.id,
                 spotId: spot.id,
@@ -72,64 +76,104 @@ function CreateReview({spot, madeReview}) {
     }
 
 
-    return (<div>
-
+    return (
+      <div>
         {madeReview ? (
-            <div>
-                <p>You have already left your review on this spot</p>
+          <div>
+            <p>You have already left your review on this spot</p>
+          </div>
+        ) : (
+          <div className="rev-wrapper">
+            <div className="stars-sec">
+              <div className="stars-left">
+                <div className="create-rev-rating">
+                  <p>Cleanliness</p>
+                  <StarRatings
+                    rating={cleanRating}
+                    changeRating={changeRating}
+                    name="cleanRating"
+                    starRatedColor="red"
+                    starDimension="20px"
+                  />
+                </div>
+                <div className="create-rev-rating">
+                  <p>Communication</p>
+                  <StarRatings
+                    rating={commRating}
+                    changeRating={changeRating}
+                    name="commRating"
+                    starRatedColor="red"
+                    starDimension="20px"
+                  />
+                </div>
+                <div className="create-rev-rating">
+                  <p>Check-In</p>
+                  <StarRatings
+                    rating={checkInRating}
+                    changeRating={changeRating}
+                    name="checkInRating"
+                    starRatedColor="red"
+                    starDimension="20px"
+                  />
+                </div>
+              </div>
+              <div className="stars-right">
+                <div className="create-rev-rating">
+                  <p>Accuracy</p>
+                  <StarRatings
+                    rating={accurRating}
+                    changeRating={changeRating}
+                    name="accurRating"
+                    starRatedColor="red"
+                    starDimension="20px"
+                  />
+                </div>
+                <div className="create-rev-rating">
+                  <p>Location</p>
+                  <StarRatings
+                    rating={locationRating}
+                    changeRating={changeRating}
+                    name="locationRating"
+                    starRatedColor="red"
+                    starDimension="20px"
+                  />
+                </div>
+                <div className="create-rev-rating">
+                  <p>Value</p>
+                  <StarRatings
+                    rating={valueRating}
+                    changeRating={changeRating}
+                    name="valueRating"
+                    starRatedColor="red"
+                    starDimension="20px"
+                  />
+                </div>
+              </div>
             </div>
-        )
-        :
-        (
-
-            <div className="rev-wrapper">
-                <div className="stars-sec">
-
-                    <div className="stars-left">
-                        <div className="create-rev-rating">
-                            <p>Cleanliness</p>
-                        <StarRatings rating={cleanRating} changeRating={changeRating} name="cleanRating" starRatedColor="red" starDimension="20px"/>
-                        </div>
-                        <div className="create-rev-rating">
-                        <p>Communication</p>
-                        <StarRatings rating={commRating} changeRating={changeRating} name="commRating" starRatedColor="red" starDimension="20px"/>
-                        </div>
-                        <div className="create-rev-rating">
-                        <p>Check-In</p>
-                        <StarRatings rating={checkInRating} changeRating={changeRating} name="checkInRating" starRatedColor="red" starDimension="20px"/>
-                        </div>
-                    </div>
-                    <div className="stars-right">
-                        <div className="create-rev-rating">
-                        <p>Accuracy</p>
-                        <StarRatings rating={accurRating} changeRating={changeRating} name="accurRating" starRatedColor="red" starDimension="20px"/>
-                        </div>
-                        <div className="create-rev-rating">
-                        <p>Location</p>
-                        <StarRatings rating={locationRating} changeRating={changeRating} name="locationRating" starRatedColor="red" starDimension="20px"/>
-                        </div>
-                        <div className="create-rev-rating">
-                        <p>Value</p>
-                        <StarRatings rating={valueRating} changeRating={changeRating} name="valueRating" starRatedColor="red" starDimension="20px"/>
-                        </div>
-                    </div>
-                </div>
-                <div className="rev-input">
-                    <h3>Please write your review here...</h3>
-                    {errors.length > 0 && errors.map(error => (
-                            <p className="error">{error}</p>
-                    ))}
-                    <textarea className="textarea-rev" name="" id="" cols="30" rows="5" onChange={(e)=>setReviewText(e.target.value)} value={reviewText}></textarea>
-                </div>
-                <div className="rev-submit">
-                    <button className="submit-btn" onClick={handleSubmit}>Submit Review</button>
-                </div>
-                
+            <div className="rev-input">
+              <h3>Please write your review here...</h3>
+              {errors.length > 0 &&
+                errors.map((error) => <p className="error">{error}</p>)}
+              <textarea
+                className="textarea-rev"
+                pattern="[^' ']+"
+                name=""
+                id=""
+                cols="30"
+                rows="5"
+                onChange={(e) => setReviewText(e.target.value)}
+                value={reviewText}
+              ></textarea>
             </div>
-        )
-    }
-    </div>
-    )
+            <div className="rev-submit">
+              <button className="submit-btn" onClick={handleSubmit}>
+                Submit Review
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    );
 }
 
 export default CreateReview
