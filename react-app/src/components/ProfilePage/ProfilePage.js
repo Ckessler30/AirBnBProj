@@ -75,7 +75,7 @@ function ProfilePage() {
                   }')`,
                 }}
               ></div>
-              {openUpdate && (
+              {user && openUpdate && (
                 <div className="ppimg-edit">
                   <p>Profile image url</p>
                   <input
@@ -122,7 +122,7 @@ function ProfilePage() {
               <div>
                 <div className="pp-about">
                   <h3 className="headertxt">About</h3>
-                  {openUpdate ? (
+                  {user && openUpdate ? (
                     <input
                       type="text"
                       value={bio}
