@@ -10,7 +10,8 @@ nav{
   left: 0;
   z-index: 99;
   margin: 0;
-  width: 100vw;
+  min-width: 100vw;
+  width: 100%;
   
   background-color: white;
   box-shadow: rgb(0 0 0 / 8%) 0px 1px 12px;
