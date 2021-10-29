@@ -4,7 +4,7 @@ import { useParams } from "react-router"
 import { NavLink } from "react-router-dom";
 import { fetchAllSpots } from "../../store/allSpots"
 import {fetchProfile, updateProfile} from '../../store/currProfile'
-import { avgReview, checkIfImageExists } from "../utils"
+import { avgReview, checkIfImageExists, onlyWhiteSpace } from "../utils"
 import {RiMedalLine} from 'react-icons/ri'
 import {IoShieldCheckmarkOutline} from 'react-icons/io5'
 import { AiFillStar, AiOutlineEdit } from "react-icons/ai";
@@ -39,7 +39,10 @@ function ProfilePage() {
     }, [dispatch])
     
     const handleUpdate = () => {
-            if(bio.length > 3000){
+            if(bio.length > 0 && onlyWhiteSpace(bio)){
+              setErrors(["Bio cannot be only whitespace."])
+              setBio(user.bio);
+            }else if(bio.length > 3000){
               setErrors(["Bio must be less than 3000 characters."])
               setBio(user.bio)
             }else if(bio !== '' && profilePic !== ''){
