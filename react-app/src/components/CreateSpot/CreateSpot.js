@@ -233,6 +233,7 @@ function CreateSpot() {
           </div>
           <div className="cs-input-field pics">
             <h3>Pictures</h3>
+            <p>*optional but recommended*</p>
             <input
               type="text"
               placeholder="Picture Url"
