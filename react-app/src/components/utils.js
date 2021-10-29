@@ -64,7 +64,7 @@ export const capitalizeString = (string) => {
 
 export const errorHandler = (err) => {
     const splitErr = err.split(':')
-    // console.log(splitErr)
+    console.log(splitErr)
     if(splitErr[0] === "name " && splitErr[1] === " This field is required."){
         return "Please provide a name."
     }
@@ -123,6 +123,12 @@ export const errorHandler = (err) => {
     }
     if (splitErr[0] === "latitude " && splitErr[1] === " This field is required.") {
       return "Please provide the latitude of your listing.";
+    }
+    if (
+      splitErr[0] === "name " &&
+      splitErr[1] === " Name must be less than 100 characters."
+    ) {
+      return "Name must be less than 100 characters.";
     }
 
 }

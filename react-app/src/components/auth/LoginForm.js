@@ -61,7 +61,7 @@ const LoginForm = ({setOpenLogin}) => {
           <div>
             {errors.map((error, ind) => (
               <div key={ind} className="login-err">
-                {errorHandler(error)}
+                {error.split(":")[1]}
               </div>
             ))}
           </div>
@@ -74,7 +74,7 @@ const LoginForm = ({setOpenLogin}) => {
                 placeholder="example@email.com"
                 value={email}
                 onChange={updateEmail}
-                required
+                // required
               />
             </div>
             <div className="input-pass">
@@ -85,7 +85,7 @@ const LoginForm = ({setOpenLogin}) => {
                 placeholder="Password"
                 value={password}
                 onChange={updatePassword}
-                required
+                // required
               />
             </div>
           </div>

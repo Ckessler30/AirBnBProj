@@ -82,7 +82,7 @@ function EditSpot() {
         </div>
         <div className="err-box">
           {errors.length > 0 &&
-            errors.map((error) => <p className="login-err">{errorHandler(error)}</p>)}
+            errors.map((error) => <p className="login-err">{error.split(":")[1]}</p>)}
         </div>
         <div className="cs-input-field">
           <h3>Your Listing Name</h3>
@@ -91,7 +91,7 @@ function EditSpot() {
             placeholder="What is the name of your getaway?"
             onChange={(e) => setSpotName(e.target.value)}
             value={spotName}
-            required
+            // required
           />
         </div>
         <div className="cs-input-field">
@@ -103,7 +103,7 @@ function EditSpot() {
             value={spotPrice}
             onKeyPress={(e) => preventLetters(e)}
             min={25}
-            required
+            // required
           />
         </div>
         <div className="cs-input-field">
@@ -115,7 +115,7 @@ function EditSpot() {
             rows="10"
             onChange={(e) => setDescription(e.target.value)}
             value={description}
-            required
+            // required
           ></textarea>
         </div>
         <div className="cs-input-field es">
@@ -126,7 +126,7 @@ function EditSpot() {
             value={numBedrooms}
             onKeyPress={(e) => preventLetters(e)}
             min={0}
-            required
+            // required
           />
           <p>How many bathrooms?</p>
           <input
@@ -135,7 +135,7 @@ function EditSpot() {
             value={numBaths}
             onKeyPress={(e) => preventLetters(e)}
             min={0}
-            required
+            // required
           />
           <p>How many beds?</p>
           <input
@@ -144,7 +144,7 @@ function EditSpot() {
             value={numBeds}
             onKeyPress={(e) => preventLetters(e)}
             min={0}
-            required
+            // required
           />
           <p>What is the max occupancy?</p>
           <input
@@ -153,7 +153,7 @@ function EditSpot() {
             value={totalGuests}
             onKeyPress={(e) => preventLetters(e)}
             min={0}
-            required
+            // required
           />
         </div>
         <div className="cs-input-field pics">

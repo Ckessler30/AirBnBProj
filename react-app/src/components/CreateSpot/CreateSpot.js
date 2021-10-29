@@ -54,7 +54,14 @@ function CreateSpot() {
         }
         if(data.name && !data.errors ){
             // console.log("MADE IT IN")
-            const newPic = await dispatch(addSpotPic({spotId:data.id, imgUrl: pic1}))
+            const newPic = await dispatch(
+              addSpotPic({
+                spotId: data.id,
+                imgUrl: pic1
+                  ? pic1
+                  : "https://www.thefactsite.com/wp-content/uploads/2018/08/death-star-facts.jpg",
+              })
+            );
             if(pic2){
                 await dispatch(addSpotPic({spotId:data.id, imgUrl:pic2}))
             }
@@ -76,7 +83,7 @@ function CreateSpot() {
           <div className="err-box">
             {errors.length > 0 &&
               errors.map((error) => (
-                <p className="login-err">{errorHandler(error)}</p>
+                <p className="login-err">{error.split(":")[1]}</p>
               ))}
           </div>
           <div className="cs-input-field">
@@ -226,6 +233,7 @@ function CreateSpot() {
           </div>
           <div className="cs-input-field pics">
             <h3>Pictures</h3>
+            <p>*optional but recommended*</p>
             <input
               type="text"
               placeholder="Picture Url"

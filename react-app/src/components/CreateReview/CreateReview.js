@@ -41,7 +41,7 @@ function CreateReview({spot, madeReview}) {
     }
 
     const handleSubmit = () => {
-        if(cleanRating && accurRating && commRating && locationRating && checkInRating && valueRating && reviewText){
+        if(cleanRating && accurRating && commRating && locationRating && checkInRating && valueRating && reviewText.length <= 3000){
             const newReview = {
                 userId: user.id,
                 spotId: spot.id,
@@ -61,9 +61,13 @@ function CreateReview({spot, madeReview}) {
             setCheckInRating(0)
             setValueRating(0)
             setReviewText('')
+        }else if(reviewText.length > 3000){
+            setErrors(["Review must be less than 3000 characters."])
         }else{
-            const newErrors = ["Please fill out all ratings and review text then resubmit"]
-            setErrors(newErrors)
+            const newErrors = [
+              "Please fill out all ratings and review text then resubmit",
+            ];
+            setErrors(newErrors);
         }
     }
 
