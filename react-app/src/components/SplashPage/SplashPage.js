@@ -47,16 +47,16 @@ function SplashPage() {
                   // console.log(ind);
                   return (
                     <div className="single-state">
-                      <div
-                        className="state-pics"
-                        style={{
-                          backgroundImage:
-                            ind < 6
-                              ? `url(${statePics[ind]})`
-                              : `url(${statePics[1]})`,
-                        }}
-                      ></div>
-                      <NavLink className="inactive" to={`/spots/${location}`}>
+                      <NavLink className="inactive sssp" to={`/spots/${location}`}>
+                        <div
+                          className="state-pics"
+                          style={{
+                            backgroundImage:
+                              ind < 6
+                                ? `url(${statePics[ind]})`
+                                : `url(${statePics[1]})`,
+                          }}
+                        ></div>
                         <p>{location}</p>
                       </NavLink>
                     </div>
@@ -92,7 +92,7 @@ function SplashPage() {
                     backgroundImage: `url("https://a0.muscache.com/im/pictures/7d82ca14-56e5-4465-8218-dcfa7d69b6ac.jpg?im_w=720")`,
                   }}
                 ></div>
-                <p className="headertxt la-txt">Entire homes</p>
+                <p className="headertxt la-txt">Entire home listings</p>
               </div>
               <div>
                 <div
@@ -101,7 +101,7 @@ function SplashPage() {
                     backgroundImage: `url("https://thehappypuppysite.com/wp-content/uploads/2015/09/The-Siberian-Husky-HP-long.jpg")`,
                   }}
                 ></div>
-                <p className="headertxt la-txt">Pets Allowed</p>
+                <p className="headertxt la-txt">Pets Always Allowed</p>
               </div>
             </div>
           </div>

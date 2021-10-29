@@ -33,7 +33,7 @@
 
 .splash-states{
     display: flex;
-    gap: 50px;
+    gap: 40px;
     margin-top: 20px;
     flex-wrap: wrap;
     /* max-width: 90%; */
@@ -41,12 +41,18 @@
 
 .single-state{
     display: flex;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
     font-family: "airbnbMed";
     cursor: pointer;
     font-size: 1.1em;
     min-width: 230px;
+}
+
+.sssp{
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .la-pics{
@@ -110,3 +116,4 @@
 .th{
     cursor: pointer;
 }
+
