@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import { NavLink } from "react-router-dom";
 import { fetchAllLocations } from '../../store/locations'
+import LoginForm from "../auth/LoginForm";
 
 import './SplashPage.css'
 
@@ -11,6 +12,8 @@ function SplashPage() {
     const locations = useSelector(state => state.locations)
     // console.log(locations)
     // console.log(user)
+
+    const [openLogin, setOpenLogin] = useState(false)
 
     const statePics = [
       "https://wallpaperaccess.com/full/1761719.jpg",
@@ -103,27 +106,50 @@ function SplashPage() {
             </div>
           </div>
           <div className="try-host-box">
-              <NavLink className="inactive th" to={user ? "/become-a-host": ''}>
+            {user ? (
+              <NavLink
+                className="inactive th"
+                to={user ? "/become-a-host" : ""}
+              >
                 <div
-                className="try-hosting"
-                style={{
+                  className="try-hosting"
+                  style={{
                     backgroundImage: `url("https://images.contentstack.io/v3/assets/blt00454ccee8f8fe6b/blt2380dfc8baa6f1bf/5fd42f39da1c393383d3fe7d/US_LakeLure_US_Header.jpeg?width=1680&auto=webp")`,
-                }}
+                  }}
                 >
-                <div className="try-hosting-inner">
+                  <div className="try-hosting-inner">
                     <h2 className="headertxt">Try Hosting</h2>
                     <p>
-                    Earn extra income and unlock new opportunities by sharing your
-                    space.
+                      Earn extra income and unlock new opportunities by sharing
+                      your space.
                     </p>
-                </div>
+                  </div>
                 </div>
               </NavLink>
+            ) : (
+              <div className="th" onClick={()=> setOpenLogin(true)}>
+                <div
+                  className="try-hosting"
+                  style={{
+                    backgroundImage: `url("https://images.contentstack.io/v3/assets/blt00454ccee8f8fe6b/blt2380dfc8baa6f1bf/5fd42f39da1c393383d3fe7d/US_LakeLure_US_Header.jpeg?width=1680&auto=webp")`,
+                  }}
+                >
+                  <div className="try-hosting-inner">
+                    <h2 className="headertxt">Try Hosting</h2>
+                    <p>
+                      Earn extra income and unlock new opportunities by sharing
+                      your space.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
           {/* <div>
             <h3>Discover things to do</h3>
           </div> */}
         </div>
+        {openLogin && <LoginForm setOpenLogin={setOpenLogin}/>}
       </div>
     );
 }
