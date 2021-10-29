@@ -70,7 +70,7 @@ const LoginForm = ({setOpenLogin}) => {
               <label htmlFor="email">Email</label>
               <input
                 name="email"
-                type="email"
+                type="text"
                 placeholder="example@email.com"
                 value={email}
                 onChange={updateEmail}
