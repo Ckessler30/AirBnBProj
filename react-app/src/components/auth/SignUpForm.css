@@ -62,3 +62,11 @@
 .surb{
     margin-top: 0;
 }
+
+.input-email>p{
+    font-size: .8em;
+}
+
+.bio-area>p{
+    font-size: .8em;
+}

@@ -130,6 +130,7 @@ const SignUpForm = ({setOpenSignUp}) => {
             </div>
             <div className="input-email">
               <label>Profile Pic</label>
+              <p>*optional*</p>
               <input
                 type="text"
                 name="profile_pic"
@@ -140,6 +141,7 @@ const SignUpForm = ({setOpenSignUp}) => {
             </div>
             <div className="bio-area">
               <label>Bio</label>
+              <p>*optional*</p>
               <textarea
                 name="bio"
                 id=""
