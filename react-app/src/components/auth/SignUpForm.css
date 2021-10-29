@@ -15,6 +15,7 @@
     position: relative;
     padding: 24px;
     width: 568px;
+    height: 100%;
     max-height: 1000px;
     max-width: 568px;
     
@@ -24,6 +25,8 @@
     border-radius: 12px;
     /* align-items: center; */
     margin-top: 18px;
+    overflow: hidden;
+    overflow-y: scroll;
     
 }
 
