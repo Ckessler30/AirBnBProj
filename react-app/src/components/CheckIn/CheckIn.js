@@ -111,7 +111,7 @@ function CheckIn({ spot, spotReviews }) {
           </div>
           <div className="ci-rev">
             <AiFillStar className="sp-star" />
-            <p>{spot.reviews.length > 0 && avgReview(spot.reviews)}</p>
+            <p>{spotReviews.length > 0 && avgReview(spotReviews)}</p>
             <a href="#reviewSection" className="rev-anch">
               <span>({spotReviews.length} reviews)</span>
             </a>
