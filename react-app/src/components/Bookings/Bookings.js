@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import { deleteBooking } from "../../store/bookings"
 import {BsArrowRightShort} from 'react-icons/bs'
 import './Bookings.css'
+import { useEffect } from "react";
+import { fetchAllSpots } from "../../store/allSpots";
 
 function Bookings() {
     const dispatch = useDispatch()
@@ -11,6 +13,10 @@ function Bookings() {
     const spots = useSelector(state => state.allSpots)
     const userBookings = bookings.filter(booking => booking.userId === user.id )
     // console.log(userBookings)
+
+    useEffect(()=> {
+      dispatch(fetchAllSpots())
+    }, [dispatch])
 
     const handleCancel = (id) => {
         dispatch(deleteBooking(id))
