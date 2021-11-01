@@ -15,7 +15,7 @@ class SpotForm(FlaskForm):
     total_guests = IntegerField('Total guests', validators=[DataRequired("Please provide the maximum occupancy."), NumberRange(1, 100, "Maximum occupancy must be between 1 and 100.")])
     city = StringField('City', validators=[DataRequired("Please select the state.")])
     st_address = StringField('Address', validators=[DataRequired("Please provide the address of your listing."), Length(-1, 255, "Address must be under 255 characters.")])
-    longitude = FloatField('Longitude', validators=[DataRequired("Please provide the longitude of your listing."), NumberRange(-180, 80, "Minimum longitutde is -180 and Maximum is 80.")])
+    longitude = FloatField('Longitude', validators=[DataRequired("Please provide the longitude of your listing."), NumberRange(-180, 80, "Minimum longitude is -180 and Maximum is 80.")])
     latitude = FloatField('Latitude', validators=[DataRequired("Please provide the latitude of your listing."), NumberRange(-90, 90, "Minimum latitude is -90 and Maximum is 90.")])
     
     submit = SubmitField('Host Spot')
