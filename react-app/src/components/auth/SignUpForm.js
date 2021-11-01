@@ -141,7 +141,7 @@ const SignUpForm = ({setOpenSignUp}) => {
             </div>
             <div className="bio-area">
               <label>Bio</label>
-              <p>*optional*</p>
+              {/* <p>*optional*</p> */}
               <textarea
                 name="bio"
                 id=""
