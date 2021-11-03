@@ -36,3 +36,6 @@ I chose PostgresSQL as my databse because it is very intuitive and simple to wor
 I am extremely happy with how Bearbnb turned out after just two weeks of working time.  There are definitley some more features I would like to add in the future so that it can become even more functional than it already is.  I plan to implement more customizable features as well as more personalized features so that each user can get an experience of their own based off of their current location.
 
 
+## Live Site
+https://thebearbnb.herokuapp.com/
+
