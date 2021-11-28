@@ -8,6 +8,28 @@ Logged out users can enjoy all of the great spots that the site has to offer the
 ## Bearbnb Architecture 
 Bearbnb is build with a React/Redux frontend and a Python/Flask backend that is working PostgreSQL as a database.  The querying is done on the backend using SQLAlchemy.
 
+## Bearbnb Features
+### Spots
+
+![Alt Text](https://media.giphy.com/media/QZubr8EozYmehBd0qN/giphy.gif)
+
+### Creating a Spot
+
+![Alt Text](https://media.giphy.com/media/8ml67rs0DU7Fb0Br2L/giphy.gif)
+
+### Reviews
+
+![Alt Text](https://media.giphy.com/media/tbltgvj8AhYS85KEj2/giphy.gif)
+
+### Bookings
+
+![Alt Text](https://media.giphy.com/media/pVTkl5USUzjZDJKg3Z/giphy.gif)
+
+### Profile
+
+![alt text](https://cdn.discordapp.com/attachments/908486747506221059/914660938672668732/Screen_Shot_2021-11-28_at_6.28.39_PM.png)
+
+
 ## Frontend Technologies
 ### React
 Bearbnb is a React application that utilizes a good bit of front end logic to display dynamic features.
